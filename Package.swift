@@ -5,6 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftDolibarr",
+	platforms: [
+		.iOS(.v17),
+		.macOS(.v14),
+		.macCatalyst(.v17),
+		.tvOS(.v17),
+		.visionOS(.v1),
+		.watchOS(.v10)
+	],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
