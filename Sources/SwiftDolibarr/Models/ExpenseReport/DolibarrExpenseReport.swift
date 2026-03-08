@@ -1,6 +1,6 @@
 //
 //  DolibarrExpenseReport.swift
-//  hades
+//  SwiftDolibarr
 //
 //  Created by William Mead on 27/05/2025.
 //

@@ -1,6 +1,6 @@
 //
 //  DolibarrExpenseReportLine.swift
-//  hades
+//  SwiftDolibarr
 //
 //  Created by William Mead on 27/05/2025.
 //
@@ -132,7 +132,7 @@ import OSLog
 		try container.encode(taxRate, forKey: .taxRate)
 		try container.encodeIfPresent(comments, forKey: .comments)
     }
-	
+
     static func == (lhs: DolibarrExpenseReportLine, rhs: DolibarrExpenseReportLine) -> Bool {
         lhs.id == rhs.id
     }
