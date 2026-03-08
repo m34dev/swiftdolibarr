@@ -49,15 +49,6 @@ import OSLog
 
 	// MARK: - Enums
 
-	enum Errors: String, Error {
-		case readContacts = "Unable to read contacts"
-		case readContact = "Unable to read contact"
-		case readContactCategories = "Unable to read+ contact categories"
-		case createContact = "Unable to create contact"
-		case updateContact = "Unable to update contact"
-		case deleteContact = "Unable to delete contact"
-	}
-
 	enum CodingKeys: String, CodingKey {
 		case countryId = "country_id"
 		case countryCode = "country_code"
