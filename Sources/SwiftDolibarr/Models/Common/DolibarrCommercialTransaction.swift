@@ -1,5 +1,5 @@
 //
-//  CommercialTransaction.swift
+//  DolibarrCommercialTransaction.swift
 //  SwiftDolibarr
 //
 //  Created by William Mead on 08/02/2026.
@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-protocol CommercialTransaction {
+protocol DolibarrCommercialTransaction {
 
 	// Properties
 
