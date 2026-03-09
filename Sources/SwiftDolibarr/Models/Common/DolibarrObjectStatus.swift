@@ -23,15 +23,15 @@ import Foundation
 import OSLog
 import SwiftUI
 
-struct DolibarrObjectStatus: Identifiable, Equatable, Hashable {
+public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable {
 
 	// MARK: - Properties
 
-	var id: UUID = UUID()
-	var code: String
-	var label: String
-	var color: Color
-	var sfSymbol: String
+	public var id: UUID = UUID()
+	public var code: String
+	public var label: String
+	public var color: Color
+	public var sfSymbol: String
 
 	// MARK: - Static properties
 

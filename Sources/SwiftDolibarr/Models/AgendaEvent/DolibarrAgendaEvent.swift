@@ -28,35 +28,35 @@ import OSLog
 
 	// Required
 
-	var ref: String
-	var label: String
-	var progress: String
-	var fullDayEvent: String
-	var visibility: String? // Not yet implemented in Dolibarr
+	public var ref: String
+	public var label: String
+	public var progress: String
+	public var fullDayEvent: String
+	public var visibility: String? // Not yet implemented in Dolibarr
 
 	// Optional
 
-	var typeId: String?
-	var type: String?
-	var typeCode: String?
-	var code: String?
-	var dateCreated: Int?
-	var dateModified: Int?
-	var dateStart: Int?
-	var dateEnd: Int?
-	var authorId: String?
-	var userModifiedId: String?
-	var location: String?
-	var thirdPartyId: String?
-	var priority: String?
-	var usersAssigned: [String: DolibarrAgendaEventUserAssigned]?
-	var userOwnerId: String?
-	var elementId: String?
-	var elementType: String?
+	public var typeId: String?
+	public var type: String?
+	public var typeCode: String?
+	public var code: String?
+	public var dateCreated: Int?
+	public var dateModified: Int?
+	public var dateStart: Int?
+	public var dateEnd: Int?
+	public var authorId: String?
+	public var userModifiedId: String?
+	public var location: String?
+	public var thirdPartyId: String?
+	public var priority: String?
+	public var usersAssigned: [String: DolibarrAgendaEventUserAssigned]?
+	public var userOwnerId: String?
+	public var elementId: String?
+	public var elementType: String?
 
 	// Computed
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		if let progressValue = Int(progress) {
 			switch progressValue {
 			case -1:

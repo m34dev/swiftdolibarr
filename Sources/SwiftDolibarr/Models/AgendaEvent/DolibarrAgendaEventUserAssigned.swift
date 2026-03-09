@@ -21,13 +21,13 @@
 
 import Foundation
 
-struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, DolibarrObject {
+public struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, DolibarrObject {
 
 	// MARK: - Properties
 
-    var id: String
-    var mandatory: String?
-    var answerStatus: String?
-    var transparency: String?
+	public var id: String
+	public var mandatory: String?
+	public var answerStatus: String?
+	public var transparency: String?
 
 }
