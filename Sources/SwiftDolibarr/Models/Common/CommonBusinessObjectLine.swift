@@ -29,7 +29,7 @@ public class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObj
 	// Required
 
 	public var id: String
-	var rang: String
+	public var rang: String
 
 	// Optional
 
@@ -42,7 +42,7 @@ public class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObj
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		id: String = "",
 		rang: String = "",
 	) {

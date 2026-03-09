@@ -20,7 +20,6 @@
 //
 
 import Foundation
-import OSLog
 
 protocol DolibarrPeopleObject: Hashable {
 
