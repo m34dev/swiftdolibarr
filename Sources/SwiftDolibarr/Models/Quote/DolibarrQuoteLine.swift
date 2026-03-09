@@ -26,7 +26,7 @@ import OSLog
 
 	// MARK: - Properties
 
-	var quoteId: String
+	public var quoteId: String
 
 	// MARK: - Enums
 
@@ -36,7 +36,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		quoteId: String = "",
 		specialCode: String = "0",
 		taxRate: String = "0.0",
@@ -74,7 +74,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: Decoder) throws {
+	public required init(from decoder: Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)

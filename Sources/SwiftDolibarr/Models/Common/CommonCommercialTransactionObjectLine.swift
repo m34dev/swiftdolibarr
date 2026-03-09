@@ -28,22 +28,22 @@ public class CommonCommercialTransactionObjectLine: CommonBusinessObjectLine {
 
 	// Required
 
-	var specialCode: String
-	var taxRate: String
-	var unitPriceExclTax: String
-	var discountRate: String
-	var totalExclTax: String
-	var totalInclTax: String
-	var totalTax: String
+	public var specialCode: String
+	public var taxRate: String
+	public var unitPriceExclTax: String
+	public var discountRate: String
+	public var totalExclTax: String
+	public var totalInclTax: String
+	public var totalTax: String
 
 	// Optional
 
-	var productId: String?
-	var productRef: String?
-	var productLabel: String?
-	var quantity: String?
-	var description: String?
-	var unitPriceInclTax: String?
+	public var productId: String?
+	public var productRef: String?
+	public var productLabel: String?
+	public var quantity: String?
+	public var description: String?
+	public var unitPriceInclTax: String?
 
 	// MARK: - Enums
 
@@ -65,7 +65,7 @@ public class CommonCommercialTransactionObjectLine: CommonBusinessObjectLine {
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		specialCode: String = "0",
 		taxRate: String = "0.0",
 		unitPriceExclTax: String = "0.0",
@@ -98,7 +98,7 @@ public class CommonCommercialTransactionObjectLine: CommonBusinessObjectLine {
 		super.init(id: id, rang: rang)
 	}
 
-	required init(from decoder: Decoder) throws {
+	public required init(from decoder: Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)

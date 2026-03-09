@@ -28,12 +28,12 @@ import OSLog
 
 	// Required
 
-	var datei: Double
-	var duration: String
+	public var datei: Double
+	public var duration: String
 
 	// Optional
 
-    var desc: String?
+	public  var desc: String?
 
     // MARK: - Enums
 
@@ -45,7 +45,7 @@ import OSLog
 
     // MARK: - Inits
 
-    init(
+	public init(
 		datei: Double = Date.now.timeIntervalSince1970,
 		duration: String = "3600",
 		desc: String? = nil,
@@ -58,7 +58,7 @@ import OSLog
 		super.init(id: id, rang: rang)
     }
 
-    required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
         do {
             Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
             let container = try decoder.container(keyedBy: CodingKeys.self)

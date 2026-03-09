@@ -22,11 +22,11 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrInvoiceLine: CommonCommercialTransactionObjectLine {
+@Observable public final class DolibarrInvoiceLine: CommonCommercialTransactionObjectLine {
 
 	// MARK: - Properties
 
-	var invoiceId: String
+	public var invoiceId: String
 
 	// MARK: - Enums
 
@@ -36,7 +36,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		invoiceId: String = "",
 		specialCode: String = "0",
 		taxRate: String = "0.0",
@@ -74,7 +74,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: Decoder) throws {
+	public required init(from decoder: Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -92,12 +92,12 @@ import OSLog
 
 	// MARK: - Protocol methods
 
-	override func hash(into hasher: inout Hasher) {
+	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(invoiceId)
 		super.hash(into: &hasher)
 	}
 
-	override func encode(to encoder: any Encoder) throws {
+	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(invoiceId, forKey: .invoiceId)
 		try super.encode(to: encoder)

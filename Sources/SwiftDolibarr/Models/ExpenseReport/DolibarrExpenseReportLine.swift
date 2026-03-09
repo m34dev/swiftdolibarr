@@ -27,17 +27,17 @@ import OSLog
     // MARK: - Properties
 
 	public var id: String
-    var quantity: String
-    var unitPriceInclTax: String
-    var date: Int
-    var feeTypeId: String
-    var feeTypeCode: String
-    var feeTypeLabel: String
-    var totalExclTax: String
-    var totalTax: String
-    var totalInclTax: String
-    var taxRate: String
-    var comments: String?
+	public var quantity: String
+	public var unitPriceInclTax: String
+	public var date: Int
+	public var feeTypeId: String
+	public var feeTypeCode: String
+	public var feeTypeLabel: String
+	public var totalExclTax: String
+	public var totalTax: String
+	public var totalInclTax: String
+	public var taxRate: String
+	public var comments: String?
 
     // MARK: - Enums
 
@@ -58,7 +58,7 @@ import OSLog
 
     // MARK: - Inits
 
-    init(
+    public init(
         id: String,
         quantity: String,
         unitPriceInclTax: String,
