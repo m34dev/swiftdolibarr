@@ -21,15 +21,15 @@
 
 import Foundation
 
-struct DolibarrUserPermissionsStock: Codable, Hashable {
+public struct DolibarrUserPermissionsStock: Codable, Hashable {
 
 	// MARK: - Properties
 
-	var lire: Int?
-	var creer: Int?
-	var supprimer: Int?
-	var mouvement: [String: Int]?
-	var inventoryAdvance: [String: Int]?
+	public var lire: Int?
+	public var creer: Int?
+	public var supprimer: Int?
+	public var mouvement: [String: Int]?
+	public var inventoryAdvance: [String: Int]?
 
 	// MARK: - Enums
 
@@ -43,7 +43,7 @@ struct DolibarrUserPermissionsStock: Codable, Hashable {
 
 	// MARK: - Inits
 
-	internal init(
+	public init(
 		lire: Int? = nil,
 		creer: Int? = nil,
 		supprimer: Int? = nil,
@@ -57,7 +57,7 @@ struct DolibarrUserPermissionsStock: Codable, Hashable {
 		self.inventoryAdvance = inventoryAdvance
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.lire = try container.decodeIfPresent(Int.self, forKey: .lire)
 		self.creer = try container.decodeIfPresent(Int.self, forKey: .creer)

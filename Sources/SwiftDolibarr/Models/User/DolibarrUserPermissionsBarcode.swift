@@ -21,13 +21,13 @@
 
 import Foundation
 
-struct DolibarrUserPermissionsBarcode: Codable, Hashable {
+public struct DolibarrUserPermissionsBarcode: Codable, Hashable {
 
 	// MARK: - Properties
 
-	var read: Int?
-	var lireAdvance: Int?
-	var creerAdvance: Int?
+	public var read: Int?
+	public var lireAdvance: Int?
+	public var creerAdvance: Int?
 
 	// MARK: - Enums
 
@@ -39,13 +39,13 @@ struct DolibarrUserPermissionsBarcode: Codable, Hashable {
 
 	// MARK: - Inits
 
-	internal init(read: Int? = nil, lireAdvance: Int? = nil, creerAdvance: Int? = nil) {
+	public init(read: Int? = nil, lireAdvance: Int? = nil, creerAdvance: Int? = nil) {
 		self.read = read
 		self.lireAdvance = lireAdvance
 		self.creerAdvance = creerAdvance
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.read = try container.decodeIfPresent(Int.self, forKey: .read)
 		self.lireAdvance = try container.decodeIfPresent(Int.self, forKey: .lireAdvance)

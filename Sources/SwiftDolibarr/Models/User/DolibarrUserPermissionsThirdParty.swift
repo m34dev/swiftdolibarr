@@ -21,16 +21,16 @@
 
 import Foundation
 
-struct DolibarrUserPermissionsThirdParty: Codable, Hashable {
+public struct DolibarrUserPermissionsThirdParty: Codable, Hashable {
 
 	// MARK: - Properties
 
-	var lire: Int?
-	var creer: Int?
-	var supprimer: Int?
-	var paymentInformationAdvance: [String: Int]?
-	var client: [String: Int]?
-	var contact: [String: Int]?
+	public var lire: Int?
+	public var creer: Int?
+	public var supprimer: Int?
+	public var paymentInformationAdvance: [String: Int]?
+	public var client: [String: Int]?
+	public var contact: [String: Int]?
 
 	// MARK: - Enums
 
@@ -45,7 +45,7 @@ struct DolibarrUserPermissionsThirdParty: Codable, Hashable {
 
 	// MARK: - Inits
 
-	internal init(
+	public init(
 		lire: Int? = nil,
 		creer: Int? = nil,
 		supprimer: Int? = nil,
@@ -61,7 +61,7 @@ struct DolibarrUserPermissionsThirdParty: Codable, Hashable {
 		self.contact = contact
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.lire = try container.decodeIfPresent(Int.self, forKey: .lire)
 		self.creer = try container.decodeIfPresent(Int.self, forKey: .creer)

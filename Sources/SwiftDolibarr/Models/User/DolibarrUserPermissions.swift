@@ -21,22 +21,22 @@
 
 import Foundation
 
-struct DolibarrUserPermissions: Codable, Hashable {
+public struct DolibarrUserPermissions: Codable, Hashable {
 
 	// MARK: - Properties
 
-	var user: DolibarrUserPermissionsUser
-	var expensereport: DolibarrUserPermissionsExpenseReport?
-	var facture: DolibarrUserPermissionsInvoice?
-	var produit: DolibarrUserPermissionsProduct?
-	var service: DolibarrUserPermissionsService?
-	var ficheinter: DolibarrUserPermissionsIntervention?
-	var societe: DolibarrUserPermissionsThirdParty?
-	var agenda: DolibarrUserPermissionsAgenda?
-	var propale: DolibarrUserPermissionsQuote?
-	var commande: DolibarrUserPermissionsOrder?
-	var barcode: DolibarrUserPermissionsBarcode?
-	var stock: DolibarrUserPermissionsStock?
-	var projet: DolibarrUserPermissionsProject?
+	public var user: DolibarrUserPermissionsUser
+	public var expensereport: DolibarrUserPermissionsExpenseReport?
+	public var facture: DolibarrUserPermissionsInvoice?
+	public var produit: DolibarrUserPermissionsProduct?
+	public var service: DolibarrUserPermissionsService?
+	public var ficheinter: DolibarrUserPermissionsIntervention?
+	public var societe: DolibarrUserPermissionsThirdParty?
+	public var agenda: DolibarrUserPermissionsAgenda?
+	public var propale: DolibarrUserPermissionsQuote?
+	public var commande: DolibarrUserPermissionsOrder?
+	public var barcode: DolibarrUserPermissionsBarcode?
+	public var stock: DolibarrUserPermissionsStock?
+	public var projet: DolibarrUserPermissionsProject?
 
 }

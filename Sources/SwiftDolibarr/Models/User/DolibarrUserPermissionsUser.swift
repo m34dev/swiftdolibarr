@@ -21,7 +21,7 @@
 
 import Foundation
 
-struct DolibarrUserPermissionsUser: Codable, Hashable {
+public struct DolibarrUserPermissionsUser: Codable, Hashable {
 
 	// MARK: - Properties
 
@@ -43,7 +43,7 @@ struct DolibarrUserPermissionsUser: Codable, Hashable {
 
 	// MARK: - Inits
 
-	internal init(
+	public init(
 		user: [String: Int],
 		userSelf: [String: Int],
 		userAdvance: [String: Int],
@@ -57,7 +57,7 @@ struct DolibarrUserPermissionsUser: Codable, Hashable {
 		self.groupAdvance = groupAdvance
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.user = try container.decode([String: Int].self, forKey: .user)
 		self.userSelf = try container.decode([String: Int].self, forKey: .userSelf)

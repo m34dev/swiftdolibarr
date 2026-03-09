@@ -21,19 +21,19 @@
 
 import Foundation
 
-struct DolibarrUserPermissionsProject: Codable, Hashable {
+public struct DolibarrUserPermissionsProject: Codable, Hashable {
 
 	// MARK: - Properties
 
-	var lire: Int?
-	var creer: Int?
-	var supprimer: Int?
-	var all: [String: Int]?
-	var time: Int?
+	public var lire: Int?
+	public var creer: Int?
+	public var supprimer: Int?
+	public var all: [String: Int]?
+	public var time: Int?
 
 	// MARK: - Inits
 
-	internal init(
+	public init(
 		lire: Int? = nil,
 		creer: Int? = nil,
 		supprimer: Int? = nil,
@@ -47,7 +47,7 @@ struct DolibarrUserPermissionsProject: Codable, Hashable {
 		self.time = time
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.lire = try container.decodeIfPresent(Int.self, forKey: .lire)
 		self.creer = try container.decodeIfPresent(Int.self, forKey: .creer)

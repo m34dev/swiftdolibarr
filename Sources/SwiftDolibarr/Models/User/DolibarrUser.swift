@@ -26,12 +26,12 @@ import OSLog
 
 	// MARK: - Properties
 
-	var admin: String
-	var login: String
-	var lastname: String
-	var firstname: String?
-	var supervisorId: String?
-	var rights: DolibarrUserPermissions?
+	public var admin: String
+	public var login: String
+	public var lastname: String
+	public var firstname: String?
+	public var supervisorId: String?
+	public var rights: DolibarrUserPermissions?
 
 	// MARK: - Enums
 
@@ -46,7 +46,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		admin: String = "",
 		login: String = "",
 		lastname: String = "",
@@ -74,7 +74,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)

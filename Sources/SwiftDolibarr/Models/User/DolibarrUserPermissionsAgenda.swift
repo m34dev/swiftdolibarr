@@ -21,16 +21,16 @@
 
 import Foundation
 
-struct DolibarrUserPermissionsAgenda: Codable, Hashable {
+public struct DolibarrUserPermissionsAgenda: Codable, Hashable {
 
 	// MARK: - Properties
 
-	var myactions: DolibarrUserPermissionsAgendaMyActions?
-	var allactions: DolibarrUserPermissionsAgendaAllActions?
+	public var myactions: DolibarrUserPermissionsAgendaMyActions?
+	public var allactions: DolibarrUserPermissionsAgendaAllActions?
 
 	// MARK: - Inits
 
-	internal init(
+	public init(
 		myactions: DolibarrUserPermissionsAgendaMyActions? = nil,
 		allactions: DolibarrUserPermissionsAgendaAllActions? = nil
 	) {
@@ -38,7 +38,7 @@ struct DolibarrUserPermissionsAgenda: Codable, Hashable {
 		self.allactions = allactions
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.myactions = try container.decodeIfPresent(DolibarrUserPermissionsAgendaMyActions.self, forKey: .myactions)
 		self.allactions = try container.decodeIfPresent(DolibarrUserPermissionsAgendaAllActions.self, forKey: .allactions)
