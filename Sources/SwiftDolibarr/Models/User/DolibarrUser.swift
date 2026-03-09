@@ -1,0 +1,105 @@
+//
+//  DolibarrUser.swift
+//  SwiftDolibarr
+//
+//  Created by William Mead on 26/12/2024.
+//
+
+import Foundation
+import OSLog
+
+@Observable final class DolibarrUser: CommonBusinessObject {
+
+	// MARK: - Properties
+
+	var admin: String
+	var login: String
+	var lastname: String
+	var firstname: String?
+	var supervisorId: String?
+	var rights: DolibarrUserPermissions?
+
+	// MARK: - Enums
+
+	enum CodingKeys: String, CodingKey {
+		case admin
+		case login
+		case lastname
+		case firstname
+		case supervisorId = "fk_user"
+		case rights
+	}
+
+	// MARK: - Inits
+
+	init(
+		admin: String = "",
+		login: String = "",
+		lastname: String = "",
+		firstname: String? = nil,
+		supervisorId: String? = nil,
+		rights: DolibarrUserPermissions? = nil,
+		id: String = "",
+		statusCode: String = "",
+		arrayOptions: [String: MultiType]? = nil,
+		notePublic: String? = nil,
+		notePrivate: String? = nil
+	) {
+		self.admin = admin
+		self.login = login
+		self.lastname = lastname
+		self.firstname = firstname
+		self.supervisorId = supervisorId
+		self.rights = rights
+		super.init(
+			id: id,
+			statusCode: statusCode,
+			arrayOptions: arrayOptions,
+			notePublic: notePublic,
+			notePrivate: notePrivate
+		)
+	}
+
+	required init(from decoder: any Decoder) throws {
+		do {
+			Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
+			let container = try decoder.container(keyedBy: CodingKeys.self)
+			self.admin = try container.decode(String.self, forKey: .admin)
+			self.login = try container.decode(String.self, forKey: .login)
+			self.lastname = try container.decode(String.self, forKey: .lastname)
+			self.firstname = try container.decodeIfPresent(String.self, forKey: .firstname)
+			self.supervisorId = try container.decodeIfPresent(String.self, forKey: .supervisorId)
+			self.rights = try container.decodeIfPresent(DolibarrUserPermissions.self, forKey: .rights)
+			try super.init(from: decoder)
+			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
+		} catch let error as DecodingError {
+			Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+			throw error
+		} catch {
+			Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+			throw error
+		}
+	}
+
+	// MARK: - Protocol methods
+
+	override func hash(into hasher: inout Hasher) {
+		hasher.combine(admin)
+		hasher.combine(login)
+		hasher.combine(lastname)
+		hasher.combine(optional: firstname)
+		hasher.combine(optional: supervisorId)
+		hasher.combine(optional: rights)
+		super.hash(into: &hasher)
+	}
+
+	override func encode(to encoder: any Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(admin, forKey: .admin)
+		try container.encode(login, forKey: .login)
+		try container.encode(lastname, forKey: .lastname)
+		try container.encode(firstname, forKey: .firstname)
+		try super.encode(to: encoder)
+	}
+
+}
