@@ -31,14 +31,14 @@ public struct DolibarrInvoiceType: Equatable, Hashable, Sendable {
 
 	// MARK: - Static properties
 
-	static let standard: DolibarrInvoiceType = .init(code: "0", label: String(localized: "Standard"))
-	static let replacement: DolibarrInvoiceType = .init(code: "1", label: String(localized: "Replacement"))
-	static let creditNote: DolibarrInvoiceType = .init(code: "2", label: String(localized: "Credit note"))
-	static let deposit: DolibarrInvoiceType = .init(code: "3", label: String(localized: "Deposit"))
-	static let proforma: DolibarrInvoiceType = .init(code: "4", label: String(localized: "Proforma")) // Deprecated
-	static let situation: DolibarrInvoiceType = .init(code: "5", label: String(localized: "Situation"))
-	static let unknown: DolibarrInvoiceType = .init(code: "", label: String(localized: "Unknown"))
+	public static let standard: DolibarrInvoiceType = .init(code: "0", label: String(localized: "Standard"))
+	public static let replacement: DolibarrInvoiceType = .init(code: "1", label: String(localized: "Replacement"))
+	public static let creditNote: DolibarrInvoiceType = .init(code: "2", label: String(localized: "Credit note"))
+	public static let deposit: DolibarrInvoiceType = .init(code: "3", label: String(localized: "Deposit"))
+	public static let proforma: DolibarrInvoiceType = .init(code: "4", label: String(localized: "Proforma")) // Deprecated
+	public static let situation: DolibarrInvoiceType = .init(code: "5", label: String(localized: "Situation"))
+	public static let unknown: DolibarrInvoiceType = .init(code: "", label: String(localized: "Unknown"))
 
-	static let allTypes: [DolibarrInvoiceType] = [standard, replacement, creditNote, deposit, proforma, situation]
+	public static let allTypes: [DolibarrInvoiceType] = [standard, replacement, creditNote, deposit, proforma, situation]
 
 }

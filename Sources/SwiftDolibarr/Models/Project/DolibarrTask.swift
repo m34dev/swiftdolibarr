@@ -14,7 +14,7 @@
 
 //
 //  DolibarrTask.swift
-//  hades
+//  SwiftDolibarr
 //
 //  Created by William Mead on 20/02/2026.
 //
