@@ -13,40 +13,129 @@ import OSLog
     // MARK: - Properties
 
 	// Required
-
+	
+	/// Third party name
 	var name: String
 
 	// Optional
-
+	
+	/// Third party country ID (address)
+	///
+	/// - Mapped Dolibarr property: **country_id**
     var countryId: String?
+
+	/// Third party country code (address)
+	///
+	/// - Mapped Dolibarr property: **country_code**
     var countryCode: String?
+
+	/// Third party multicurrency code
+	///
+	/// - Mapped Dolibarr property: **multicurrency_code**
     var multicurrencyCode: String?
+
+	/// Third party alias
+	///
+	/// - Mapped Dolibarr property: **name_alias**
     var nameAlias: String?
+
+	/// Third party telephone number
     var phone: String?
+
+	/// Third party fax number
     var fax: String?
+
+	/// Third party email address
     var email: String?
+
+	/// Third party website address
     var url: String?
+
+	/// Third party professional ID 1 (e.g. SIREN for France)
     var idprof1: String?
+
+	/// Third party professional ID 2 (e.g. SIRET for France)
     var idprof2: String?
+
+	/// Third party professional ID 3 (e.g. APE code for France)
     var idprof3: String?
+
+	/// Third party professional ID 4 (e.g. RCS for France)
     var idprof4: String?
+
+	/// Third party professional ID 5
     var idprof5: String?
+
+	/// Third party intra-community VAT number
+	///
+	/// - Mapped Dolibarr property: **tva_intra**
     var tvaIntra: String?
+
+	/// Financial capital of third party company
     var capital: String?
+
+	/// Third party intra-community VAT number
+	///
+	/// - Mapped Dolibarr property: **effectif**
     var workforce: String?
+
+	/// Third party legal entity type
+	///
+	/// - Mapped Dolibarr property: **forme_juridique**
     var legalEntityType: String?
+
+	/// Third party client state
+	///
+	/// - States:
+	/// 0 = not customer
+	/// 1 = customer not prospect
+	/// 2 = prospect not customer
+	/// 3 = customer and prospect
     var client: String?
+
+	/// Third party supplier state
+	///
+	/// - States:
+	/// 0 = not supplier
+	/// 1 = supplier
+	///
+	/// - Mapped Dolibarr property: **fournisseur**
     var supplier: String?
+
+	/// Third party customer code (e.g. CU2026-0001)
+	///
+	/// - Mapped Dolibarr property: **code_client**
     var clientCode: String?
+
+	/// Third party supplier code (e.g. SU2026-0001)
+	///
+	/// - Mapped Dolibarr property: **code_fournisseur**
     var supplierCode: String?
+
+	/// Third party parent third party ID
+	///
+	/// - Mapped Dolibarr property: **parent**
     var parentId: String?
+
+	/// Third party social networks array
     var socialnetworks: [String: String]?
+
+	/// Third party address lines
     var address: String?
-    var zip: String?
+
+	/// Third party zip code (address)
+	///
+	/// - Mapped Dolibarr property: **zip**
+    var zipCode: String?
+
+	/// Third party number of employees
+	///
+	/// - Mapped Dolibarr property: **town**
     var city: String?
 
 	// Computed
 
+	/// Associated third party status type
 	override var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.thirdPartiesContacts.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status
@@ -80,7 +169,7 @@ import OSLog
         case parentId = "parent"
         case socialnetworks
         case address
-        case zip
+        case zipCode = "zip"
         case city = "town"
     }
 
@@ -112,7 +201,7 @@ import OSLog
         parent: String? = nil,
         socialnetworks: [String: String]? = nil,
         address: String? = nil,
-        zip: String? = nil,
+        zipCode: String? = nil,
         city: String? = nil,
         id: String = "",
         statusCode: String = "",
@@ -145,7 +234,7 @@ import OSLog
         self.parentId = parent
         self.socialnetworks = socialnetworks
         self.address = address
-        self.zip = zip
+        self.zipCode = zipCode
         self.city = city
 		super.init(id: id, statusCode: statusCode, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
     }
@@ -183,7 +272,7 @@ import OSLog
                 self.socialnetworks = nil
             }
             self.address = try container.decodeIfPresent(String.self, forKey: .address)
-			self.zip = try container.decodeIfPresent(String.self, forKey: .zip)
+			self.zipCode = try container.decodeIfPresent(String.self, forKey: .zipCode)
 			self.city = try container.decodeIfPresent(String.self, forKey: .city)
 			try super.init(from: decoder)
             Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
@@ -224,7 +313,7 @@ import OSLog
 		hasher.combine(optional: parentId)
 		hasher.combine(optional: socialnetworks)
 		hasher.combine(optional: address)
-		hasher.combine(optional: zip)
+		hasher.combine(optional: zipCode)
 		hasher.combine(optional: city)
 		super.hash(into: &hasher)
     }
@@ -256,7 +345,7 @@ import OSLog
 		try container.encodeIfPresent(parentId, forKey: .parentId)
 		try container.encodeIfPresent(socialnetworks, forKey: .socialnetworks)
 		try container.encodeIfPresent(address, forKey: .address)
-		try container.encodeIfPresent(zip, forKey: .zip)
+		try container.encodeIfPresent(zipCode, forKey: .zipCode)
 		try container.encodeIfPresent(city, forKey: .city)
 		try super.encode(to: encoder)
     }

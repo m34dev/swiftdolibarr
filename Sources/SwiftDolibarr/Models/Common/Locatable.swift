@@ -13,7 +13,7 @@ protocol Locatable: Hashable {
     // Properties
 
     var address: String? { get set }
-    var zip: String? { get set }
+    var zipCode: String? { get set }
     var city: String? { get set }
     var countryId: String? { get set }
 	

@@ -22,7 +22,7 @@ import OSLog
     var description: String?
     var location: String?
     var address: String?
-    var zip: String?
+    var zipCode: String?
     var city: String?
     var countryId: String?
     var phone: String?
@@ -42,7 +42,7 @@ import OSLog
         case description
         case location = "lieu"
         case address
-        case zip
+        case zipCode = "zip"
         case city = "town"
         case countryId = "country_id"
         case phone
@@ -56,7 +56,7 @@ import OSLog
 		description: String? = nil,
 		location: String? = nil,
 		address: String? = nil,
-		zip: String? = nil,
+		zipCode: String? = nil,
 		city: String? = nil,
 		countryId: String? = nil,
 		phone: String? = nil,
@@ -71,7 +71,7 @@ import OSLog
         self.description = description
         self.location = location
         self.address = address
-        self.zip = zip
+        self.zipCode = zipCode
         self.city = city
         self.countryId = countryId
         self.phone = phone
@@ -87,7 +87,7 @@ import OSLog
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.location = try container.decodeIfPresent(String.self, forKey: .location)
 			self.address = try container.decodeIfPresent(String.self, forKey: .address)
-			self.zip = try container.decodeIfPresent(String.self, forKey: .zip)
+			self.zipCode = try container.decodeIfPresent(String.self, forKey: .zipCode)
 			self.city = try container.decodeIfPresent(String.self, forKey: .city)
             self.countryId = try container.decodeIfPresent(String.self, forKey: .countryId)
             self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
@@ -110,7 +110,7 @@ import OSLog
 		hasher.combine(optional: description)
 		hasher.combine(optional: location)
 		hasher.combine(optional: address)
-		hasher.combine(optional: zip)
+		hasher.combine(optional: zipCode)
 		hasher.combine(optional: city)
 		hasher.combine(optional: countryId)
 		hasher.combine(optional: phone)
@@ -124,7 +124,7 @@ import OSLog
 		try container.encodeIfPresent(location, forKey: .location)
 		try container.encodeIfPresent(description, forKey: .description)
 		try container.encodeIfPresent(address, forKey: .address)
-		try container.encodeIfPresent(zip, forKey: .zip)
+		try container.encodeIfPresent(zipCode, forKey: .zipCode)
 		try container.encodeIfPresent(city, forKey: .city)
 		try container.encodeIfPresent(phone, forKey: .phone)
         try container.encodeIfPresent(countryId, forKey: .countryId)

@@ -24,7 +24,7 @@ import OSLog
 	var firstname: String?
 	var titleCode: String?
 	var address: String?
-	var zip: String?
+	var zipCode: String?
 	var city: String?
 	var poste: String?
 	var socid: String?
@@ -57,7 +57,7 @@ import OSLog
 		case firstname
 		case titleCode = "civility_code"
 		case address
-		case zip
+		case zipCode = "zip"
 		case city = "town"
 		case poste
 		case socid
@@ -79,7 +79,7 @@ import OSLog
 		firstname: String? = nil,
 		titleCode: String? = nil,
 		address: String? = nil,
-		zip: String? = nil,
+		zipCode: String? = nil,
 		city: String? = nil,
 		poste: String? = nil,
 		socid: String? = nil,
@@ -102,7 +102,7 @@ import OSLog
 		self.firstname = firstname
 		self.titleCode = titleCode
 		self.address = address
-		self.zip = zip
+		self.zipCode = zipCode
 		self.city = city
 		self.poste = poste
 		self.socid = socid
@@ -126,7 +126,7 @@ import OSLog
 			self.firstname = try container.decodeIfPresent(String.self, forKey: .firstname)
 			self.titleCode = try container.decodeIfPresent(String.self, forKey: .titleCode)
 			self.address = try container.decodeIfPresent(String.self, forKey: .address)
-			self.zip = try container.decodeIfPresent(String.self, forKey: .zip)
+			self.zipCode = try container.decodeIfPresent(String.self, forKey: .zipCode)
 			self.city = try container.decodeIfPresent(String.self, forKey: .city)
 			self.poste = try container.decodeIfPresent(String.self, forKey: .poste)
 			self.socid = try container.decodeIfPresent(String.self, forKey: .socid)
@@ -165,7 +165,7 @@ import OSLog
 		hasher.combine(optional: firstname)
 		hasher.combine(optional: titleCode)
 		hasher.combine(optional: address)
-		hasher.combine(optional: zip)
+		hasher.combine(optional: zipCode)
 		hasher.combine(optional: city)
 		hasher.combine(optional: poste)
 		hasher.combine(optional: socid)
@@ -187,7 +187,7 @@ import OSLog
 		try container.encodeIfPresent(firstname, forKey: .firstname)
 		try container.encodeIfPresent(titleCode, forKey: .titleCode)
 		try container.encodeIfPresent(address, forKey: .address)
-		try container.encodeIfPresent(zip, forKey: .zip)
+		try container.encodeIfPresent(zipCode, forKey: .zipCode)
 		try container.encodeIfPresent(city, forKey: .city)
 		try container.encodeIfPresent(poste, forKey: .poste)
 		try container.encodeIfPresent(socid, forKey: .socid)
