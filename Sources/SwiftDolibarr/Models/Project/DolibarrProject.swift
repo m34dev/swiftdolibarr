@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable public final class DolibarrProject: CommonBusinessObject, DolibarrAPIObject {
+@Observable public final class DolibarrProject: CommonBusinessObject {
 
 	// MARK: - Properties
 

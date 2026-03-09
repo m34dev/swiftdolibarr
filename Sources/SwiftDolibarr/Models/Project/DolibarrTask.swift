@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable public final class DolibarrTask: CommonBusinessObject, DolibarrAPIObject {
+@Observable public final class DolibarrTask: CommonBusinessObject {
 
 	// MARK: - Properties
 
@@ -110,19 +110,6 @@ import OSLog
 		try container.encodeIfNotEmpty(projectId, forKey: .projectId)
 		try container.encodeIfNotEmpty(parentId, forKey: .parentId)
 		try super.encode(to: encoder)
-	}
-
-	// MARK: - Instance methods
-
-	@MainActor override func refreshAPIObjectProperties(with refreshedObject: CommonBusinessObject?) {
-		Logger.logWithoutSignal("\(Self.self).refreshAPIObjectProperties", category: .api)
-		if let refreshedObject = refreshedObject as? DolibarrTask {
-			super.refreshAPIObjectProperties(with: refreshedObject)
-			self.ref = refreshedObject.ref
-			self.label = refreshedObject.label
-			self.projectId = refreshedObject.projectId
-			self.parentId = refreshedObject.parentId
-		}
 	}
 
 }
