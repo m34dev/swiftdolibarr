@@ -62,7 +62,8 @@ class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 			self.id = try container.decode(String.self, forKey: .id)
 			if let status = try? container.decode(MultiType.self, forKey: .statusCode), !status.stringValue.isEmpty {
 				self.statusCode = status.stringValue
-			} else if let status = try? container.decode(MultiType.self, forKey: .statusCodeLegacy), !status.stringValue.isEmpty {
+			} else if let status = try? container.decode(MultiType.self, forKey: .statusCodeLegacy),
+				!status.stringValue.isEmpty {
 				self.statusCode = status.stringValue
 			} else {
 				self.statusCode = ""

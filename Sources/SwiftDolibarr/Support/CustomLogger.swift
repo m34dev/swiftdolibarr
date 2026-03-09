@@ -29,7 +29,10 @@ extension Logger {
 		category: LoggerCategories,
 		subsystem: String = subsystem
 	) {
-		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(message, privacy: .public)")
+		Logger(
+			subsystem: subsystem,
+			category: category.rawValue
+		).log(level: level, "\(message, privacy: .public)")
     }
 
     internal static func logErrorWithoutSignal(
@@ -39,7 +42,10 @@ extension Logger {
 		category: LoggerCategories,
 		subsystem: String = subsystem
 	) {
-		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(context): \(error.localizedDescription, privacy: .public)")
+		Logger(
+			subsystem: subsystem,
+			category: category.rawValue
+		).log(level: level, "\(context): \(error.localizedDescription, privacy: .public)")
     }
 
     internal static func logWithSignal(
@@ -49,7 +55,10 @@ extension Logger {
 		category: LoggerCategories,
 		subsystem: String = subsystem
 	) {
-		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(message, privacy: .private)")
+		Logger(
+			subsystem: subsystem,
+			category: category.rawValue
+		).log(level: level, "\(message, privacy: .private)")
     }
 
     internal static func logErrorWithSignal(
@@ -60,7 +69,10 @@ extension Logger {
 		category: LoggerCategories,
 		subsystem: String = subsystem
 	) {
-		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(context): \(error.localizedDescription, privacy: .private)")
+		Logger(
+			subsystem: subsystem,
+			category: category.rawValue
+		).log(level: level, "\(context): \(error.localizedDescription, privacy: .private)")
     }
 
 	internal static func logDecodingError(
@@ -70,11 +82,12 @@ extension Logger {
 	) {
 		switch decodingError {
 		case .keyNotFound(let key, let context):
-			Logger.logWithSignal("Key \(key) not found: \(context.debugDescription)", category: .api, subsystem: subsystem)
+			Logger.logWithSignal("Key: \(key) not found: \(context.debugDescription)", category: .api, subsystem: subsystem)
 			Logger.logErrorWithSignal(decodingError, context: decodeContext, category: .api, subsystem: subsystem)
 		case .valueNotFound(let value, let context):
+			let key = context.codingPath.last?.stringValue ?? "Unknown key"
 			Logger.logWithSignal(
-				"Value \(value) not found for key \(context.codingPath.last?.stringValue ?? "unknown"): \(context.debugDescription)",
+				"Value: \(value) not found for key: \(key): \(context.debugDescription)",
 				category: .api,
 				subsystem: subsystem
 			)
@@ -82,7 +95,7 @@ extension Logger {
 		case .typeMismatch(let type, let context):
 			let key = context.codingPath.last?.stringValue ?? "Unknown key"
 			Logger.logWithSignal(
-				"Type \(type) mismatch for key \(key): \(context.debugDescription)",
+				"Type: \(type) mismatch for key: \(key): \(context.debugDescription)",
 				category: .api,
 				subsystem: subsystem
 			)

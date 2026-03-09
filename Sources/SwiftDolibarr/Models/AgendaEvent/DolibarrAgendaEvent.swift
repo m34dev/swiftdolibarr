@@ -18,7 +18,7 @@ import OSLog
 	var label: String
 	var progress: String
 	var fullDayEvent: String
-	// var visibility: String // TODO: Not yet implemented in Dolibarr
+	var visibility: String? // Not yet implemented in Dolibarr
 
 	// Optional
 
@@ -68,7 +68,7 @@ import OSLog
 		case label
 		case progress = "percentage"
 		case fullDayEvent = "fulldayevent"
-		// case visibility // TODO: Not yet implemented in Dolibarr
+		case visibility
 		case typeId = "type_id"
 		case type
 		case typeCode = "type_code"
@@ -95,7 +95,7 @@ import OSLog
 		label: String = "",
 		progress: String = "",
 		fullDayEvent: String = "",
-		// visibility: String = "", // TODO: Not yet implemented in Dolibarr
+		visibility: String? = nil,
 		typeId: String? = nil,
 		type: String? = nil,
 		typeCode: String? = nil,
@@ -123,7 +123,7 @@ import OSLog
 		self.label = label
 		self.progress = progress
 		self.fullDayEvent = fullDayEvent
-		// self.visibility = visibility // TODO: Not yet implemented in Dolibarr
+		self.visibility = visibility
 		self.typeId = typeId
 		self.type = type
 		self.typeCode = typeCode
@@ -157,7 +157,7 @@ import OSLog
 			self.label = try container.decode(String.self, forKey: .label)
 			self.progress = try container.decode(String.self, forKey: .progress)
 			self.fullDayEvent = try container.decode(String.self, forKey: .fullDayEvent)
-			// self.visibility = try container.decode(String.self, forKey: .visibility) // TODO: Not yet implemented in Dolibarr
+			self.visibility = try container.decodeIfPresent(String.self, forKey: .visibility)
 			self.typeId = try container.decodeIfPresent(String.self, forKey: .typeId)
 			self.type = try container.decodeIfPresent(String.self, forKey: .type)
 			self.typeCode = try container.decodeIfPresent(String.self, forKey: .typeCode)
@@ -197,7 +197,7 @@ import OSLog
 		hasher.combine(label)
 		hasher.combine(progress)
 		hasher.combine(fullDayEvent)
-		// hasher.combine(visibility) // TODO: Not yet implemented in Dolibarr
+		hasher.combine(optional: visibility)
 		hasher.combine(optional: typeId)
 		hasher.combine(optional: type)
 		hasher.combine(optional: typeCode)
@@ -224,7 +224,7 @@ import OSLog
 		try container.encodeIfNotEmpty(label, forKey: .label)
 		try container.encodeIfNotEmpty(progress, forKey: .progress)
 		try container.encodeIfNotEmpty(fullDayEvent, forKey: .fullDayEvent)
-		// try container.encodeIfNotEmpty(visibility, forKey: .visibility) // TODO: Not yet implemented in Dolibarr
+		try container.encodeIfPresentAndNotEmpty(visibility, forKey: .visibility)
 		try container.encodeIfPresentAndNotEmpty(typeId, forKey: .typeId)
 		try container.encodeIfPresentAndNotEmpty(type, forKey: .type)
 		try container.encodeIfPresentAndNotEmpty(typeCode, forKey: .typeCode)
