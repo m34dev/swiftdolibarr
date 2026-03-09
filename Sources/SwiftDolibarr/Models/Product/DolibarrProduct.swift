@@ -28,38 +28,38 @@ import OSLog
 
 	// Required
 
-	var ref: String
-	var sellStatus: String
-	var buyStatus: String
-	var typeCode: String
-	var label: String
+	public var ref: String
+	public var sellStatus: String
+	public var buyStatus: String
+	public var typeCode: String
+	public var label: String
 
 	// Optional
 
-	var description: String?
-	var duration: String?
-	var finished: String?
-	var priceExclTax: String?
-	var priceInclTax: String?
-	var priceMinExclTax: String?
-	var priceMinInclTax: String?
-	var priceBaseType: String?
-	var priceLabel: String?
-	var taxRate: String?
-	var url: String?
-	var barcode: String?
-	var barcodeType: String?
-	var stockWarehouse: DolibarrProductStockWarehouse?
-	var defaultWarehouseId: String?
+	public var description: String?
+	public var duration: String?
+	public var finished: String?
+	public var priceExclTax: String?
+	public var priceInclTax: String?
+	public var priceMinExclTax: String?
+	public var priceMinInclTax: String?
+	public var priceBaseType: String?
+	public var priceLabel: String?
+	public var taxRate: String?
+	public var url: String?
+	public var barcode: String?
+	public var barcodeType: String?
+	public var stockWarehouse: DolibarrProductStockWarehouse?
+	public var defaultWarehouseId: String?
 
 	// Computed
 
-	var type: ProductType {
+	public var type: ProductType {
 		guard let type = ProductType.allProductTypes.first(where: { $0.code == typeCode }) else { return .unknown }
 		return type
 	}
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		let combinedStatusCodes = "\(sellStatus)\(buyStatus)"
 		guard let status = DolibarrObjectStatus.productsServices.first(where: { $0.code == combinedStatusCodes }) else {
 			return .unknown
@@ -94,7 +94,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		ref: String = "",
 		sellStatus: String = "1",
 		buyStatus: String = "1",
@@ -143,7 +143,7 @@ import OSLog
 		super.init(id: id, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -21,19 +21,19 @@
 
 import Foundation
 
-struct DolibarrProductStockWarehouse: Codable, Hashable, Equatable {
+public struct DolibarrProductStockWarehouse: Codable, Hashable, Equatable {
 
 	// MARK: - Properties
 
-    var stockWarehouses: [String: DolibarrProductWarehouseStock]
+	public var stockWarehouses: [String: DolibarrProductWarehouseStock]
 
 }
 
-struct DolibarrProductWarehouseStock: Codable, Hashable, Equatable, DolibarrObject {
+public struct DolibarrProductWarehouseStock: Codable, Hashable, Equatable, DolibarrObject {
 
 	// MARK: - Properties
 
-    var id: String
-    var real: String
+	public var id: String
+	public var real: String
 
 }

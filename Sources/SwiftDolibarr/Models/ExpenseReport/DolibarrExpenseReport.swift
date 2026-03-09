@@ -28,33 +28,33 @@ import OSLog
 
 	// Required
 
-	var lines: [DolibarrExpenseReportLine]
+	public var lines: [DolibarrExpenseReportLine]
 
 	// Optional
 
-    var ref: String
-    var dateStart: Int
-    var dateEnd: Int
-    var dateCreated: Int
-    var dateValidated: String
-    var dateApproved: String
-    var dateRefused: String
-    var dateCanceled: String
-    var userAuthorId: String
-    var userValidatorId: String?
-    var userApprovedById: String?
-    var userCanceledById: String?
-    var userRefusedById: String?
-    var detailCanceled: String?
-    var detailRefused: String?
-    var paid: String
-    var totalExclTax: String
-    var totalTax: String
-    var totalInclTax: String
+	public var ref: String
+	public var dateStart: Int
+	public var dateEnd: Int
+	public var dateCreated: Int
+	public var dateValidated: String
+	public var dateApproved: String
+	public var dateRefused: String
+	public var dateCanceled: String
+	public var userAuthorId: String
+	public var userValidatorId: String?
+	public var userApprovedById: String?
+	public var userCanceledById: String?
+	public var userRefusedById: String?
+	public var detailCanceled: String?
+	public var detailRefused: String?
+	public var paid: String
+	public var totalExclTax: String
+	public var totalTax: String
+	public var totalInclTax: String
 
 	// Computed
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.expenseReports.first(where: { $0.code == statusCode }) else {
 			return .unknown
 		}
@@ -88,7 +88,7 @@ import OSLog
 
     // MARK: - Inits
 
-    init(
+	public init(
         ref: String = "",
         dateStart: Int = 0,
         dateEnd: Int = 0,
@@ -144,7 +144,7 @@ import OSLog
 		)
     }
 
-    required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
         do {
             Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
             let container = try decoder.container(keyedBy: CodingKeys.self)

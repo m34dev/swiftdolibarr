@@ -28,28 +28,28 @@ import OSLog
 
 	// Required
 
-	var lines: [DolibarrQuoteLine]
+	public var lines: [DolibarrQuoteLine]
 
 	// Optional
 
-	var clientRef: String?
-	var dateP: Int
-	var dateV: Int?
-	var validityEndDate: Int?
-	var deliveryDate: Int?
- 	var pdfModel: String?
-	var lastMainDoc: String?
-	var userAuthorId: String
-	var paymentMethodId: String?
-	var paymentTermsId: String?
-	var availabilityId: String?
-	var shippingMethodId: String?
-	var sourceReasonId: String?
-	var externalContactIds: [String]?
+	public var clientRef: String?
+	public var dateP: Int
+	public var dateV: Int?
+	public var validityEndDate: Int?
+	public var deliveryDate: Int?
+	public var pdfModel: String?
+	public var lastMainDoc: String?
+	public var userAuthorId: String
+	public var paymentMethodId: String?
+	public var paymentTermsId: String?
+	public var availabilityId: String?
+	public var shippingMethodId: String?
+	public var sourceReasonId: String?
+	public var externalContactIds: [String]?
 
 	// Computed
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.quotes.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status
 	}
@@ -86,7 +86,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		lines: [DolibarrQuoteLine] = [],
 		clientRef: String? = nil,
 		dateP: Int = 0,
@@ -143,7 +143,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)

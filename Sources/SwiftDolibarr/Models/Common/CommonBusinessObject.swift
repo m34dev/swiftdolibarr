@@ -27,15 +27,15 @@ public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 	// MARK: - Properties
 
 	public var id: String
-	var statusCode: String
-	var entityId: String?
-	var arrayOptions: [String: MultiType]?
-	var notePublic: String?
-	var notePrivate: String?
+	public var statusCode: String
+	public var entityId: String?
+	public var arrayOptions: [String: MultiType]?
+	public var notePublic: String?
+	public var notePrivate: String?
 
 	// Computed
 
-	var status: DolibarrObjectStatus {
+	public var status: DolibarrObjectStatus {
 		return .unknown
 	}
 
@@ -53,7 +53,7 @@ public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		id: String = "",
 		statusCode: String = "",
 		entityId: String? = nil,

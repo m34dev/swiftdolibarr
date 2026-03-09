@@ -28,26 +28,26 @@ import OSLog
 
 	// Requried
 
-	var socId: String
-	var ref: String
+	public var socId: String
+	public var ref: String
 
 	// Optional
 
-	var contractId: String?
-	var projectId: String?
-	var dateo: Double?
-	var datee: Double?
-	var duration: String?
-	var description: String?
-	var clientRef: String?
-	var lastMainDoc: String?
-	var lines: [DolibarrInterventionLine]?
-	var externalContactIds: [[String: MultiType]]?
-	var internalContactIds: [[String: MultiType]]?
+	public var contractId: String?
+	public var projectId: String?
+	public var dateo: Double?
+	public var datee: Double?
+	public var duration: String?
+	public var description: String?
+	public var clientRef: String?
+	public var lastMainDoc: String?
+	public var lines: [DolibarrInterventionLine]?
+	public var externalContactIds: [[String: MultiType]]?
+	public var internalContactIds: [[String: MultiType]]?
 
 	// Computed
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.interventions.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status
 	}
@@ -72,7 +72,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		socId: String = "",
 		ref: String = "",
 		contractId: String? = nil,
@@ -114,7 +114,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)

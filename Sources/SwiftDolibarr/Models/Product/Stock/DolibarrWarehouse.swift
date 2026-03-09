@@ -28,22 +28,22 @@ import OSLog
 
 	// Required
 
-	var label: String
+	public var label: String
 
 	// Optional
 
-	var parentId: String?
-    var description: String?
-    var location: String?
-    var address: String?
-    var zipCode: String?
-    var city: String?
-    var countryId: String?
-    var phone: String?
+	public var parentId: String?
+	public var description: String?
+	public var location: String?
+	public var address: String?
+	public var zipCode: String?
+	public var city: String?
+	public var countryId: String?
+	public var phone: String?
 
 	// Computed
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.warehouses.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status
 	}

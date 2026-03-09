@@ -29,74 +29,74 @@ import OSLog
 	// Required
 
 	/// Third party name
-	var name: String
+	public var name: String
 
 	// Optional
 
 	/// Third party country ID (address)
 	///
 	/// - Mapped Dolibarr property: **country_id**
-    var countryId: String?
+	public var countryId: String?
 
 	/// Third party country code (address)
 	///
 	/// - Mapped Dolibarr property: **country_code**
-    var countryCode: String?
+	public var countryCode: String?
 
 	/// Third party multicurrency code
 	///
 	/// - Mapped Dolibarr property: **multicurrency_code**
-    var multicurrencyCode: String?
+	public var multicurrencyCode: String?
 
 	/// Third party alias
 	///
 	/// - Mapped Dolibarr property: **name_alias**
-    var nameAlias: String?
+	public var nameAlias: String?
 
 	/// Third party telephone number
-    var phone: String?
+	public var phone: String?
 
 	/// Third party fax number
-    var fax: String?
+	public var fax: String?
 
 	/// Third party email address
-    var email: String?
+	public var email: String?
 
 	/// Third party website address
-    var url: String?
+	public var url: String?
 
 	/// Third party professional ID 1 (e.g. SIREN for France)
-    var idprof1: String?
+	public var idprof1: String?
 
 	/// Third party professional ID 2 (e.g. SIRET for France)
-    var idprof2: String?
+	public var idprof2: String?
 
 	/// Third party professional ID 3 (e.g. APE code for France)
-    var idprof3: String?
+	public var idprof3: String?
 
 	/// Third party professional ID 4 (e.g. RCS for France)
-    var idprof4: String?
+	public var idprof4: String?
 
 	/// Third party professional ID 5
-    var idprof5: String?
+	public var idprof5: String?
 
 	/// Third party intra-community VAT number
 	///
 	/// - Mapped Dolibarr property: **tva_intra**
-    var tvaIntra: String?
+	public var tvaIntra: String?
 
 	/// Financial capital of third party company
-    var capital: String?
+	public var capital: String?
 
 	/// Third party intra-community VAT number
 	///
 	/// - Mapped Dolibarr property: **effectif**
-    var workforce: String?
+	public var workforce: String?
 
 	/// Third party legal entity type
 	///
 	/// - Mapped Dolibarr property: **forme_juridique**
-    var legalEntityType: String?
+	public var legalEntityType: String?
 
 	/// Third party client state
 	///
@@ -105,7 +105,7 @@ import OSLog
 	/// 1 = customer not prospect
 	/// 2 = prospect not customer
 	/// 3 = customer and prospect
-    var client: String?
+	public var client: String?
 
 	/// Third party supplier state
 	///
@@ -114,43 +114,43 @@ import OSLog
 	/// 1 = supplier
 	///
 	/// - Mapped Dolibarr property: **fournisseur**
-    var supplier: String?
+	public var supplier: String?
 
 	/// Third party customer code (e.g. CU2026-0001)
 	///
 	/// - Mapped Dolibarr property: **code_client**
-    var clientCode: String?
+	public var clientCode: String?
 
 	/// Third party supplier code (e.g. SU2026-0001)
 	///
 	/// - Mapped Dolibarr property: **code_fournisseur**
-    var supplierCode: String?
+	public var supplierCode: String?
 
 	/// Third party parent third party ID
 	///
 	/// - Mapped Dolibarr property: **parent**
-    var parentId: String?
+	public var parentId: String?
 
 	/// Third party social networks array
-    var socialnetworks: [String: String]?
+	public var socialnetworks: [String: String]?
 
 	/// Third party address lines
-    var address: String?
+	public var address: String?
 
 	/// Third party zip code (address)
 	///
 	/// - Mapped Dolibarr property: **zip**
-    var zipCode: String?
+	public var zipCode: String?
 
 	/// Third party number of employees
 	///
 	/// - Mapped Dolibarr property: **town**
-    var city: String?
+	public var city: String?
 
 	// Computed
 
 	/// Associated third party status type
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.thirdPartiesContacts.first(where: { $0.code == statusCode }) else {
 			return .unknown
 		}
@@ -191,7 +191,7 @@ import OSLog
 
     // MARK: - Inits
 
-    init(
+	public init(
         name: String = "",
         countryId: String? = nil,
         countryCode: String? = nil,
@@ -260,7 +260,7 @@ import OSLog
 		)
     }
 
-    required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
         do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
             let container = try decoder.container(keyedBy: CodingKeys.self)

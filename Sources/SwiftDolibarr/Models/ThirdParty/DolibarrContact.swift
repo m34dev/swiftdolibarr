@@ -28,37 +28,37 @@ import OSLog
 
 	// Required
 
-	var lastname: String
+	public var lastname: String
 
 	// Optional
 
-	var countryId: String?
-	var countryCode: String?
-	var email: String?
-	var firstname: String?
-	var titleCode: String?
-	var address: String?
-	var zipCode: String?
-	var city: String?
-	var poste: String?
-	var socid: String?
-	var socialnetworks: [String: String]?
-	var phonePro: String?
-	var phonePerso: String?
-	var phoneMobile: String?
-	var fax: String?
-	var birthday: Int?
+	public var countryId: String?
+	public var countryCode: String?
+	public var email: String?
+	public var firstname: String?
+	public var titleCode: String?
+	public var address: String?
+	public var zipCode: String?
+	public var city: String?
+	public var poste: String?
+	public var socid: String?
+	public var socialnetworks: [String: String]?
+	public var phonePro: String?
+	public var phonePerso: String?
+	public var phoneMobile: String?
+	public var fax: String?
+	public var birthday: Int?
 
 	// Computed
 
-	override var status: DolibarrObjectStatus {
+	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.thirdPartiesContacts.first(where: { $0.code == statusCode }) else {
 			return .unknown
 		}
 		return status
 	}
 
-	var name: String {
+	public var name: String {
 		guard let firstname = firstname, !firstname.isEmpty else { return lastname }
 		return "\(firstname) \(lastname)"
 	}
@@ -87,7 +87,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		countryId: String? = nil,
 		countryCode: String? = nil,
 		email: String? = nil,
@@ -137,7 +137,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
