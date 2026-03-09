@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrExpenseReport: CommonBusinessObject {
+@Observable public final class DolibarrExpenseReport: CommonBusinessObject {
 
     // MARK: - Properties
 
@@ -181,7 +181,7 @@ import OSLog
 
     // MARK: - Protocol methods
 
-    override func hash(into hasher: inout Hasher) {
+    override public func hash(into hasher: inout Hasher) {
         hasher.combine(ref)
 		hasher.combine(dateStart)
 		hasher.combine(dateEnd)
@@ -205,7 +205,7 @@ import OSLog
 		super.hash(into: &hasher)
     }
 
-    override func encode(to encoder: any Encoder) throws {
+    override public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfNotEmpty(ref, forKey: .ref)
 		try container.encodeIfNotZero(dateStart, forKey: .dateStart)

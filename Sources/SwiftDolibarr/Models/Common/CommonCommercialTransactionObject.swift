@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCommercialTransaction {
+public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCommercialTransaction {
 
 	// MARK: - Properties
 
@@ -129,7 +129,7 @@ class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCommercia
 
 	// MARK: - Protocol methods
 
-	override func hash(into hasher: inout Hasher) {
+	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(thirdPartyId)
 		hasher.combine(ref)
 		hasher.combine(totalExclTax)
@@ -140,7 +140,7 @@ class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCommercia
 		super.hash(into: &hasher)
 	}
 
-	override func encode(to encoder: any Encoder) throws {
+	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(thirdPartyId, forKey: .thirdPartyId)
 		try container.encodeIfNotEmpty(ref, forKey: .ref)

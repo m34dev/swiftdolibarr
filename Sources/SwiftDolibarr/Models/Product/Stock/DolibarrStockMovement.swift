@@ -22,13 +22,13 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrStockMovement: Identifiable, Equatable, Hashable, Codable, DolibarrObject {
+@Observable public final class DolibarrStockMovement: Identifiable, Equatable, Hashable, Codable, DolibarrObject {
 
 	// MARK: - Properties
 
 	// Required
 
-	var id: String
+	public var id: String
 	var productId: String
 	var warehouseId: String
 
@@ -101,7 +101,7 @@ import OSLog
 		self.tms = tms
 	}
 
-	init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -140,7 +140,7 @@ import OSLog
 
 	// MARK: - Protocol methods
 
-	func hash(into hasher: inout Hasher) {
+	public func hash(into hasher: inout Hasher) {
 		hasher.combine(id)
 		hasher.combine(productId)
 		hasher.combine(warehouseId)
@@ -157,7 +157,7 @@ import OSLog
 		hasher.combine(optional: tms)
 	}
 
-	func encode(to encoder: any Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(id, forKey: .id)
 		try container.encodeIfNotEmpty(productId, forKey: .productId)
@@ -172,7 +172,7 @@ import OSLog
 		try container.encodeIfPresent(inventoryCode, forKey: .movementCode) // Dolibarr compatibility => v23
 	}
 
-	static func == (lhs: DolibarrStockMovement, rhs: DolibarrStockMovement) -> Bool {
+	public static func == (lhs: DolibarrStockMovement, rhs: DolibarrStockMovement) -> Bool {
 		lhs.id == rhs.id
 	}
 

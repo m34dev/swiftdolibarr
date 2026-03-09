@@ -22,13 +22,13 @@
 import Foundation
 import OSLog
 
-class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObject {
+public class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObject {
 
 	// MARK: - Properties
 
 	// Required
 
-	var id: String
+	public var id: String
 	var rang: String
 
 	// Optional
@@ -50,7 +50,7 @@ class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObject {
 		self.rang = rang
 	}
 
-	required init(from decoder: Decoder) throws {
+	public required init(from decoder: Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -68,18 +68,18 @@ class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObject {
 
 	// MARK: - Protocol methods
 
-	func hash(into hasher: inout Hasher) {
+	public func hash(into hasher: inout Hasher) {
 		hasher.combine(id)
 		hasher.combine(rang)
 	}
 
-	func encode(to encoder: any Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(id, forKey: .id)
 		try container.encode(rang, forKey: .rang)
 	}
 
-	static func == (lhs: CommonBusinessObjectLine, rhs: CommonBusinessObjectLine) -> Bool {
+	static public func == (lhs: CommonBusinessObjectLine, rhs: CommonBusinessObjectLine) -> Bool {
 		lhs.id == rhs.id
 	}
 

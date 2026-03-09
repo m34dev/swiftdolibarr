@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrUser: CommonBusinessObject {
+@Observable public final class DolibarrUser: CommonBusinessObject {
 
 	// MARK: - Properties
 
@@ -97,7 +97,7 @@ import OSLog
 
 	// MARK: - Protocol methods
 
-	override func hash(into hasher: inout Hasher) {
+	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(admin)
 		hasher.combine(login)
 		hasher.combine(lastname)
@@ -107,7 +107,7 @@ import OSLog
 		super.hash(into: &hasher)
 	}
 
-	override func encode(to encoder: any Encoder) throws {
+	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(admin, forKey: .admin)
 		try container.encode(login, forKey: .login)

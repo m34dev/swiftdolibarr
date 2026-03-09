@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrInterventionLine: CommonBusinessObjectLine {
+@Observable public final class DolibarrInterventionLine: CommonBusinessObjectLine {
 
     // MARK: - Properties
 
@@ -78,14 +78,14 @@ import OSLog
 
     // MARK: - Protocol methods
 
-    override func hash(into hasher: inout Hasher) {
+    override public func hash(into hasher: inout Hasher) {
         hasher.combine(datei)
 		hasher.combine(duration)
 		hasher.combine(optional: desc)
 		super.hash(into: &hasher)
     }
 
-    override func encode(to encoder: any Encoder) throws {
+    override public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(datei, forKey: .datei)
         try container.encode(duration, forKey: .duration)

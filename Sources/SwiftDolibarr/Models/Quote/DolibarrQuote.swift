@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrQuote: CommonCommercialTransactionObject {
+@Observable public final class DolibarrQuote: CommonCommercialTransactionObject {
 
 	// MARK: - Properties
 
@@ -175,7 +175,7 @@ import OSLog
 
 	// MARK: - Protocol methods
 
-	override func hash(into hasher: inout Hasher) {
+	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(lines)
 		hasher.combine(optional: clientRef)
 		hasher.combine(dateP)
@@ -194,7 +194,7 @@ import OSLog
 		super.hash(into: &hasher)
 	}
 
-	override func encode(to encoder: any Encoder) throws {
+	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(lines, forKey: .lines)
 		try container.encodeIfPresent(clientRef, forKey: .clientRef)

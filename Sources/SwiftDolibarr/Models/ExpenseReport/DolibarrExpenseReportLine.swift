@@ -22,11 +22,11 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrExpenseReportLine: Identifiable, Hashable, Codable {
+@Observable public final class DolibarrExpenseReportLine: Identifiable, Hashable, Codable {
 
     // MARK: - Properties
 
-    var id: String
+	public var id: String
     var quantity: String
     var unitPriceInclTax: String
     var date: Int
@@ -86,7 +86,7 @@ import OSLog
         self.comments = comments
     }
 
-    init(from decoder: any Decoder) throws {
+	public init(from decoder: any Decoder) throws {
         do {
             Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -114,7 +114,7 @@ import OSLog
 
     // MARK: - Protocol methods
 
-    func hash(into hasher: inout Hasher) {
+	public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(quantity)
 		hasher.combine(unitPriceInclTax)
@@ -131,7 +131,7 @@ import OSLog
 		}
     }
 
-    func encode(to encoder: any Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
 		try container.encode(quantity, forKey: .quantity)
@@ -147,7 +147,7 @@ import OSLog
 		try container.encodeIfPresent(comments, forKey: .comments)
     }
 
-    static func == (lhs: DolibarrExpenseReportLine, rhs: DolibarrExpenseReportLine) -> Bool {
+	public static func == (lhs: DolibarrExpenseReportLine, rhs: DolibarrExpenseReportLine) -> Bool {
         lhs.id == rhs.id
     }
 

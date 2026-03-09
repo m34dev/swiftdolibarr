@@ -22,11 +22,11 @@
 import Foundation
 import OSLog
 
-class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
+public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
 	// MARK: - Properties
 
-	var id: String
+	public var id: String
 	var statusCode: String
 	var entityId: String?
 	var arrayOptions: [String: MultiType]?
@@ -69,7 +69,7 @@ class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 		self.notePrivate = notePrivate
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -102,7 +102,7 @@ class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
 	// MARK: - Protocol methods
 
-	func hash(into hasher: inout Hasher) {
+	public func hash(into hasher: inout Hasher) {
 		hasher.combine(id)
 		hasher.combine(statusCode)
 		hasher.combine(optional: entityId)
@@ -110,7 +110,7 @@ class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 		hasher.combine(optional: notePrivate)
 	}
 
-	func encode(to encoder: any Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(id, forKey: .id)
 		try container.encodeIfNotEmpty(statusCode, forKey: .statusCode)
@@ -119,7 +119,7 @@ class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 		try container.encodeIfPresent(notePrivate, forKey: .notePrivate)
 	}
 
-	static func == (lhs: CommonBusinessObject, rhs: CommonBusinessObject) -> Bool {
+	public static func == (lhs: CommonBusinessObject, rhs: CommonBusinessObject) -> Bool {
 		lhs.id == rhs.id
 	}
 

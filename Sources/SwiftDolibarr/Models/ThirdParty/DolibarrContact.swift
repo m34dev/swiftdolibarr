@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrContact: CommonBusinessObject, DolibarrPeopleObject, Locatable {
+@Observable public final class DolibarrContact: CommonBusinessObject, DolibarrPeopleObject, Locatable {
 
 	// MARK: - Properties
 
@@ -179,7 +179,7 @@ import OSLog
 
 	// MARK: - Protocol methods
 
-	override func hash(into hasher: inout Hasher) {
+	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(lastname)
 		hasher.combine(optional: countryId)
 		hasher.combine(optional: countryCode)
@@ -200,7 +200,7 @@ import OSLog
 		super.hash(into: &hasher)
 	}
 
-	override func encode(to encoder: any Encoder) throws {
+	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(lastname, forKey: .lastname)
 		try container.encodeIfPresent(countryId, forKey: .countryId)

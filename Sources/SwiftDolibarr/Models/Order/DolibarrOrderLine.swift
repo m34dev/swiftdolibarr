@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-@Observable final class DolibarrOrderLine: CommonCommercialTransactionObjectLine {
+@Observable public final class DolibarrOrderLine: CommonCommercialTransactionObjectLine {
 
 	// MARK: - Properties
 
@@ -92,12 +92,12 @@ import OSLog
 
 	// MARK: - Protocol methods
 
-	override func hash(into hasher: inout Hasher) {
+	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(orderId)
 		super.hash(into: &hasher)
 	}
 
-	override func encode(to encoder: any Encoder) throws {
+	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(orderId, forKey: .orderId)
 		try super.encode(to: encoder)
