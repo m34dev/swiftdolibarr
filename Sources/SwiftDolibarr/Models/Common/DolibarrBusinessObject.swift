@@ -21,7 +21,7 @@
 
 import Foundation
 
-protocol DolibarrBusinessObject: Hashable, DolibarrObject {
+public protocol DolibarrBusinessObject: Hashable, DolibarrObject {
 
     // Properties
 

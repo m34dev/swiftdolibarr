@@ -21,7 +21,7 @@
 
 import Foundation
 
-protocol DolibarrObject: Identifiable {
+public protocol DolibarrObject: Identifiable {
 
 	var id: String { get set }
 

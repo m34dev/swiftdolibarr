@@ -21,7 +21,7 @@
 
 import Foundation
 
-protocol DolibarrCommercialTransaction {
+public protocol DolibarrCommercialTransaction {
 
 	// Properties
 
