@@ -21,13 +21,13 @@
 
 import Foundation
 
-struct DolibarrInvoiceType: Equatable, Hashable {
+public struct DolibarrInvoiceType: Equatable, Hashable, Sendable {
 
 	// MARK: - Properties
 
-	var id: UUID = UUID()
-	var code: String
-	var label: String
+	public var id: UUID = UUID()
+	public var code: String
+	public var label: String
 
 	// MARK: - Static properties
 

@@ -28,32 +28,32 @@ public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCo
 
 	// Required
 
-	var thirdPartyId: String
-	var ref: String
-	var totalExclTax: String
-	var totalTax: String
-	var totalInclTax: String
+	public var thirdPartyId: String
+	public var ref: String
+	public var totalExclTax: String
+	public var totalTax: String
+	public var totalInclTax: String
 
 	// Optional
 
-	var multicurrencyCode: String?
-	var linkedObjectsIds: [String: [String: String]]?
+	public var multicurrencyCode: String?
+	public var linkedObjectsIds: [String: [String: String]]?
 
 	// Computed
 
-	var linkedQuotesIds: [String: String]? {
+	public var linkedQuotesIds: [String: String]? {
 		return linkedObjectsIds?["propal"]
 	}
 
-	var linkedOrdersIds: [String: String]? {
+	public var linkedOrdersIds: [String: String]? {
 		return linkedObjectsIds?["commande"]
 	}
 
-	var linkedInterventionIds: [String: String]? {
+	public var linkedInterventionIds: [String: String]? {
 		return linkedObjectsIds?["fichinter"]
 	}
 
-	var linkedInvoiceIds: [String: String]? {
+	public var linkedInvoiceIds: [String: String]? {
 		return linkedObjectsIds?["facture"]
 	}
 
@@ -71,7 +71,7 @@ public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCo
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		thirdPartyId: String = "",
 		statusCode: String = "",
 		ref: String = "",
@@ -101,7 +101,7 @@ public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCo
 		)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	public required init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
