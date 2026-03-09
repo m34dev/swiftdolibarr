@@ -104,7 +104,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		ref: String = "",
 		label: String = "",
 		progress: String = "",
@@ -163,7 +163,7 @@ import OSLog
 		)
 	}
 
-	required init(from decoder: any Decoder) throws {
+	required public init(from decoder: any Decoder) throws {
 		do {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
