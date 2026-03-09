@@ -21,7 +21,7 @@
 
 import Foundation
 
-protocol DolibarrPeopleObject: Hashable {
+public protocol DolibarrPeopleObject: Hashable {
 
     var name: String { get }
     var email: String? { get set }

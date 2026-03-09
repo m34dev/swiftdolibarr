@@ -21,7 +21,7 @@
 
 import Foundation
 
-protocol Locatable: Hashable {
+public protocol Locatable: Hashable {
 
     // Properties
 
