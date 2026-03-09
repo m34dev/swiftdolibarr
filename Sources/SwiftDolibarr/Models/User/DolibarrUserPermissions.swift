@@ -39,4 +39,53 @@ public struct DolibarrUserPermissions: Codable, Hashable {
 	public var stock: DolibarrUserPermissionsStock?
 	public var projet: DolibarrUserPermissionsProject?
 
+	// MARK: - Inits
+
+	public init(
+		user: DolibarrUserPermissionsUser,
+		expensereport: DolibarrUserPermissionsExpenseReport? = nil,
+		facture: DolibarrUserPermissionsInvoice? = nil,
+		produit: DolibarrUserPermissionsProduct? = nil,
+		service: DolibarrUserPermissionsService? = nil,
+		ficheinter: DolibarrUserPermissionsIntervention? = nil,
+		societe: DolibarrUserPermissionsThirdParty? = nil,
+		agenda: DolibarrUserPermissionsAgenda? = nil,
+		propale: DolibarrUserPermissionsQuote? = nil,
+		commande: DolibarrUserPermissionsOrder? = nil,
+		barcode: DolibarrUserPermissionsBarcode? = nil,
+		stock: DolibarrUserPermissionsStock? = nil,
+		projet: DolibarrUserPermissionsProject? = nil
+	) {
+		self.user = user
+		self.expensereport = expensereport
+		self.facture = facture
+		self.produit = produit
+		self.service = service
+		self.ficheinter = ficheinter
+		self.societe = societe
+		self.agenda = agenda
+		self.propale = propale
+		self.commande = commande
+		self.barcode = barcode
+		self.stock = stock
+		self.projet = projet
+	}
+
+	public init(from decoder: any Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.user = try container.decode(DolibarrUserPermissionsUser.self, forKey: .user)
+		self.expensereport = try container.decodeIfPresent(DolibarrUserPermissionsExpenseReport.self, forKey: .expensereport)
+		self.facture = try container.decodeIfPresent(DolibarrUserPermissionsInvoice.self, forKey: .facture)
+		self.produit = try container.decodeIfPresent(DolibarrUserPermissionsProduct.self, forKey: .produit)
+		self.service = try container.decodeIfPresent(DolibarrUserPermissionsService.self, forKey: .service)
+		self.ficheinter = try container.decodeIfPresent(DolibarrUserPermissionsIntervention.self, forKey: .ficheinter)
+		self.societe = try container.decodeIfPresent(DolibarrUserPermissionsThirdParty.self, forKey: .societe)
+		self.agenda = try container.decodeIfPresent(DolibarrUserPermissionsAgenda.self, forKey: .agenda)
+		self.propale = try container.decodeIfPresent(DolibarrUserPermissionsQuote.self, forKey: .propale)
+		self.commande = try container.decodeIfPresent(DolibarrUserPermissionsOrder.self, forKey: .commande)
+		self.barcode = try container.decodeIfPresent(DolibarrUserPermissionsBarcode.self, forKey: .barcode)
+		self.stock = try container.decodeIfPresent(DolibarrUserPermissionsStock.self, forKey: .stock)
+		self.projet = try container.decodeIfPresent(DolibarrUserPermissionsProject.self, forKey: .projet)
+	}
+
 }
