@@ -22,7 +22,7 @@
 import Foundation
 import OSLog
 
-enum MultiType: Codable, Hashable {
+public enum MultiType: Codable, Hashable {
 
     // MARK: - Cases
 
@@ -32,7 +32,7 @@ enum MultiType: Codable, Hashable {
 
     // MARK: - Properties
 
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
         case .string(let value):
             return value
@@ -43,7 +43,7 @@ enum MultiType: Codable, Hashable {
         }
     }
 
-    var intValue: Int? {
+    public var intValue: Int? {
         switch self {
         case .string(let value):
             return Int(value)
@@ -54,7 +54,7 @@ enum MultiType: Codable, Hashable {
         }
     }
 
-	var doubleValue: Double? {
+	public var doubleValue: Double? {
 		switch self {
 		case .string(let value):
 			return Double(value)
@@ -67,11 +67,11 @@ enum MultiType: Codable, Hashable {
 
     // MARK: - Inits
 
-    init() {
+    public init() {
         self = .string("")
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(String.self) {
             self = .string(value)
@@ -90,7 +90,7 @@ enum MultiType: Codable, Hashable {
 
     // MARK: - Protocol methods
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .string(let value):
