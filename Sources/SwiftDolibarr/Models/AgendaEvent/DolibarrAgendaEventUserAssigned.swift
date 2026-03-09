@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DolibarrAgendaEventUserAssigned: Identifiable, Codable, Equatable, Hashable {
+struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, DolibarrObject {
 
 	// MARK: - Properties
 
