@@ -11,7 +11,7 @@ struct DolibarrProductStockWarehouse: Codable, Hashable, Equatable {
 
 	// MARK: - Properties
 
-    var stock_warehouses: [String:DolibarrProductWarehouseStock]
+    var stockWarehouses: [String:DolibarrProductWarehouseStock]
 
 }
 

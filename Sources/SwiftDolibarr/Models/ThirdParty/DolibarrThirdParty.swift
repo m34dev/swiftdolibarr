@@ -13,12 +13,12 @@ import OSLog
     // MARK: - Properties
 
 	// Required
-	
+
 	/// Third party name
 	var name: String
 
 	// Optional
-	
+
 	/// Third party country ID (address)
 	///
 	/// - Mapped Dolibarr property: **country_id**
@@ -137,7 +137,9 @@ import OSLog
 
 	/// Associated third party status type
 	override var status: DolibarrObjectStatus {
-		guard let status = DolibarrObjectStatus.thirdPartiesContacts.first(where: { $0.code == statusCode }) else { return .unknown }
+		guard let status = DolibarrObjectStatus.thirdPartiesContacts.first(where: { $0.code == statusCode }) else {
+			return .unknown
+		}
 		return status
 	}
 
@@ -178,9 +180,9 @@ import OSLog
     init(
         name: String = "",
         countryId: String? = nil,
-        country_code: String? = nil,
-        multicurrency_code: String? = nil,
-        name_alias: String? = nil,
+        countryCode: String? = nil,
+        multicurrencyCode: String? = nil,
+        nameAlias: String? = nil,
         phone: String? = nil,
         fax: String? = nil,
         email: String? = nil,
@@ -190,15 +192,15 @@ import OSLog
         idprof3: String? = nil,
         idprof4: String? = nil,
         idprof5: String? = nil,
-        tva_intra: String? = nil,
+        tvaIntra: String? = nil,
         capital: String? = nil,
-        effectif: String? = nil,
-        forme_juridique: String? = nil,
+        workforce: String? = nil,
+        legalEntityType: String? = nil,
         client: String? = nil,
         supplier: String? = nil,
-        code_client: String? = nil,
-        code_fournisseur: String? = nil,
-        parent: String? = nil,
+        clientCode: String? = nil,
+        supplierCode: String? = nil,
+        parentId: String? = nil,
         socialnetworks: [String: String]? = nil,
         address: String? = nil,
         zipCode: String? = nil,
@@ -211,9 +213,9 @@ import OSLog
     ) {
         self.name = name
         self.countryId = countryId
-        self.countryCode = country_code
-        self.multicurrencyCode = multicurrency_code
-        self.nameAlias = name_alias
+        self.countryCode = countryCode
+        self.multicurrencyCode = multicurrencyCode
+        self.nameAlias = nameAlias
         self.phone = phone
         self.fax = fax
         self.email = email
@@ -223,20 +225,25 @@ import OSLog
         self.idprof3 = idprof3
         self.idprof4 = idprof4
         self.idprof5 = idprof5
-        self.tvaIntra = tva_intra
+        self.tvaIntra = tvaIntra
         self.capital = capital
-        self.workforce = effectif
-        self.legalEntityType = forme_juridique
+        self.workforce = workforce
+        self.legalEntityType = legalEntityType
         self.client = client
         self.supplier = supplier
-        self.clientCode = code_client
-        self.supplierCode = code_fournisseur
-        self.parentId = parent
+        self.clientCode = clientCode
+        self.supplierCode = supplierCode
+        self.parentId = parentId
         self.socialnetworks = socialnetworks
         self.address = address
         self.zipCode = zipCode
         self.city = city
-		super.init(id: id, statusCode: statusCode, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
+		super.init(
+			id: id, statusCode: statusCode,
+			arrayOptions: arrayOptions,
+			notePublic: notePublic,
+			notePrivate: notePrivate
+		)
     }
 
     required init(from decoder: any Decoder) throws {

@@ -13,7 +13,7 @@ struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, DolibarrOb
 
     var id: String
     var mandatory: String?
-    var answer_status: String?
+    var answerStatus: String?
     var transparency: String?
 	
 }
