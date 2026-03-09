@@ -83,7 +83,7 @@ enum MultiType: Codable, Hashable {
             try container.encode(value)
         case .int(let value):
             try container.encode(value)
-		case .double(let value):
+        case .double(let value):
 			try container.encode(value)
         }
     }

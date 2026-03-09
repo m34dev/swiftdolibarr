@@ -44,36 +44,48 @@ extension Logger {
 
     internal static func logWithSignal(
 		_ message: String,
-		parameters: [String:String] = [:],
+		parameters: [String: String] = [:],
 		level: OSLogType = .info,
 		category: LoggerCategories,
 		subsystem: String = subsystem
 	) {
-		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(message)")
+		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(message, privacy: .private)")
     }
 
     internal static func logErrorWithSignal(
 		_ error: Error,
 		context: String,
-		parameters: [String:String] = [:],
+		parameters: [String: String] = [:],
 		level: OSLogType = .error,
 		category: LoggerCategories,
 		subsystem: String = subsystem
 	) {
-		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(context): \(error.localizedDescription, privacy: .public)")
+		Logger(subsystem: subsystem, category: category.rawValue).log(level: level, "\(context): \(error.localizedDescription, privacy: .private)")
     }
 
-	internal static func logDecodingError(_ decodingError: DecodingError, decodeContext: String, subsystem: String = subsystem) {
+	internal static func logDecodingError(
+		_ decodingError: DecodingError,
+		decodeContext: String,
+		subsystem: String = subsystem
+	) {
 		switch decodingError {
 		case .keyNotFound(let key, let context):
 			Logger.logWithSignal("Key \(key) not found: \(context.debugDescription)", category: .api, subsystem: subsystem)
 			Logger.logErrorWithSignal(decodingError, context: decodeContext, category: .api, subsystem: subsystem)
 		case .valueNotFound(let value, let context):
-			Logger.logWithSignal("Value \(value) not found for key \(context.codingPath.last?.stringValue ?? "unknown"): \(context.debugDescription)", category: .api, subsystem: subsystem)
+			Logger.logWithSignal(
+				"Value \(value) not found for key \(context.codingPath.last?.stringValue ?? "unknown"): \(context.debugDescription)",
+				category: .api,
+				subsystem: subsystem
+			)
 			Logger.logErrorWithSignal(decodingError, context: decodeContext, category: .api, subsystem: subsystem)
 		case .typeMismatch(let type, let context):
 			let key = context.codingPath.last?.stringValue ?? "Unknown key"
-			Logger.logWithSignal("Type \(type) mismatch for key \(key): \(context.debugDescription)", category: .api, subsystem: subsystem)
+			Logger.logWithSignal(
+				"Type \(type) mismatch for key \(key): \(context.debugDescription)",
+				category: .api,
+				subsystem: subsystem
+			)
 			Logger.logErrorWithSignal(decodingError, context: decodeContext, category: .api, subsystem: subsystem)
 		case .dataCorrupted(let context):
 			Logger.logWithSignal("Data corrupted: \(context.debugDescription)", category: .api, subsystem: subsystem)

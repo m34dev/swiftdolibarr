@@ -60,10 +60,10 @@ class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.id = try container.decode(String.self, forKey: .id)
-			if let statusMultiType = try? container.decode(MultiType.self, forKey: .statusCode), !statusMultiType.stringValue.isEmpty {
-				self.statusCode = statusMultiType.stringValue
-			} else if let statusMultiType = try? container.decode(MultiType.self, forKey: .statusCodeLegacy), !statusMultiType.stringValue.isEmpty {
-				self.statusCode = statusMultiType.stringValue
+			if let status = try? container.decode(MultiType.self, forKey: .statusCode), !status.stringValue.isEmpty {
+				self.statusCode = status.stringValue
+			} else if let status = try? container.decode(MultiType.self, forKey: .statusCodeLegacy), !status.stringValue.isEmpty {
+				self.statusCode = status.stringValue
 			} else {
 				self.statusCode = ""
 			}

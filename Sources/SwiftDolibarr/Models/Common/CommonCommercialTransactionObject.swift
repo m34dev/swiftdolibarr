@@ -78,7 +78,13 @@ class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCommercia
 		self.totalInclTax = totalInclTax
 		self.multicurrencyCode = multicurrencyCode
 		self.linkedObjectsIds = linkedObjectsIds
-		super.init(id: id, statusCode: statusCode, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
+		super.init(
+			id: id,
+			statusCode: statusCode,
+			arrayOptions: arrayOptions,
+			notePublic: notePublic,
+			notePrivate: notePrivate
+		)
 	}
 
 	required init(from decoder: any Decoder) throws {

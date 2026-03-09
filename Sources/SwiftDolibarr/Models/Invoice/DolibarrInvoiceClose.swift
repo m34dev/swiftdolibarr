@@ -25,6 +25,8 @@ struct DolibarrInvoiceClose: Identifiable, Hashable {
 	static let abandoned = DolibarrInvoiceClose(code: "abandon", label: String(localized: "Abandoned"))
 	static let replaced = DolibarrInvoiceClose(code: "replaced", label: String(localized: "Replaced"))
 
-	static let allClose: [DolibarrInvoiceClose] = [discount, badDebt, bankCharge, withholdingTax, other, abandoned, replaced]
+	static let allClose: [DolibarrInvoiceClose] = [
+		discount, badDebt, bankCharge, withholdingTax, other, abandoned, replaced
+	]
 
 }

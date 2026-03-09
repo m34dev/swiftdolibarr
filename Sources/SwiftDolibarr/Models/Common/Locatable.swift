@@ -16,5 +16,5 @@ protocol Locatable: Hashable {
     var zipCode: String? { get set }
     var city: String? { get set }
     var countryId: String? { get set }
-	
+
 }

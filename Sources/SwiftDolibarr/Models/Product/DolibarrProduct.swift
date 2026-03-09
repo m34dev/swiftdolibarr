@@ -47,7 +47,9 @@ import OSLog
 
 	override var status: DolibarrObjectStatus {
 		let combinedStatusCodes = "\(sellStatus)\(buyStatus)"
-		guard let status = DolibarrObjectStatus.productsServices.first(where: { $0.code == combinedStatusCodes }) else { return .unknown }
+		guard let status = DolibarrObjectStatus.productsServices.first(where: { $0.code == combinedStatusCodes }) else {
+			return .unknown
+		}
 		return status
 	}
 

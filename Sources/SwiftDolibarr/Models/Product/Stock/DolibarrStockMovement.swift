@@ -57,7 +57,7 @@ import OSLog
 
 	init(
 		id: String = "",
-		arrayOptions: [String : MultiType]? = nil,
+		arrayOptions: [String: MultiType]? = nil,
 		productId: String = "",
 		warehouseId: String = "",
 		originId: String? = nil,
@@ -108,7 +108,8 @@ import OSLog
 			if let invCode = try container.decodeIfPresent(String.self, forKey: .movementCode) { // Dolibarr compatibility => v23
 				self.inventoryCode = invCode
 			} else {
-				self.inventoryCode = try container.decodeIfPresent(String.self, forKey: .inventoryCode) // Dolibarr compatibility < v23
+				// Dolibarr compatibility < v23
+				self.inventoryCode = try container.decodeIfPresent(String.self, forKey: .inventoryCode)
 			}
 			self.dateModify = try container.decodeIfPresent(Int.self, forKey: .dateModify)
 			self.userAuthorId = try container.decodeIfPresent(String.self, forKey: .userAuthorId)
@@ -122,7 +123,7 @@ import OSLog
 			throw error
 		}
 	}
-	
+
 	// MARK: - Protocol methods
 
 	func hash(into hasher: inout Hasher) {

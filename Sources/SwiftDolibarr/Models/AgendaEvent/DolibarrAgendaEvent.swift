@@ -35,7 +35,7 @@ import OSLog
 	var location: String?
 	var thirdPartyId: String?
 	var priority: String?
-	var usersAssigned: [String:DolibarrAgendaEventUserAssigned]?
+	var usersAssigned: [String: DolibarrAgendaEventUserAssigned]?
 	var userOwnerId: String?
 	var elementId: String?
 	var elementType: String?
@@ -109,7 +109,7 @@ import OSLog
 		location: String? = nil,
 		thirdPartyId: String? = nil,
 		priority: String? = nil,
-		usersAssigned: [String:DolibarrAgendaEventUserAssigned]? = nil,
+		usersAssigned: [String: DolibarrAgendaEventUserAssigned]? = nil,
 		userOwnerId: String? = nil,
 		elementId: String? = nil,
 		elementType: String? = nil,
@@ -141,7 +141,12 @@ import OSLog
 		self.userOwnerId = userOwnerId
 		self.elementId = elementId
 		self.elementType = elementType
-		super.init(id: id, statusCode: statusCode, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
+		super.init(
+			id: id, statusCode: statusCode,
+			arrayOptions: arrayOptions,
+			notePublic: notePublic,
+			notePrivate: notePrivate
+		)
 	}
 
 	required init(from decoder: any Decoder) throws {
@@ -166,8 +171,8 @@ import OSLog
 			self.location = try container.decodeIfPresent(String.self, forKey: .location)
 			self.thirdPartyId = try container.decodeIfPresent(String.self, forKey: .thirdPartyId)
 			self.priority = try container.decodeIfPresent(String.self, forKey: .priority)
-			if let dictUserAssigned = try? container.decode([String: DolibarrAgendaEventUserAssigned].self, forKey: .usersAssigned) {
-				self.usersAssigned = dictUserAssigned
+			if let userAssigned = try? container.decode([String: DolibarrAgendaEventUserAssigned].self, forKey: .usersAssigned) {
+				self.usersAssigned = userAssigned
 			} else {
 				self.usersAssigned = nil
 			}

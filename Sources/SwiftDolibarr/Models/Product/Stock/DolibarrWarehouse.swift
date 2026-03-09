@@ -75,7 +75,13 @@ import OSLog
         self.city = city
         self.countryId = countryId
         self.phone = phone
-		super.init(id: id, statusCode: statusCode, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
+		super.init(
+			id: id,
+			statusCode: statusCode,
+			arrayOptions: arrayOptions,
+			notePublic: notePublic,
+			notePrivate: notePrivate
+		)
     }
 
     required init(from decoder: any Decoder) throws {

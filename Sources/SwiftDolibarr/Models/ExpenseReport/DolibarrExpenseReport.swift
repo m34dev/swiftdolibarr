@@ -41,7 +41,9 @@ import OSLog
 	// Computed
 
 	override var status: DolibarrObjectStatus {
-		guard let status = DolibarrObjectStatus.expenseReports.first(where: { $0.code == statusCode }) else { return .unknown }
+		guard let status = DolibarrObjectStatus.expenseReports.first(where: { $0.code == statusCode }) else {
+			return .unknown
+		}
 		return status
 	}
 
@@ -119,7 +121,13 @@ import OSLog
         self.totalTax = totalTax
         self.totalInclTax = totalInclTax
         self.lines = lines
-		super.init(id: id, statusCode: statusCode, arrayOptions: arrayOptions, notePublic: notePublic, notePrivate: notePrivate)
+		super.init(
+			id: id,
+			statusCode: statusCode,
+			arrayOptions: arrayOptions,
+			notePublic: notePublic,
+			notePrivate: notePrivate
+		)
     }
 
     required init(from decoder: any Decoder) throws {

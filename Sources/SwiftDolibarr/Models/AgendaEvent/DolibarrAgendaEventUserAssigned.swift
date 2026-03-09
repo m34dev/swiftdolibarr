@@ -15,5 +15,5 @@ struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, DolibarrOb
     var mandatory: String?
     var answerStatus: String?
     var transparency: String?
-	
+
 }
