@@ -29,22 +29,22 @@ import OSLog
 	// Required
 
 	public var id: String
-	var productId: String
-	var warehouseId: String
+	public var productId: String
+	public var warehouseId: String
 
 	// Optional
 
-	var arrayOptions: [String: MultiType]?
-	var originId: String?
-	var originType: String?
-	var quantity: String?
-	var typeCode: String?
-	var label: String?
-	var price: String?
-	var inventoryCode: String?
-	var dateModify: Int?
-	var userAuthorId: String?
-	var tms: Int?
+	public var arrayOptions: [String: MultiType]?
+	public var originId: String?
+	public var originType: String?
+	public var quantity: String?
+	public var typeCode: String?
+	public var label: String?
+	public var price: String?
+	public var inventoryCode: String?
+	public var dateModify: Int?
+	public var userAuthorId: String?
+	public var tms: Int?
 
 	// MARK: - Enums
 
@@ -69,7 +69,7 @@ import OSLog
 
 	// MARK: - Inits
 
-	init(
+	public init(
 		id: String = "",
 		arrayOptions: [String: MultiType]? = nil,
 		productId: String = "",
