@@ -34,7 +34,7 @@ import OSLog
 
 	public var clientRef: String?
 	public var dateCreation: Int?
-	public var date: Int
+	public var dateOrder: Int?
 	public var dateValidation: Int?
 	public var deliveryDate: Int?
 	public var pdfModel: String?
@@ -60,7 +60,7 @@ import OSLog
 		case lines
 		case clientRef = "ref_client"
 		case dateCreation = "date_creation"
-		case date
+		case dateOrder = "date"
 		case dateValidation = "date_validation"
 		case deliveryDate = "delivery_date"
 		case pdfModel = "model_pdf"
@@ -80,7 +80,7 @@ import OSLog
 		lines: [DolibarrOrderLine] = [],
 		clientRef: String? = nil,
 		dateCreation: Int? = nil,
-		date: Int = 0,
+		dateOrder: Int? = nil,
 		dateValidation: Int? = nil,
 		deliveryDate: Int? = nil,
 		pdfModel: String? = nil,
@@ -107,7 +107,7 @@ import OSLog
 		self.lines = lines
 		self.clientRef = clientRef
 		self.dateCreation = dateCreation
-		self.date = date
+		self.dateOrder = dateOrder
 		self.dateValidation = dateValidation
 		self.deliveryDate = deliveryDate
 		self.pdfModel = pdfModel
@@ -139,7 +139,7 @@ import OSLog
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.clientRef = try container.decodeIfPresent(String.self, forKey: .clientRef)
 			self.dateCreation = try container.decodeIfPresent(Int.self, forKey: .dateCreation)
-			self.date = try container.decode(Int.self, forKey: .date)
+			self.dateOrder = try container.decodeIfPresent(Int.self, forKey: .dateOrder)
 			self.dateValidation = try container.decodeIfPresent(MultiType.self, forKey: .dateValidation)?.intValue
 			self.deliveryDate = try container.decodeIfPresent(MultiType.self, forKey: .deliveryDate)?.intValue
 			self.pdfModel = try container.decodeIfPresent(String.self, forKey: .pdfModel)
@@ -169,7 +169,7 @@ import OSLog
 		hasher.combine(lines)
 		hasher.combine(optional: clientRef)
 		hasher.combine(optional: dateCreation)
-		hasher.combine(date)
+		hasher.combine(optional: dateOrder)
 		hasher.combine(optional: dateValidation)
 		hasher.combine(optional: deliveryDate)
 		hasher.combine(optional: pdfModel)
@@ -189,9 +189,9 @@ import OSLog
 		try container.encode(lines, forKey: .lines)
 		try container.encodeIfPresent(clientRef, forKey: .clientRef)
 		try container.encodeIfPresentAndNotZero(dateCreation, forKey: .dateCreation)
-		try container.encodeIfNotZero(date, forKey: .date)
-		try container.encodeIfPresent(dateValidation, forKey: .dateValidation)
-		try container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
+		try container.encodeIfPresentAndNotZero(dateOrder, forKey: .dateOrder)
+		try container.encodeIfPresentAndNotZero(dateValidation, forKey: .dateValidation)
+		try container.encodeIfPresentAndNotZero(deliveryDate, forKey: .deliveryDate)
 		try container.encodeIfPresent(pdfModel, forKey: .pdfModel)
 		try container.encodeIfPresent(lastMainDoc, forKey: .lastMainDoc)
 		try container.encodeIfPresentAndNotEmpty(userAuthorId, forKey: .userAuthorId)
