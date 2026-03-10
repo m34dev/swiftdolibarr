@@ -31,13 +31,34 @@ public struct DolibarrInvoiceClose: Identifiable, Hashable, Sendable {
 
 	// MARK: - Static properties
 
-	public static let discount = DolibarrInvoiceClose(code: "discount_vat", label: String(localized: "Early payment discount"))
-	public static let badDebt = DolibarrInvoiceClose(code: "badcustomer", label: String(localized: "Bad customer"))
-	public static let bankCharge = DolibarrInvoiceClose(code: "bankcharge", label: String(localized: "Bank fee"))
-	public static let withholdingTax = DolibarrInvoiceClose(code: "withholdingtax", label: String(localized: "Withholding tax"))
-	public static let other = DolibarrInvoiceClose(code: "other", label: String(localized: "Other"))
-	public static let abandoned = DolibarrInvoiceClose(code: "abandon", label: String(localized: "Abandoned"))
-	public static let replaced = DolibarrInvoiceClose(code: "replaced", label: String(localized: "Replaced"))
+	public static let discount = DolibarrInvoiceClose(
+		code: "discount_vat",
+		label: String(localized: "Early payment discount")
+	)
+	public static let badDebt = DolibarrInvoiceClose(
+		code: "badcustomer",
+		label: String(localized: "Bad customer")
+	)
+	public static let bankCharge = DolibarrInvoiceClose(
+		code: "bankcharge",
+		label: String(localized: "Bank fee")
+	)
+	public static let withholdingTax = DolibarrInvoiceClose(
+		code: "withholdingtax",
+		label: String(localized: "Withholding tax")
+	)
+	public static let other = DolibarrInvoiceClose(
+		code: "other",
+		label: String(localized: "Other")
+	)
+	public static let abandoned = DolibarrInvoiceClose(
+		code: "abandon",
+		label: String(localized: "Abandoned")
+	)
+	public static let replaced = DolibarrInvoiceClose(
+		code: "replaced",
+		label: String(localized: "Replaced")
+	)
 
 	public static let allClose: [DolibarrInvoiceClose] = [
 		discount, badDebt, bankCharge, withholdingTax, other, abandoned, replaced

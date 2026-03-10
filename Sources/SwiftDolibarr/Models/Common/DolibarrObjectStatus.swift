@@ -145,7 +145,9 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 		color: Color(UIColor.secondaryLabel),
 		sfSymbol: "creditcard.circle")
 
-	public static let quotes: [DolibarrObjectStatus] = [canceled, draft, validated, quoteSigned, quoteNotSigned, quoteBilled]
+	public static let quotes: [DolibarrObjectStatus] = [
+		canceled, draft, validated, quoteSigned, quoteNotSigned, quoteBilled
+	]
 
 	// Order
 
@@ -165,7 +167,9 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 		color: .green,
 		sfSymbol: "flag.checkered.circle")
 
-	public static let orders: [DolibarrObjectStatus] = [orderBackorder, canceled, draft, validated, orderShipped, orderClosed]
+	public static let orders: [DolibarrObjectStatus] = [
+		orderBackorder, canceled, draft, validated, orderShipped, orderClosed
+	]
 
 	// Invoice
 

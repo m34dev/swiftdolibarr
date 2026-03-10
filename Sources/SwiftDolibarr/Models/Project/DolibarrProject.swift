@@ -31,6 +31,12 @@ import OSLog
 	public var reference: String
 	public var title: String
 
+	// Optional
+
+	public var dateStart: Int?
+	public var dateEnd: Int?
+	public var description: String?
+
 	// Computed
 
 	override public var status: DolibarrObjectStatus {
@@ -41,6 +47,9 @@ import OSLog
 	enum CodingKeys: String, CodingKey {
 		case reference = "ref"
 		case title
+		case dateStart = "date_start"
+		case dateEnd = "date_end"
+		case description
 	}
 
 	// MARK: - Inits
@@ -48,6 +57,9 @@ import OSLog
 	public init(
 		reference: String = "",
 		title: String = "",
+		dateStart: Int? = nil,
+		dateEnd: Int? = nil,
+		description: String? = nil,
 		id: String = "",
 		statusCode: String = "",
 		entityId: String? = nil,
@@ -57,6 +69,9 @@ import OSLog
 	) {
 		self.reference = reference
 		self.title = title
+		self.dateStart = dateStart
+		self.dateEnd = dateEnd
+		self.description = description
 		super.init(
 			id: id,
 			statusCode: statusCode,
@@ -73,6 +88,9 @@ import OSLog
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.reference = try container.decode(String.self, forKey: .reference)
 			self.title = try container.decode(String.self, forKey: .title)
+			self.dateStart = try container.decodeIfPresent(Int.self, forKey: .dateStart)
+			self.dateEnd = try container.decodeIfPresent(Int.self, forKey: .dateEnd)
+			self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			try super.init(from: decoder)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
 		} catch let error as DecodingError {
@@ -89,6 +107,9 @@ import OSLog
 	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(reference)
 		hasher.combine(title)
+		hasher.combine(optional: dateStart)
+		hasher.combine(optional: dateEnd)
+		hasher.combine(optional: description)
 		super.hash(into: &hasher)
 	}
 
@@ -96,6 +117,9 @@ import OSLog
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(reference, forKey: .reference)
 		try container.encodeIfNotEmpty(title, forKey: .title)
+		try container.encodeIfPresentAndNotZero(dateStart, forKey: .dateStart)
+		try container.encodeIfPresentAndNotZero(dateEnd, forKey: .dateEnd)
+		try container.encodeIfPresent(description, forKey: .description)
 		try super.encode(to: encoder)
 	}
 
