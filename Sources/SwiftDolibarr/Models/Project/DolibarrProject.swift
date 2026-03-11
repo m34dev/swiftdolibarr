@@ -88,8 +88,8 @@ import OSLog
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.reference = try container.decode(String.self, forKey: .reference)
 			self.title = try container.decode(String.self, forKey: .title)
-			self.dateStart = try container.decodeIfPresent(Int.self, forKey: .dateStart)
-			self.dateEnd = try container.decodeIfPresent(Int.self, forKey: .dateEnd)
+			self.dateStart = try container.decodeIfPresent(MultiType.self, forKey: .dateStart)?.intValue
+			self.dateEnd = try container.decodeIfPresent(MultiType.self, forKey: .dateEnd)?.intValue
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			try super.init(from: decoder)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
