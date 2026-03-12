@@ -112,20 +112,20 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 
 	// Warehouse
 
-	public static let closed: DolibarrObjectStatus = .init(
+	public static let warehouseClosed: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Closed"),
 		color: .gray,
 		sfSymbol: "stop.circle"
 	)
-	public static let open: DolibarrObjectStatus = .init(
+	public static let warehouseOpen: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Open"),
 		color: .green,
 		sfSymbol: "play.circle"
 	)
 
-	public static let warehouses: [DolibarrObjectStatus] = [closed, open]
+	public static let warehouses: [DolibarrObjectStatus] = [warehouseClosed, warehouseOpen]
 
 	// Quote
 
@@ -243,6 +243,33 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	)
 
 	public static let projects: [DolibarrObjectStatus] = [draft, validated, projectClosed]
+
+	// Task
+
+	public static let taskClosed: DolibarrObjectStatus = .init(
+		code: "3",
+		label: String(localized: "Done"),
+		color: Color(UIColor.secondaryLabel),
+		sfSymbol: "flag.checkered.circle"
+	)
+
+	public static let taskTransferred: DolibarrObjectStatus = .init(
+		code: "4",
+		label: String(localized: "Transferred"),
+		color: .gray,
+		sfSymbol: "arrow.left.arrow.right.circle"
+	)
+
+	public static let taskCanceled: DolibarrObjectStatus = .init(
+		code: "9",
+		label: String(localized: "Canceled"),
+		color: .gray,
+		sfSymbol: "xmark.circle"
+	)
+
+	public static let task: [DolibarrObjectStatus]= [
+		draft, validated, taskClosed, taskTransferred, taskCanceled
+	]
 
 	// Agenda event
 

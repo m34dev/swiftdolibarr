@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org) using the 
 
 ## [0.2.21] - 2026-03-12
 
+### Added
+- Task statuses
+
+### Changed
+- Cleaned warehouse statuses
+
+## [0.2.21] - 2026-03-12
+
 ### Fixed
 - Task init
 
