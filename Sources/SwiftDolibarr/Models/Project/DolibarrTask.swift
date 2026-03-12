@@ -49,10 +49,10 @@ import OSLog
 	// MARK: - Inits
 
 	public init(
-		ref: String,
-		label: String,
-		projectId: String,
-		parentId: String,
+		ref: String = "",
+		label: String = "",
+		projectId: String = "",
+		parentId: String = "",
 		id: String = "",
 		statusCode: String = "",
 		entityId: String? = nil,
