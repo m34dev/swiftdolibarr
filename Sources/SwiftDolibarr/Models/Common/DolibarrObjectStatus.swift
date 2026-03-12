@@ -267,7 +267,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 		sfSymbol: "xmark.circle"
 	)
 
-	public static let task: [DolibarrObjectStatus]= [
+	public static let task: [DolibarrObjectStatus] = [
 		draft, validated, taskClosed, taskTransferred, taskCanceled
 	]
 
