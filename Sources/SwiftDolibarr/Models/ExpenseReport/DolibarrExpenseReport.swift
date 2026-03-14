@@ -28,32 +28,105 @@ import OSLog
 
 	// Required
 
+	/// Expense report lines
 	public var lines: [DolibarrExpenseReportLine]
 
 	// Optional
 
+	/// Expense report reference
 	public var ref: String
+
+	/// Expense report start date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_debut**
 	public var dateStart: Int
+
+	/// Expense report end date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_fin**
 	public var dateEnd: Int
+
+	/// Expense report creation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_create**
 	public var dateCreated: Int
+
+	/// Expense report validation date
+	///
+	/// - Mapped Dolibarr property: **date_valid**
 	public var dateValidated: String
+
+	/// Expense report approval date
+	///
+	/// - Mapped Dolibarr property: **date_approve**
 	public var dateApproved: String
+
+	/// Expense report refusal date
+	///
+	/// - Mapped Dolibarr property: **date_refuse**
 	public var dateRefused: String
+
+	/// Expense report cancellation date
+	///
+	/// - Mapped Dolibarr property: **date_cancel**
 	public var dateCanceled: String
+
+	/// Expense report author user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_author**
 	public var userAuthorId: String
+
+	/// Expense report validator user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_validator**
 	public var userValidatorId: String?
+
+	/// Expense report approver user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_approve**
 	public var userApprovedById: String?
+
+	/// Expense report canceler user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_cancel**
 	public var userCanceledById: String?
+
+	/// Expense report refuser user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_refuse**
 	public var userRefusedById: String?
+
+	/// Expense report cancellation detail
+	///
+	/// - Mapped Dolibarr property: **detail_cancel**
 	public var detailCanceled: String?
+
+	/// Expense report refusal detail
+	///
+	/// - Mapped Dolibarr property: **detail_refuse**
 	public var detailRefused: String?
+
+	/// Expense report paid status
 	public var paid: String
+
+	/// Expense report total amount excluding tax
+	///
+	/// - Mapped Dolibarr property: **total_ht**
 	public var totalExclTax: String
+
+	/// Expense report total tax amount
+	///
+	/// - Mapped Dolibarr property: **total_tva**
 	public var totalTax: String
+
+	/// Expense report total amount including tax
+	///
+	/// - Mapped Dolibarr property: **total_ttc**
 	public var totalInclTax: String
 
 	// Computed
 
+	/// Associated expense report status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.expenseReports.first(where: { $0.code == statusCode }) else {
 			return .unknown

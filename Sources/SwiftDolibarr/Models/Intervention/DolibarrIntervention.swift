@@ -26,27 +26,66 @@ import OSLog
 
 	// MARK: - Properties
 
-	// Requried
+	// Required
 
+	/// Associated third party ID
+	///
+	/// - Mapped Dolibarr property: **socid**
 	public var socId: String
+
+	/// Intervention reference
 	public var ref: String
 
 	// Optional
 
+	/// Associated contract ID
+	///
+	/// - Mapped Dolibarr property: **fk_contrat**
 	public var contractId: String?
+
+	/// Associated project ID
+	///
+	/// - Mapped Dolibarr property: **fk_project**
 	public var projectId: String?
+
+	/// Intervention start date (Unix timestamp)
 	public var dateo: Double?
+
+	/// Intervention end date (Unix timestamp)
 	public var datee: Double?
+
+	/// Intervention duration in seconds
 	public var duration: String?
+
+	/// Intervention description
 	public var description: String?
+
+	/// Intervention client reference
+	///
+	/// - Mapped Dolibarr property: **ref_client**
 	public var clientRef: String?
+
+	/// Intervention last generated main document path
+	///
+	/// - Mapped Dolibarr property: **last_main_doc**
 	public var lastMainDoc: String?
+
+	/// Intervention lines
 	public var lines: [DolibarrInterventionLine]?
+
+	/// Intervention external contact IDs
+	///
+	/// - Mapped Dolibarr property: **contacts_ids**
 	public var externalContactIds: [[String: MultiType]]?
+
+	/// Intervention internal contact IDs
+	///
+	/// - Mapped Dolibarr property: **contacts_ids_internal**
 	public var internalContactIds: [[String: MultiType]]?
 
 	// Computed
 
+	/// Associated intervention status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.interventions.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status

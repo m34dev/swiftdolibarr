@@ -26,6 +26,9 @@ import OSLog
 
 	// MARK: - Properties
 
+	/// Associated quote ID
+	///
+	/// - Mapped Dolibarr property: **fk_propal**
 	public var quoteId: String
 
 	// MARK: - Enums

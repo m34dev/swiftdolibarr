@@ -25,9 +25,16 @@ public struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, Dol
 
 	// MARK: - Properties
 
+	/// Assigned user ID
 	public var id: String
+
+	/// Assigned user mandatory flag
 	public var mandatory: String?
+
+	/// Assigned user answer status
 	public var answerStatus: String?
+
+	/// Assigned user transparency
 	public var transparency: String?
 
 }

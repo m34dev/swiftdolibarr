@@ -28,21 +28,71 @@ public class CommonCommercialTransactionObjectLine: CommonBusinessObjectLine {
 
 	// Required
 
+	/// Line special code
+	///
+	/// - Mapped Dolibarr property: **special_code**
 	public var specialCode: String
+
+	/// Line tax rate
+	///
+	/// - Mapped Dolibarr property: **tva_tx**
 	public var taxRate: String
+
+	/// Line unit price excluding tax
+	///
+	/// - Mapped Dolibarr property: **subprice**
 	public var unitPriceExclTax: String
+
+	/// Line discount rate percentage
+	///
+	/// - Mapped Dolibarr property: **remise_percent**
 	public var discountRate: String
+
+	/// Line total amount excluding tax
+	///
+	/// - Mapped Dolibarr property: **total_ht**
 	public var totalExclTax: String
+
+	/// Line total amount including tax
+	///
+	/// - Mapped Dolibarr property: **total_ttc**
 	public var totalInclTax: String
+
+	/// Line total tax amount
+	///
+	/// - Mapped Dolibarr property: **total_tva**
 	public var totalTax: String
 
 	// Optional
 
+	/// Associated product ID
+	///
+	/// - Mapped Dolibarr property: **fk_product**
 	public var productId: String?
+
+	/// Associated product reference
+	///
+	/// - Mapped Dolibarr property: **product_ref**
 	public var productRef: String?
+
+	/// Associated product label
+	///
+	/// - Mapped Dolibarr property: **product_label**
 	public var productLabel: String?
+
+	/// Line quantity
+	///
+	/// - Mapped Dolibarr property: **qty**
 	public var quantity: String?
+
+	/// Line description
+	///
+	/// - Mapped Dolibarr property: **desc**
 	public var description: String?
+
+	/// Line unit price including tax
+	///
+	/// - Mapped Dolibarr property: **subprice_ttc**
 	public var unitPriceInclTax: String?
 
 	// MARK: - Enums

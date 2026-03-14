@@ -23,6 +23,7 @@ import Foundation
 
 public protocol DolibarrObject: Identifiable {
 
+	/// Object ID
 	var id: String { get set }
 
 }

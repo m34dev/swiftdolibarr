@@ -23,8 +23,13 @@ import Foundation
 
 public protocol DolibarrPeopleObject: Hashable {
 
+    /// Person name
     var name: String { get }
+
+    /// Person email address
     var email: String? { get set }
+
+	/// Person social networks
 	var socialnetworks: [String: String]? { get set }
 
 }

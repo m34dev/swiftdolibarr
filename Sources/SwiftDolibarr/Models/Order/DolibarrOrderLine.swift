@@ -26,6 +26,9 @@ import OSLog
 
 	// MARK: - Properties
 
+	/// Associated order ID
+	///
+	/// - Mapped Dolibarr property: **fk_commande**
 	public var orderId: String
 
 	// MARK: - Enums

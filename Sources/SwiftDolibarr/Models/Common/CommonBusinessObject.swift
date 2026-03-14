@@ -26,15 +26,37 @@ public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
 	// MARK: - Properties
 
+	/// Business object ID
 	public var id: String
+
+	/// Business object status code
+	///
+	/// - Mapped Dolibarr property: **status** or **statut** (legacy)
 	public var statusCode: String
+
+	/// Business object entity ID
+	///
+	/// - Mapped Dolibarr property: **entity**
 	public var entityId: String?
+
+	/// Business object extra fields
+	///
+	/// - Mapped Dolibarr property: **array_options**
 	public var arrayOptions: [String: MultiType]?
+
+	/// Business object public note
+	///
+	/// - Mapped Dolibarr property: **note_public**
 	public var notePublic: String?
+
+	/// Business object private note
+	///
+	/// - Mapped Dolibarr property: **note_private**
 	public var notePrivate: String?
 
 	// Computed
 
+	/// Associated business object status type
 	public var status: DolibarrObjectStatus {
 		return .unknown
 	}

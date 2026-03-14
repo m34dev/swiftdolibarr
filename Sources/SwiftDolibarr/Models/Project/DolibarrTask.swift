@@ -28,13 +28,25 @@ import OSLog
 
 	// Required
 
+	/// Task reference
 	public var ref: String
+
+	/// Task label
 	public var label: String
+
+	/// Associated project ID
+	///
+	/// - Mapped Dolibarr property: **fk_project**
 	public var projectId: String
+
+	/// Parent task ID
+	///
+	/// - Mapped Dolibarr property: **fk_task_parent**
 	public var parentId: String
 
 	// MARK: - Computed Properties
 
+	/// Associated task status type
 	override public var status: DolibarrObjectStatus {
 		return .unknown
 	}

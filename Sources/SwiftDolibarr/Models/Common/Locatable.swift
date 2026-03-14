@@ -25,9 +25,16 @@ public protocol Locatable: Hashable {
 
     // Properties
 
+    /// Address lines
     var address: String? { get set }
+
+    /// Zip code
     var zipCode: String? { get set }
+
+    /// City name
     var city: String? { get set }
+
+    /// Country ID
     var countryId: String? { get set }
 
 }

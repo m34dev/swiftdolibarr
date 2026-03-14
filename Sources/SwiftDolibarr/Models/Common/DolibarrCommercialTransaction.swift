@@ -25,11 +25,22 @@ public protocol DolibarrCommercialTransaction {
 
 	// Properties
 
+	/// Associated third party ID
 	var thirdPartyId: String { get set }
+
+	/// Commercial transaction status code
 	var statusCode: String { get set }
+
+	/// Commercial transaction reference
 	var ref: String { get set }
+
+	/// Total amount excluding tax
 	var totalExclTax: String { get set }
+
+	/// Total tax amount
 	var totalTax: String { get set }
+
+	/// Total amount including tax
 	var totalInclTax: String { get set }
 
 }

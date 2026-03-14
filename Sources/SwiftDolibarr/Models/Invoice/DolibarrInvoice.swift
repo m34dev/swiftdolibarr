@@ -28,36 +28,89 @@ import OSLog
 
 	// Required
 
+	/// Invoice date (Unix timestamp)
 	public var date: Int
+
+	/// Invoice type code
+	///
+	/// - Mapped Dolibarr property: **type**
 	public var typeCode: String
+
+	/// Invoice paid code
+	///
+	/// - Mapped Dolibarr property: **paye**
 	public var paidCode: String
+
+	/// Invoice lines
 	public var lines: [DolibarrInvoiceLine]
 
 	// Optional
 
+	/// Invoice client reference
+	///
+	/// - Mapped Dolibarr property: **ref_client**
 	public var clientRef: String?
+
+	/// Invoice validation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_validation**
 	public var dateValidation: Int?
+
+	/// Invoice author user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_author**
 	public var userAuthorId: String?
+
+	/// Invoice last generated main document path
+	///
+	/// - Mapped Dolibarr property: **last_main_doc**
 	public var lastMainDoc: String?
+
+	/// Invoice payment method ID
+	///
+	/// - Mapped Dolibarr property: **mode_reglement_id**
 	public var paymentMethodId: String?
+
+	/// Invoice payment terms ID
+	///
+	/// - Mapped Dolibarr property: **cond_reglement_id**
 	public var paymentTermsId: String?
+
+	/// Invoice source reason ID
+	///
+	/// - Mapped Dolibarr property: **demand_reason_id**
 	public var sourceReasonId: String?
+
+	/// Invoice external contact IDs
+	///
+	/// - Mapped Dolibarr property: **contacts_ids**
 	public var externalContactIds: [String]?
+
+	/// Invoice close code
+	///
+	/// - Mapped Dolibarr property: **close_code**
 	public var closeCode: String?
+
+	/// Invoice close note
+	///
+	/// - Mapped Dolibarr property: **close_note**
 	public var closeNote: String?
 
 	// Computed
 
+	/// Associated invoice status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.invoices.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status
 	}
 
+	/// Associated invoice type
 	public var type: DolibarrInvoiceType {
 		guard let type = DolibarrInvoiceType.allTypes.first(where: { $0.code == typeCode }) else { return .unknown }
 		return type
 	}
 
+	/// Associated invoice close reason
 	public var close: DolibarrInvoiceClose? {
 		return DolibarrInvoiceClose.allClose.first(where: { $0.code == closeCode })
 	}

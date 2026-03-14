@@ -28,27 +28,84 @@ import OSLog
 
 	// Required
 
+	/// Order lines
 	public var lines: [DolibarrOrderLine]
 
 	// Optional
 
+	/// Order client reference
+	///
+	/// - Mapped Dolibarr property: **ref_client**
 	public var clientRef: String?
+
+	/// Order creation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_creation**
 	public var dateCreation: Int?
+
+	/// Order date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date**
 	public var dateOrder: Int?
+
+	/// Order validation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_validation**
 	public var dateValidation: Int?
+
+	/// Order delivery date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **delivery_date**
 	public var deliveryDate: Int?
+
+	/// Order PDF model name
+	///
+	/// - Mapped Dolibarr property: **model_pdf**
 	public var pdfModel: String?
+
+	/// Order last generated main document path
+	///
+	/// - Mapped Dolibarr property: **last_main_doc**
 	public var lastMainDoc: String?
+
+	/// Order author user ID
+	///
+	/// - Mapped Dolibarr property: **user_author_id**
 	public var userAuthorId: String?
+
+	/// Order payment method ID
+	///
+	/// - Mapped Dolibarr property: **mode_reglement_id**
 	public var paymentMethodId: String?
+
+	/// Order payment terms ID
+	///
+	/// - Mapped Dolibarr property: **cond_reglement_id**
 	public var paymentTermsId: String?
+
+	/// Order availability ID
+	///
+	/// - Mapped Dolibarr property: **availability_id**
 	public var availabilityId: String?
+
+	/// Order shipping method ID
+	///
+	/// - Mapped Dolibarr property: **shipping_method_id**
 	public var shippingMethodId: String?
+
+	/// Order source reason ID
+	///
+	/// - Mapped Dolibarr property: **demand_reason_id**
 	public var sourceReasonId: String?
+
+	/// Order external contact IDs
+	///
+	/// - Mapped Dolibarr property: **contacts_ids**
 	public var externalContactIds: [String]?
 
 	// Computed
 
+	/// Associated order status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.orders.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status

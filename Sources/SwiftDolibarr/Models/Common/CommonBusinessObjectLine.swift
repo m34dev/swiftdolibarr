@@ -28,7 +28,10 @@ public class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObj
 
 	// Required
 
+	/// Business object line ID
 	public var id: String
+
+	/// Business object line sort order
 	public var rang: String
 
 	// Optional

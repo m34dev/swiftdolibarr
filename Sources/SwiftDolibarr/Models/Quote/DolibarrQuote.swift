@@ -28,27 +28,84 @@ import OSLog
 
 	// Required
 
+	/// Quote lines
 	public var lines: [DolibarrQuoteLine]
 
 	// Optional
 
+	/// Quote client reference
+	///
+	/// - Mapped Dolibarr property: **ref_client**
 	public var clientRef: String?
+
+	/// Quote creation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datep**
 	public var dateP: Int
+
+	/// Quote validation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datev**
 	public var dateV: Int?
+
+	/// Quote validity end date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **fin_validite**
 	public var validityEndDate: Int?
+
+	/// Quote delivery date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **delivery_date**
 	public var deliveryDate: Int?
+
+	/// Quote PDF model name
+	///
+	/// - Mapped Dolibarr property: **model_pdf**
 	public var pdfModel: String?
+
+	/// Quote last generated main document path
+	///
+	/// - Mapped Dolibarr property: **last_main_doc**
 	public var lastMainDoc: String?
+
+	/// Quote author user ID
+	///
+	/// - Mapped Dolibarr property: **user_author_id**
 	public var userAuthorId: String
+
+	/// Quote payment method ID
+	///
+	/// - Mapped Dolibarr property: **mode_reglement_id**
 	public var paymentMethodId: String?
+
+	/// Quote payment terms ID
+	///
+	/// - Mapped Dolibarr property: **cond_reglement_id**
 	public var paymentTermsId: String?
+
+	/// Quote availability ID
+	///
+	/// - Mapped Dolibarr property: **availability_id**
 	public var availabilityId: String?
+
+	/// Quote shipping method ID
+	///
+	/// - Mapped Dolibarr property: **shipping_method_id**
 	public var shippingMethodId: String?
+
+	/// Quote source reason ID
+	///
+	/// - Mapped Dolibarr property: **demand_reason_id**
 	public var sourceReasonId: String?
+
+	/// Quote external contact IDs
+	///
+	/// - Mapped Dolibarr property: **contacts_ids**
 	public var externalContactIds: [String]?
 
 	// Computed
 
+	/// Associated quote status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.quotes.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status

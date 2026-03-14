@@ -25,13 +25,21 @@ public protocol DolibarrBusinessObject: Hashable, DolibarrObject {
 
     // Properties
 
+    /// Business object status code
     var statusCode: String { get set }
+
+    /// Business object extra fields
     var arrayOptions: [String: MultiType]? { get set }
+
+    /// Business object public note
     var notePublic: String? { get set }
+
+    /// Business object private note
     var notePrivate: String? { get set }
 
     // Computed properties
 
+    /// Associated business object status type
     var status: DolibarrObjectStatus { get }
 
 }

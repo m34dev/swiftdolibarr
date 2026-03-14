@@ -28,34 +28,107 @@ import OSLog
 
 	// Required
 
+	/// Agenda event reference
 	public var ref: String
+
+	/// Agenda event label
 	public var label: String
+
+	/// Agenda event progress percentage
+	///
+	/// - Mapped Dolibarr property: **percentage**
 	public var progress: String
+
+	/// Agenda event full day flag
+	///
+	/// - Mapped Dolibarr property: **fulldayevent**
 	public var fullDayEvent: String
-	public var visibility: String? // Not yet implemented in Dolibarr
+
+	/// Agenda event visibility (not yet implemented in Dolibarr)
+	public var visibility: String?
 
 	// Optional
 
+	/// Agenda event type ID
+	///
+	/// - Mapped Dolibarr property: **type_id**
 	public var typeId: String?
+
+	/// Agenda event type
 	public var type: String?
+
+	/// Agenda event type code
+	///
+	/// - Mapped Dolibarr property: **type_code**
 	public var typeCode: String?
+
+	/// Agenda event code
 	public var code: String?
+
+	/// Agenda event creation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datec**
 	public var dateCreated: Int?
+
+	/// Agenda event modification date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datem**
 	public var dateModified: Int?
+
+	/// Agenda event start date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datep**
 	public var dateStart: Int?
+
+	/// Agenda event end date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datef**
 	public var dateEnd: Int?
+
+	/// Agenda event author ID
+	///
+	/// - Mapped Dolibarr property: **authorid**
 	public var authorId: String?
+
+	/// Agenda event last modifier user ID
+	///
+	/// - Mapped Dolibarr property: **usermodid**
 	public var userModifiedId: String?
+
+	/// Agenda event location
 	public var location: String?
+
+	/// Associated third party ID
+	///
+	/// - Mapped Dolibarr property: **socid**
 	public var thirdPartyId: String?
+
+	/// Agenda event priority
 	public var priority: String?
+
+	/// Agenda event assigned users
+	///
+	/// - Mapped Dolibarr property: **userassigned**
 	public var usersAssigned: [String: DolibarrAgendaEventUserAssigned]?
+
+	/// Agenda event owner user ID
+	///
+	/// - Mapped Dolibarr property: **userownerid**
 	public var userOwnerId: String?
+
+	/// Associated element ID
+	///
+	/// - Mapped Dolibarr property: **elementid**
 	public var elementId: String?
+
+	/// Associated element type
+	///
+	/// - Mapped Dolibarr property: **elementtype**
 	public var elementType: String?
 
 	// Computed
 
+	/// Associated agenda event status type
 	override public var status: DolibarrObjectStatus {
 		if let progressValue = Int(progress) {
 			switch progressValue {

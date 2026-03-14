@@ -28,17 +28,32 @@ import OSLog
 
 	// Required
 
+	/// Project reference
+	///
+	/// - Mapped Dolibarr property: **ref**
 	public var reference: String
+
+	/// Project title
 	public var title: String
 
 	// Optional
 
+	/// Project start date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_start**
 	public var dateStart: Int?
+
+	/// Project end date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_end**
 	public var dateEnd: Int?
+
+	/// Project description
 	public var description: String?
 
 	// Computed
 
+	/// Associated project status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.projects.first(where: { $0.code == statusCode }) else { return .unknown }
 		return status

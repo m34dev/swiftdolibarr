@@ -25,8 +25,13 @@ public struct DolibarrInvoiceClose: Identifiable, Hashable, Sendable {
 
 	// MARK: - Properties
 
+	/// Invoice close unique identifier
 	public var id: UUID = UUID()
+
+	/// Invoice close code
 	public var code: String
+
+	/// Invoice close label
 	public var label: String
 
 	// MARK: - Static properties

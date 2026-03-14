@@ -25,8 +25,13 @@ public struct DolibarrInvoiceType: Equatable, Hashable, Sendable {
 
 	// MARK: - Properties
 
+	/// Invoice type unique identifier
 	public var id: UUID = UUID()
+
+	/// Invoice type code
 	public var code: String
+
+	/// Invoice type label
 	public var label: String
 
 	// MARK: - Static properties

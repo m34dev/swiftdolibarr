@@ -28,29 +28,78 @@ import OSLog
 
 	// Required
 
+	/// Contact last name
 	public var lastname: String
 
 	// Optional
 
+	/// Contact country ID (address)
+	///
+	/// - Mapped Dolibarr property: **country_id**
 	public var countryId: String?
+
+	/// Contact country code (address)
+	///
+	/// - Mapped Dolibarr property: **country_code**
 	public var countryCode: String?
+
+	/// Contact email address
 	public var email: String?
+
+	/// Contact first name
 	public var firstname: String?
+
+	/// Contact civility code
+	///
+	/// - Mapped Dolibarr property: **civility_code**
 	public var titleCode: String?
+
+	/// Contact address lines
 	public var address: String?
+
+	/// Contact zip code (address)
+	///
+	/// - Mapped Dolibarr property: **zip**
 	public var zipCode: String?
+
+	/// Contact city (address)
+	///
+	/// - Mapped Dolibarr property: **town**
 	public var city: String?
+
+	/// Contact job position
 	public var poste: String?
+
+	/// Associated third party ID
 	public var socid: String?
+
+	/// Contact social networks
 	public var socialnetworks: [String: String]?
+
+	/// Contact professional phone number
+	///
+	/// - Mapped Dolibarr property: **phone_pro**
 	public var phonePro: String?
+
+	/// Contact personal phone number
+	///
+	/// - Mapped Dolibarr property: **phone_perso**
 	public var phonePerso: String?
+
+	/// Contact mobile phone number
+	///
+	/// - Mapped Dolibarr property: **phone_mobile**
 	public var phoneMobile: String?
+
+	/// Contact fax number
 	public var fax: String?
+
+	/// Contact birthday (Unix timestamp)
 	public var birthday: Int?
 
 	// Computed
 
+	/// Associated contact status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.thirdPartiesContacts.first(where: { $0.code == statusCode }) else {
 			return .unknown
@@ -58,6 +107,7 @@ import OSLog
 		return status
 	}
 
+	/// Contact full name (firstname + lastname)
 	public var name: String {
 		guard let firstname = firstname, !firstname.isEmpty else { return lastname }
 		return "\(firstname) \(lastname)"

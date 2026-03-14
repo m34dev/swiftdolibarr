@@ -26,6 +26,9 @@ import OSLog
 
 	// MARK: - Properties
 
+	/// Associated invoice ID
+	///
+	/// - Mapped Dolibarr property: **fk_facture**
 	public var invoiceId: String
 
 	// MARK: - Enums

@@ -26,17 +26,60 @@ import OSLog
 
     // MARK: - Properties
 
+	/// Expense report line ID
 	public var id: String
+
+	/// Expense report line quantity
+	///
+	/// - Mapped Dolibarr property: **qty**
 	public var quantity: String
+
+	/// Expense report line unit price including tax
+	///
+	/// - Mapped Dolibarr property: **value_unit**
 	public var unitPriceInclTax: String
+
+	/// Expense report line date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **dates**
 	public var date: Int
+
+	/// Expense report line fee type ID
+	///
+	/// - Mapped Dolibarr property: **fk_c_type_fees**
 	public var feeTypeId: String
+
+	/// Expense report line fee type code
+	///
+	/// - Mapped Dolibarr property: **type_fees_code**
 	public var feeTypeCode: String
+
+	/// Expense report line fee type label
+	///
+	/// - Mapped Dolibarr property: **type_fees_libelle**
 	public var feeTypeLabel: String
+
+	/// Expense report line total amount excluding tax
+	///
+	/// - Mapped Dolibarr property: **total_ht**
 	public var totalExclTax: String
+
+	/// Expense report line total tax amount
+	///
+	/// - Mapped Dolibarr property: **total_tva**
 	public var totalTax: String
+
+	/// Expense report line total amount including tax
+	///
+	/// - Mapped Dolibarr property: **total_ttc**
 	public var totalInclTax: String
+
+	/// Expense report line tax rate
+	///
+	/// - Mapped Dolibarr property: **tva_tx**
 	public var taxRate: String
+
+	/// Expense report line comments
 	public var comments: String?
 
     // MARK: - Enums

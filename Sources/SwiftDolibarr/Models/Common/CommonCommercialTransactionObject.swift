@@ -28,31 +28,57 @@ public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCo
 
 	// Required
 
+	/// Associated third party ID
+	///
+	/// - Mapped Dolibarr property: **socid**
 	public var thirdPartyId: String
+
+	/// Commercial transaction reference
 	public var ref: String
+
+	/// Total amount excluding tax
+	///
+	/// - Mapped Dolibarr property: **total_ht**
 	public var totalExclTax: String
+
+	/// Total tax amount
+	///
+	/// - Mapped Dolibarr property: **total_tva**
 	public var totalTax: String
+
+	/// Total amount including tax
+	///
+	/// - Mapped Dolibarr property: **total_ttc**
 	public var totalInclTax: String
 
 	// Optional
 
+	/// Commercial transaction multicurrency code
+	///
+	/// - Mapped Dolibarr property: **multicurrency_code**
 	public var multicurrencyCode: String?
+
+	/// Linked objects IDs dictionary
 	public var linkedObjectsIds: [String: [String: String]]?
 
 	// Computed
 
+	/// Linked quote IDs
 	public var linkedQuotesIds: [String: String]? {
 		return linkedObjectsIds?["propal"]
 	}
 
+	/// Linked order IDs
 	public var linkedOrdersIds: [String: String]? {
 		return linkedObjectsIds?["commande"]
 	}
 
+	/// Linked intervention IDs
 	public var linkedInterventionIds: [String: String]? {
 		return linkedObjectsIds?["fichinter"]
 	}
 
+	/// Linked invoice IDs
 	public var linkedInvoiceIds: [String: String]? {
 		return linkedObjectsIds?["facture"]
 	}

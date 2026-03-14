@@ -28,11 +28,15 @@ import OSLog
 
 	// Required
 
+	/// Intervention line date (Unix timestamp)
 	public var datei: Double
+
+	/// Intervention line duration in seconds
 	public var duration: String
 
 	// Optional
 
+	/// Intervention line description
 	public  var desc: String?
 
     // MARK: - Enums
