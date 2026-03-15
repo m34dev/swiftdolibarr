@@ -5,6 +5,8 @@
 
 A Swift package providing `Codable` and `Observable` model types for the [Dolibarr ERP CRM](https://www.dolibarr.org) REST API. Decode JSON responses from the Dolibarr API directly into strongly-typed Swift objects and encode them back for create/update requests.
 
+This is the underlying data model layer for [DoliApp](https://doliapp.eu) by [M34D](https://m34d.com), a native Apple platform client for Dolibarr.
+ 
 > **Note:** This package is a **data model layer only**. It does not include networking, authentication, or API client logic. You provide your own HTTP layer (e.g. `URLSession`) and use these models to encode/decode the JSON payloads.
 
 ## Requirements
@@ -110,7 +112,7 @@ Property names are mapped to Dolibarr API field names via `CodingKeys`, so you w
 
 ## Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, submitting changes, and adding new models.
+Contributions are welcome! This project is maintained by [M34D](https://m34d.com). Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, submitting changes, and adding new models.
 
 ## Versioning
 
