@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// swift-tools-version: 6.2
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -20,12 +20,12 @@ import PackageDescription
 let package = Package(
     name: "SwiftDolibarr",
 	platforms: [
-		.iOS(.v17),
-		.macOS(.v14),
-		.macCatalyst(.v17),
-		.tvOS(.v17),
-		.visionOS(.v1),
-		.watchOS(.v10)
+		.iOS(.v18),
+		.macOS(.v15),
+		.macCatalyst(.v18),
+		.tvOS(.v18),
+		.visionOS(.v2),
+		.watchOS(.v11)
 	],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.

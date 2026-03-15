@@ -11,8 +11,8 @@ This is the underlying data model layer for [DoliApp](https://doliapp.eu) by [M3
 
 ## Requirements
 
-- Swift 6.2+
-- iOS 17+ / macOS 14+ / Mac Catalyst 17+ / tvOS 17+ / visionOS 1+ / watchOS 10+
+- Swift 6.0+
+- iOS 18+ / macOS 15+ / Mac Catalyst 18+ / tvOS 18+ / visionOS 2+ / watchOS 11+
 - Dolibarr v18+ (may work with older versions of Dolibarr)
 
 ## Installation
