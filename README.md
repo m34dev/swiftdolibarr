@@ -3,8 +3,120 @@
 [![Latest Release](https://lab.frogg.it/dolibarr/swiftdolibarr/-/badges/release.svg)](https://lab.frogg.it/dolibarr/swiftdolibarr/-/releases)
 [![Pipeline status](https://lab.frogg.it/dolibarr/swiftdolibarr/badges/main/pipeline.svg)](https://lab.frogg.it/dolibarr/swiftdolibarr/-/commits/main)
 
+A Swift package providing `Codable` and `Observable` model types for the [Dolibarr ERP CRM](https://www.dolibarr.org) REST API. Decode JSON responses from the Dolibarr API directly into strongly-typed Swift objects and encode them back for create/update requests.
+
+> **Note:** This package is a **data model layer only**. It does not include networking, authentication, or API client logic. You provide your own HTTP layer (e.g. `URLSession`) and use these models to encode/decode the JSON payloads.
+
+## Requirements
+
+- Swift 6.2+
+- iOS 17+ / macOS 14+ / Mac Catalyst 17+ / tvOS 17+ / visionOS 1+ / watchOS 10+
+- Dolibarr v18+ (may work with older versions of Dolibarr)
+
+## Installation
+
+Add SwiftDolibarr as a dependency in your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://lab.frogg.it/dolibarr/swiftdolibarr.git", from: "1.0.0"),
+]
+```
+
+Then add it to your target's dependencies:
+
+```swift
+.target(
+    name: "YourTarget",
+    dependencies: ["SwiftDolibarr"]
+),
+```
+
+## Supported Dolibarr Objects
+
+| Module | Models |
+|---|---|
+| **Third Parties** | `DolibarrThirdParty`, `DolibarrContact` |
+| **Products & Stock** | `DolibarrProduct`, `DolibarrWarehouse`, `DolibarrStockMovement` |
+| **Quotes** | `DolibarrQuote`, `DolibarrQuoteLine` |
+| **Orders** | `DolibarrOrder`, `DolibarrOrderLine` |
+| **Invoices** | `DolibarrInvoice`, `DolibarrInvoiceLine` |
+| **Interventions** | `DolibarrIntervention`, `DolibarrInterventionLine` |
+| **Expense Reports** | `DolibarrExpenseReport`, `DolibarrExpenseReportLine` |
+| **Projects & Tasks** | `DolibarrProject`, `DolibarrTask` |
+| **Agenda Events** | `DolibarrAgendaEvent` |
+| **Users** | `DolibarrUser`, `DolibarrUserPermissions` |
+
+## Usage
+
+### Decoding API responses
+
+```swift
+import SwiftDolibarr
+
+let data: Data = // ... JSON from Dolibarr REST API
+let decoder = JSONDecoder()
+
+// Decode a single invoice
+let invoice = try decoder.decode(DolibarrInvoice.self, from: data)
+print(invoice.ref)				// e.g. "FA2026-0001"
+print(invoice.totalInclTax)		// e.g. "1200.00"
+print(invoice.status.label)		// Computed DolibarrObjectStatus label, e.g. "Validated"
+
+// Decode a list of third parties
+let thirdParties = try decoder.decode([DolibarrThirdParty].self, from: data)
+```
+
+### Creating objects for API requests
+
+```swift
+let newInvoice = DolibarrInvoice(
+    date: Int(Date().timeIntervalSince1970),
+    typeCode: "0",
+    paidCode: "0",
+    lines: [],
+    thirdPartyId: "42",
+    statusCode: "0"
+)
+
+let encoder = JSONEncoder()
+let jsonData = try encoder.encode(newInvoice)
+// Send jsonData to the Dolibarr API
+```
+
+### Object statuses
+
+Each object type has predefined statuses with labels, colors, and SF Symbols for easy use in SwiftUI:
+
+```swift
+let invoice: DolibarrInvoice = // ...
+let status = invoice.status
+
+Image(systemName: status.sfSymbol)
+Text(status.label)
+    .foregroundStyle(status.color)
+```
+
+## Architecture
+
+All models conform to `Codable`, `Hashable`, `Identifiable`, and are marked `@Observable` for seamless SwiftUI integration. The type hierarchy is:
+
+- **`DolibarrObject`** — Base protocol enforcing `id` property
+- **`CommonBusinessObject`** — Base class adding status, entity, notes, and extra fields
+- **`CommonCommercialTransactionObject`** — Transactional class adding ref, totals, linked third party, and currency for documents (invoices, orders, quotes)
+- **`DolibarrThirdParty` `DolibarrProduct` `DolibarrQuote` `...`** - Final object classes
+
+Property names are mapped to Dolibarr API field names via `CodingKeys`, so you work with idiomatic Swift naming while the JSON stays compatible with the Dolibarr API.
+
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, submitting changes, and adding new models.
+
 ## Versioning
-This project uses [Sematic Versioning](https://semver.org) with the following scheme: MAJOR.MINOR.PATCH
+
+This project uses [Semantic Versioning](https://semver.org) with the following scheme: MAJOR.MINOR.PATCH
 
 ## License
-Swift Dolibarr is licensed under the Apache License 2.0
+
+Swift Dolibarr is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+
