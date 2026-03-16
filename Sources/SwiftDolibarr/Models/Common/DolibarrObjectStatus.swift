@@ -30,7 +30,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public var id: UUID = UUID()
 	public var code: String
 	public var label: String
-	public var foregroundStyle: any ShapeStyle
+	public var foregroundStyle: AnyShapeStyle
 	public var sfSymbol: String
 
 	// MARK: - Static properties
@@ -40,25 +40,25 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let canceled: DolibarrObjectStatus = .init(
 		code: "-1",
 		label: String(localized: "Canceled"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "xmark.circle"
 	)
 	public static let draft: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Draft"),
-		foregroundStyle: .tertiary,
+		foregroundStyle: AnyShapeStyle(.tertiary),
 		sfSymbol: "pencil.circle"
 	)
 	public static let validated: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Validated"),
-		foregroundStyle: .orange,
+		foregroundStyle: AnyShapeStyle(.orange),
 		sfSymbol: "checkmark.circle"
 	)
 	public static let unknown: DolibarrObjectStatus = .init(
 		code: "",
 		label: "Unknown",
-		foregroundStyle: .black,
+		foregroundStyle: AnyShapeStyle(.black),
 		sfSymbol: "questionmark.circle"
 	)
 
@@ -67,13 +67,13 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let inactive: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Inactive"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "stop.circle"
 	)
 	public static let active: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Active"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "play.circle"
 	)
 
@@ -84,25 +84,25 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let forSaleForPurchase: DolibarrObjectStatus = .init(
 		code: "11",
 		label: String(localized: "For sale & purchase"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "play.circle"
 	)
 	public static let forSaleNotForPurchase: DolibarrObjectStatus = .init(
 		code: "10",
 		label: String(localized: "For sale only"),
-		foregroundStyle: .blue,
+		foregroundStyle: AnyShapeStyle(.blue),
 		sfSymbol: "storefront.circle"
 	)
 	public static let forPurchaseNotForSale: DolibarrObjectStatus = .init(
 		code: "01",
 		label: String(localized: "For purchase only"),
-		foregroundStyle: .purple,
+		foregroundStyle: AnyShapeStyle(.purple),
 		sfSymbol: "cart.circle"
 	)
 	public static let notForSaleNotForPurchase: DolibarrObjectStatus = .init(
 		code: "00",
 		label: String(localized: "Not for sale or purchase"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "slash.circle"
 	)
 
@@ -115,13 +115,13 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let warehouseClosed: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Closed"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "stop.circle"
 	)
 	public static let warehouseOpen: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Open"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "play.circle"
 	)
 
@@ -132,17 +132,17 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let quoteSigned: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Signed"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "checkmark.seal")
 	public static let quoteNotSigned: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Not signed"),
-		foregroundStyle: .red,
+		foregroundStyle: AnyShapeStyle(.red),
 		sfSymbol: "xmark.seal")
 	public static let quoteBilled: DolibarrObjectStatus = .init(
 		code: "4",
 		label: String(localized: "Billed"),
-		foregroundStyle: .secondary,
+		foregroundStyle: AnyShapeStyle(.secondary),
 		sfSymbol: "creditcard.circle")
 
 	public static let quotes: [DolibarrObjectStatus] = [
@@ -154,17 +154,17 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let orderBackorder: DolibarrObjectStatus = .init(
 		code: "-3",
 		label: String(localized: "Backorder"),
-		foregroundStyle: .red,
+		foregroundStyle: AnyShapeStyle(.red),
 		sfSymbol: "slash.circle")
 	public static let orderShipped: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Shipped"),
-		foregroundStyle: .blue,
+		foregroundStyle: AnyShapeStyle(.blue),
 		sfSymbol: "shippingbox.circle")
 	public static let orderClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Delivered"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "flag.checkered.circle")
 
 	public static let orders: [DolibarrObjectStatus] = [
@@ -176,12 +176,12 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let invoiceClosed: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Paid"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "creditcard.circle")
 	public static let invoiceAbandoned: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Abandoned"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "xmark.circle")
 
 	public static let invoices: [DolibarrObjectStatus] = [draft, validated, invoiceClosed, invoiceAbandoned]
@@ -191,12 +191,12 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let interventionBilled: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Billed"),
-		foregroundStyle: .secondary,
+		foregroundStyle: AnyShapeStyle(.secondary),
 		sfSymbol: "creditcard.circle")
 	public static let interventionClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Done"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "flag.checkered.circle")
 
 	public static let interventions: [DolibarrObjectStatus] = [draft, validated, interventionBilled, interventionClosed]
@@ -206,27 +206,27 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let expenseReportValidated: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Validated"),
-		foregroundStyle: .orange,
+		foregroundStyle: AnyShapeStyle(.orange),
 		sfSymbol: "checkmark.circle")
 	public static let expenseReportCanceled: DolibarrObjectStatus = .init(
 		code: "4",
 		label: String(localized: "Canceled"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "xmark.circle")
 	public static let expenseReportApproved: DolibarrObjectStatus = .init(
 		code: "5",
 		label: String(localized: "Approved"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "checkmark.seal")
 	public static let expenseReportClosed: DolibarrObjectStatus = .init(
 		code: "6",
 		label: String(localized: "Paid"),
-		foregroundStyle: .secondary,
+		foregroundStyle: AnyShapeStyle(.secondary),
 		sfSymbol: "creditcard.circle")
 	public static let expenseReportRefused: DolibarrObjectStatus = .init(
 		code: "99",
 		label: String(localized: "Refused"),
-		foregroundStyle: .red,
+		foregroundStyle: AnyShapeStyle(.red),
 		sfSymbol: "xmark.seal")
 
 	public static let expenseReports: [DolibarrObjectStatus] = [
@@ -238,7 +238,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let projectClosed: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Closed"),
-		foregroundStyle: .secondary,
+		foregroundStyle: AnyShapeStyle(.secondary),
 		sfSymbol: "flag.checkered.circle"
 	)
 
@@ -249,21 +249,21 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let taskClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Done"),
-		foregroundStyle: .secondary,
+		foregroundStyle: AnyShapeStyle(.secondary),
 		sfSymbol: "flag.checkered.circle"
 	)
 
 	public static let taskTransferred: DolibarrObjectStatus = .init(
 		code: "4",
 		label: String(localized: "Transferred"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "arrow.left.arrow.right.circle"
 	)
 
 	public static let taskCanceled: DolibarrObjectStatus = .init(
 		code: "9",
 		label: String(localized: "Canceled"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "xmark.circle"
 	)
 
@@ -276,25 +276,25 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let agendaEventNA: DolibarrObjectStatus = .init(
 		code: "-1",
 		label: String(localized: "N/A"),
-		foregroundStyle: .gray,
+		foregroundStyle: AnyShapeStyle(.gray),
 		sfSymbol: "nosign"
 	)
 	public static let agendaEventToDo: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "To do"),
-		foregroundStyle: .orange,
+		foregroundStyle: AnyShapeStyle(.orange),
 		sfSymbol: "pause.circle"
 	)
 	public static let agendaEventInProgress: DolibarrObjectStatus = .init(
 		code: "50",
 		label: String(localized: "In progress"),
-		foregroundStyle: .blue,
+		foregroundStyle: AnyShapeStyle(.blue),
 		sfSymbol: "play.circle"
 	)
 	public static let agendaEventFinished: DolibarrObjectStatus = .init(
 		code: "100",
 		label: String(localized: "Finished"),
-		foregroundStyle: .green,
+		foregroundStyle: AnyShapeStyle(.green),
 		sfSymbol: "flag.checkered.circle"
 	)
 
