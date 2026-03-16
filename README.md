@@ -2,6 +2,8 @@
 
 [![Latest Release](https://lab.frogg.it/dolibarr/swiftdolibarr/-/badges/release.svg)](https://lab.frogg.it/dolibarr/swiftdolibarr/-/releases)
 [![Pipeline status](https://lab.frogg.it/dolibarr/swiftdolibarr/badges/main/pipeline.svg)](https://lab.frogg.it/dolibarr/swiftdolibarr/-/commits/main)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fm34dev%2Fswiftdolibarr%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/m34dev/swiftdolibarr)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fm34dev%2Fswiftdolibarr%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/m34dev/swiftdolibarr)
 
 A Swift package providing `Codable` and `Observable` model types for the [Dolibarr ERP CRM](https://www.dolibarr.org) REST API. Decode JSON responses from the Dolibarr API directly into strongly-typed Swift objects and encode them back for create/update requests.
 
