@@ -20,7 +20,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 public struct ProductType: Identifiable, Equatable, Hashable, Sendable {
 
@@ -29,28 +28,20 @@ public struct ProductType: Identifiable, Equatable, Hashable, Sendable {
 	public var id: UUID = UUID()
 	public var code: String
 	public var label: String
-	public var color: Color
-	public var sfSymbol: String
 
 	// MARK: - Static properties
 
 	public static let product = ProductType(
 		code: "0",
-		label: String(localized: "Product"),
-		color: .brown,
-		sfSymbol: "shippingbox.circle.fill"
+		label: String(localized: "Product")
 	)
 	public static let service = ProductType(
 		code: "1",
-		label: String(localized: "Service"),
-		color: .blue,
-		sfSymbol: "figure.wave.circle.fill"
+		label: String(localized: "Service")
 	)
 	public static let unknown = ProductType(
 		code: "9",
-		label: String(localized: "Unknown"),
-		color: .black,
-		sfSymbol: "questionmark.circle.fill"
+		label: String(localized: "Unknown")
 	)
 
 	public static let allProductTypes: [ProductType] = [product, service]
