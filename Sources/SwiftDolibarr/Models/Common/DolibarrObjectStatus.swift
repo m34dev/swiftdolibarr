@@ -21,7 +21,6 @@
 
 import Foundation
 import OSLog
-import SwiftUI
 
 public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable {
 
@@ -30,8 +29,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public var id: UUID = UUID()
 	public var code: String
 	public var label: String
-	public var foregroundStyle: AnyShapeStyle
-	public var sfSymbol: String
+	public var domain: DolibarrObjectDomain
 
 	// MARK: - Static properties
 
@@ -40,26 +38,22 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let canceled: DolibarrObjectStatus = .init(
 		code: "-1",
 		label: String(localized: "Canceled"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "xmark.circle"
+		domain: .generic
 	)
 	public static let draft: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Draft"),
-		foregroundStyle: AnyShapeStyle(.tertiary),
-		sfSymbol: "pencil.circle"
+		domain: .generic
 	)
 	public static let validated: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Validated"),
-		foregroundStyle: AnyShapeStyle(.orange),
-		sfSymbol: "checkmark.circle"
+		domain: .generic
 	)
 	public static let unknown: DolibarrObjectStatus = .init(
 		code: "",
 		label: "Unknown",
-		foregroundStyle: AnyShapeStyle(.black),
-		sfSymbol: "questionmark.circle"
+		domain: .generic
 	)
 
 	// ThirdParty & Contacts
@@ -67,14 +61,12 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let inactive: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Inactive"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "stop.circle"
+		domain: .thirdParty
 	)
 	public static let active: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Active"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "play.circle"
+		domain: .thirdParty
 	)
 
 	public static let thirdPartiesContacts: [DolibarrObjectStatus] = [inactive, active]
@@ -84,26 +76,22 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let forSaleForPurchase: DolibarrObjectStatus = .init(
 		code: "11",
 		label: String(localized: "For sale & purchase"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "play.circle"
+		domain: .product
 	)
 	public static let forSaleNotForPurchase: DolibarrObjectStatus = .init(
 		code: "10",
 		label: String(localized: "For sale only"),
-		foregroundStyle: AnyShapeStyle(.blue),
-		sfSymbol: "storefront.circle"
+		domain: .product
 	)
 	public static let forPurchaseNotForSale: DolibarrObjectStatus = .init(
 		code: "01",
 		label: String(localized: "For purchase only"),
-		foregroundStyle: AnyShapeStyle(.purple),
-		sfSymbol: "cart.circle"
+		domain: .product
 	)
 	public static let notForSaleNotForPurchase: DolibarrObjectStatus = .init(
 		code: "00",
 		label: String(localized: "Not for sale or purchase"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "slash.circle"
+		domain: .product
 	)
 
 	public static let productsServices: [DolibarrObjectStatus] = [
@@ -115,14 +103,12 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let warehouseClosed: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "Closed"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "stop.circle"
+		domain: .warehouse
 	)
 	public static let warehouseOpen: DolibarrObjectStatus = .init(
 		code: "1",
 		label: String(localized: "Open"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "play.circle"
+		domain: .warehouse
 	)
 
 	public static let warehouses: [DolibarrObjectStatus] = [warehouseClosed, warehouseOpen]
@@ -132,18 +118,18 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let quoteSigned: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Signed"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "checkmark.seal")
+		domain: .quote
+	)
 	public static let quoteNotSigned: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Not signed"),
-		foregroundStyle: AnyShapeStyle(.red),
-		sfSymbol: "xmark.seal")
+		domain: .quote
+	)
 	public static let quoteBilled: DolibarrObjectStatus = .init(
 		code: "4",
 		label: String(localized: "Billed"),
-		foregroundStyle: AnyShapeStyle(.secondary),
-		sfSymbol: "creditcard.circle")
+		domain: .quote
+	)
 
 	public static let quotes: [DolibarrObjectStatus] = [
 		canceled, draft, validated, quoteSigned, quoteNotSigned, quoteBilled
@@ -154,18 +140,18 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let orderBackorder: DolibarrObjectStatus = .init(
 		code: "-3",
 		label: String(localized: "Backorder"),
-		foregroundStyle: AnyShapeStyle(.red),
-		sfSymbol: "slash.circle")
+		domain: .order
+	)
 	public static let orderShipped: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Shipped"),
-		foregroundStyle: AnyShapeStyle(.blue),
-		sfSymbol: "shippingbox.circle")
+		domain: .order
+	)
 	public static let orderClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Delivered"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "flag.checkered.circle")
+		domain: .order
+	)
 
 	public static let orders: [DolibarrObjectStatus] = [
 		orderBackorder, canceled, draft, validated, orderShipped, orderClosed
@@ -176,13 +162,13 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let invoiceClosed: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Paid"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "creditcard.circle")
+		domain: .invoice
+	)
 	public static let invoiceAbandoned: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Abandoned"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "xmark.circle")
+		domain: .invoice
+	)
 
 	public static let invoices: [DolibarrObjectStatus] = [draft, validated, invoiceClosed, invoiceAbandoned]
 
@@ -191,13 +177,13 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let interventionBilled: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Billed"),
-		foregroundStyle: AnyShapeStyle(.secondary),
-		sfSymbol: "creditcard.circle")
+		domain: .intervention
+	)
 	public static let interventionClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Done"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "flag.checkered.circle")
+		domain: .intervention
+	)
 
 	public static let interventions: [DolibarrObjectStatus] = [draft, validated, interventionBilled, interventionClosed]
 
@@ -206,28 +192,28 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let expenseReportValidated: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Validated"),
-		foregroundStyle: AnyShapeStyle(.orange),
-		sfSymbol: "checkmark.circle")
+		domain: .expenseReport
+	)
 	public static let expenseReportCanceled: DolibarrObjectStatus = .init(
 		code: "4",
 		label: String(localized: "Canceled"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "xmark.circle")
+		domain: .expenseReport
+	)
 	public static let expenseReportApproved: DolibarrObjectStatus = .init(
 		code: "5",
 		label: String(localized: "Approved"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "checkmark.seal")
+		domain: .expenseReport
+	)
 	public static let expenseReportClosed: DolibarrObjectStatus = .init(
 		code: "6",
 		label: String(localized: "Paid"),
-		foregroundStyle: AnyShapeStyle(.secondary),
-		sfSymbol: "creditcard.circle")
+		domain: .expenseReport
+	)
 	public static let expenseReportRefused: DolibarrObjectStatus = .init(
 		code: "99",
 		label: String(localized: "Refused"),
-		foregroundStyle: AnyShapeStyle(.red),
-		sfSymbol: "xmark.seal")
+		domain: .expenseReport
+	)
 
 	public static let expenseReports: [DolibarrObjectStatus] = [
 		draft, expenseReportValidated, expenseReportCanceled, expenseReportApproved, expenseReportClosed, expenseReportRefused
@@ -238,8 +224,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let projectClosed: DolibarrObjectStatus = .init(
 		code: "2",
 		label: String(localized: "Closed"),
-		foregroundStyle: AnyShapeStyle(.secondary),
-		sfSymbol: "flag.checkered.circle"
+		domain: .project
 	)
 
 	public static let projects: [DolibarrObjectStatus] = [draft, validated, projectClosed]
@@ -249,22 +234,19 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let taskClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		label: String(localized: "Done"),
-		foregroundStyle: AnyShapeStyle(.secondary),
-		sfSymbol: "flag.checkered.circle"
+		domain: .task
 	)
 
 	public static let taskTransferred: DolibarrObjectStatus = .init(
 		code: "4",
 		label: String(localized: "Transferred"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "arrow.left.arrow.right.circle"
+		domain: .task
 	)
 
 	public static let taskCanceled: DolibarrObjectStatus = .init(
 		code: "9",
 		label: String(localized: "Canceled"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "xmark.circle"
+		domain: .task
 	)
 
 	public static let task: [DolibarrObjectStatus] = [
@@ -276,26 +258,22 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	public static let agendaEventNA: DolibarrObjectStatus = .init(
 		code: "-1",
 		label: String(localized: "N/A"),
-		foregroundStyle: AnyShapeStyle(.gray),
-		sfSymbol: "nosign"
+		domain: .agendaEvent
 	)
 	public static let agendaEventToDo: DolibarrObjectStatus = .init(
 		code: "0",
 		label: String(localized: "To do"),
-		foregroundStyle: AnyShapeStyle(.orange),
-		sfSymbol: "pause.circle"
+		domain: .agendaEvent
 	)
 	public static let agendaEventInProgress: DolibarrObjectStatus = .init(
 		code: "50",
 		label: String(localized: "In progress"),
-		foregroundStyle: AnyShapeStyle(.blue),
-		sfSymbol: "play.circle"
+		domain: .agendaEvent
 	)
 	public static let agendaEventFinished: DolibarrObjectStatus = .init(
 		code: "100",
 		label: String(localized: "Finished"),
-		foregroundStyle: AnyShapeStyle(.green),
-		sfSymbol: "flag.checkered.circle"
+		domain: .agendaEvent
 	)
 
 	public static let agendaEvents: [DolibarrObjectStatus] = [
@@ -313,7 +291,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 		hasher.combine(id)
 		hasher.combine(code)
 		hasher.combine(label)
-		hasher.combine(sfSymbol)
+		hasher.combine(domain)
 	}
 
 }

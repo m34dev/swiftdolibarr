@@ -90,15 +90,13 @@ let jsonData = try encoder.encode(newInvoice)
 
 ### Object statuses
 
-Each object type has predefined statuses with labels, colors, and SF Symbols for easy use in SwiftUI:
+Each object type has predefined statuses with codes and labels:
 
 ```swift
 let invoice: DolibarrInvoice = // ...
 let status = invoice.status
 
-Image(systemName: status.sfSymbol)
 Text(status.label)
-    .foregroundStyle(status.color)
 ```
 
 ## Architecture

@@ -13,37 +13,25 @@
 // limitations under the License.
 
 //
-//  ProductType.swift
+//  DolibarrObjectDomain.swift
 //  SwiftDolibarr
 //
-//  Created by William Mead on 01/07/2025.
+//  Created by William Mead on 16/03/2026.
 //
 
 import Foundation
 
-public struct ProductType: Identifiable, Equatable, Hashable, Sendable {
-
-	// MARK: - Properties
-
-	public var id: UUID = UUID()
-	public var code: String
-	public var label: String
-
-	// MARK: - Static properties
-
-	public static let product = ProductType(
-		code: "0",
-		label: String(localized: "Product")
-	)
-	public static let service = ProductType(
-		code: "1",
-		label: String(localized: "Service")
-	)
-	public static let unknown = ProductType(
-		code: "9",
-		label: String(localized: "Unknown")
-	)
-
-	public static let allProductTypes: [ProductType] = [product, service]
-
+public enum DolibarrObjectDomain: String, Sendable, Codable, Equatable, Hashable {
+    case generic
+    case thirdParty
+    case product
+    case warehouse
+    case quote
+    case order
+    case invoice
+    case intervention
+    case expenseReport
+    case project
+    case task
+    case agendaEvent
 }
