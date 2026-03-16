@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org) using the 
 
 ### Changed
 - Updated DolibarrObjectStatus color property to foregroundStyle
+- Updated swift tools version to 6.1
 
 ## [0.5.0] - 2026-03-15
 
