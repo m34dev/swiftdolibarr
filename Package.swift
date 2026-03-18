@@ -19,6 +19,7 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftDolibarr",
+	defaultLocalization: "en",
 	platforms: [
 		.iOS(.v18),
 		.macOS(.v15),

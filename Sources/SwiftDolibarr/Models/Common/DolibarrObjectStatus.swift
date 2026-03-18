@@ -90,7 +90,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	)
 	public static let notForSaleNotForPurchase: DolibarrObjectStatus = .init(
 		code: "00",
-		label: String(localized: "Not for sale or purchase"),
+		label: String(localized: "Not for sale/purchase"),
 		domain: .product
 	)
 
