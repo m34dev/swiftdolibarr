@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A single line item within a Dolibarr invoice.
+///
+/// Each line references its parent invoice via ``invoiceId`` and inherits
+/// pricing, tax, and product details from ``CommonCommercialTransactionObjectLine``.
+///
+/// - Note: Requires the **Facture** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrInvoice``
 @Observable public final class DolibarrInvoiceLine: CommonCommercialTransactionObjectLine {
 
 	// MARK: - Properties

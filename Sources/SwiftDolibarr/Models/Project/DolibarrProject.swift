@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr project object.
+///
+/// Maps to the Dolibarr `/projects` REST API endpoint. A project groups
+/// related tasks and can have start/end dates.
+///
+/// - Note: Requires the **Projet** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrTask``
 @Observable public final class DolibarrProject: CommonBusinessObject {
 
 	// MARK: - Properties

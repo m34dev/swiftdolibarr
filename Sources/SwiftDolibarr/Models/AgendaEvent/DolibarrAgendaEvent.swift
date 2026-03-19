@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr agenda event object.
+///
+/// Maps to the Dolibarr `/agendaevents` REST API endpoint. Represents
+/// calendar events that can be linked to third parties, users, and
+/// other business objects.
+///
+/// ## Overview
+///
+/// Each event has a ``progress`` percentage that drives its ``status``,
+/// start/end dates, assigned users, and an optional linked element.
+///
+/// - Note: Requires the **Agenda** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrAgendaEventUserAssigned``
 @Observable public final class DolibarrAgendaEvent: CommonBusinessObject {
 
 	// MARK: - Properties

@@ -22,6 +22,14 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr task object.
+///
+/// Maps to the Dolibarr `/tasks` REST API endpoint. Each task belongs to
+/// a ``DolibarrProject`` via ``projectId`` and can optionally have a parent
+/// task via ``parentId``.
+///
+/// - Note: Requires the **Projet** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrProject``
 @Observable public final class DolibarrTask: CommonBusinessObject {
 
 	// MARK: - Properties

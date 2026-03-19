@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr intervention (field service) object.
+///
+/// Maps to the Dolibarr `/interventions` REST API endpoint. An intervention
+/// is linked to a third party via ``socId`` and can optionally be associated
+/// with a project or contract.
+///
+/// ## Overview
+///
+/// Each intervention has a ``status``, optional ``DolibarrInterventionLine`` items,
+/// start/end dates, and duration.
+///
+/// - Note: Requires the **Fichinter** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrInterventionLine``
 @Observable public final class DolibarrIntervention: CommonBusinessObject {
 
 	// MARK: - Properties

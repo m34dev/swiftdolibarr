@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A single line item within a Dolibarr quote.
+///
+/// Each line references its parent quote via ``quoteId`` and inherits
+/// pricing, tax, and product details from ``CommonCommercialTransactionObjectLine``.
+///
+/// - Note: Requires the **Propal** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrQuote``
 @Observable public final class DolibarrQuoteLine: CommonCommercialTransactionObjectLine {
 
 	// MARK: - Properties

@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// Represents the close reason for a Dolibarr invoice.
+///
+/// Predefined static instances cover the standard close reasons:
+/// ``discount``, ``badDebt``, ``bankCharge``, ``withholdingTax``,
+/// ``other``, ``abandoned``, and ``replaced``.
+///
+/// - SeeAlso: ``DolibarrInvoice``
 public struct DolibarrInvoiceClose: Identifiable, Hashable, Sendable {
 
 	// MARK: - Properties

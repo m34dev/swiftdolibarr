@@ -21,6 +21,12 @@
 
 import Foundation
 
+/// Represents the type of a Dolibarr product entry.
+///
+/// Predefined static instances: ``product`` (code `"0"`) and
+/// ``service`` (code `"1"`).
+///
+/// - SeeAlso: ``DolibarrProduct``
 public struct ProductType: Identifiable, Equatable, Hashable, Sendable {
 
 	// MARK: - Properties

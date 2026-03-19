@@ -22,6 +22,20 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr stock movement object.
+///
+/// Maps to the Dolibarr `/stockmovements` REST API endpoint. Records
+/// a quantity change for a product in a specific warehouse.
+///
+/// ## Overview
+///
+/// Each movement links a ``productId`` to a ``warehouseId`` with an optional
+/// ``quantity``, ``label``, and ``inventoryCode``. Supports both Dolibarr
+/// v23+ and earlier field naming conventions.
+///
+/// - Note: Requires the **Stock** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrWarehouse``
+/// - SeeAlso: ``DolibarrProduct``
 @Observable public final class DolibarrStockMovement: Identifiable, Equatable, Hashable, Codable, DolibarrObject {
 
 	// MARK: - Properties
