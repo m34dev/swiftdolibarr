@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr quote (commercial proposal) object.
+///
+/// Maps to the Dolibarr `/proposals` REST API endpoint. Inherits common commercial
+/// transaction properties such as third-party ID, totals, and status from
+/// ``CommonCommercialTransactionObject``.
+///
+/// ## Overview
+///
+/// Each quote has a ``status``, an array of ``DolibarrQuoteLine`` items,
+/// and optional validity, delivery, payment, and shipping details.
+///
+/// - Note: Requires the **Propal** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrQuoteLine``
 @Observable public final class DolibarrQuote: CommonCommercialTransactionObject {
 
 	// MARK: - Properties

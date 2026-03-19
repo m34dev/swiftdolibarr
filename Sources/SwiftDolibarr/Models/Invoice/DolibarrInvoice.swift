@@ -22,6 +22,22 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr invoice object.
+///
+/// Maps to the Dolibarr `/invoices` REST API endpoint. Inherits common commercial
+/// transaction properties such as third-party ID and totals from
+/// ``CommonCommercialTransactionObject``.
+///
+/// ## Overview
+///
+/// Each invoice has a ``type`` (standard, replacement, credit note, etc.),
+/// a ``status``, and an array of ``DolibarrInvoiceLine`` items. The ``close``
+/// property provides the reason when an invoice has been closed.
+///
+/// - Note: Requires the **Facture** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrInvoiceLine``
+/// - SeeAlso: ``DolibarrInvoiceType``
+/// - SeeAlso: ``DolibarrInvoiceClose``
 @Observable public final class DolibarrInvoice: CommonCommercialTransactionObject {
 
 	// MARK: - Properties

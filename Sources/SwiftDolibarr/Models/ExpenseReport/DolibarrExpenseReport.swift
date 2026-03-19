@@ -22,6 +22,18 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr expense report object.
+///
+/// Maps to the Dolibarr `/expensereports` REST API endpoint. Tracks employee
+/// expenses through a validation and approval workflow.
+///
+/// ## Overview
+///
+/// Each expense report has a ``status``, an array of ``DolibarrExpenseReportLine`` items,
+/// date range, totals, and references to author, validator, and approver users.
+///
+/// - Note: Requires the **Expensereport** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrExpenseReportLine``
 @Observable public final class DolibarrExpenseReport: CommonBusinessObject {
 
     // MARK: - Properties

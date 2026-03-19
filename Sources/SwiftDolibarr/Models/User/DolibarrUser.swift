@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr user object.
+///
+/// Maps to the Dolibarr `/users` REST API endpoint. Includes authentication
+/// credentials, identity information, and module-level permissions via ``rights``.
+///
+/// - Note: Requires the **User** module included in Dolibarr core.
+/// - SeeAlso: ``DolibarrUserPermissions``
 @Observable public final class DolibarrUser: CommonBusinessObject {
 
 	// MARK: - Properties

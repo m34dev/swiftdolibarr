@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A single line item within a Dolibarr expense report.
+///
+/// Each line represents an individual expense with a fee type, quantity,
+/// unit price, tax rate, and totals.
+///
+/// - Note: Requires the **Deplacement** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrExpenseReport``
 @Observable public final class DolibarrExpenseReportLine: Identifiable, Hashable, Codable {
 
     // MARK: - Properties

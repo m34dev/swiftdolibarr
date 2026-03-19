@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr warehouse (stock location) object.
+///
+/// Maps to the Dolibarr `/warehouses` REST API endpoint. A warehouse
+/// stores products and can have a parent warehouse via ``parentId``.
+///
+/// ## Overview
+///
+/// Includes location details such as address, city, and country,
+/// along with a ``status`` indicating whether the warehouse is open or closed.
+///
+/// - Note: Requires the **Stock** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrStockMovement``
+/// - SeeAlso: ``DolibarrProductStockWarehouse``
 @Observable public final class DolibarrWarehouse: CommonBusinessObject, Locatable {
 
     // MARK: - Properties

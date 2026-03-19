@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// Represents the type of a Dolibarr invoice.
+///
+/// Predefined static instances cover the standard Dolibarr invoice types:
+/// ``standard``, ``replacement``, ``creditNote``, ``deposit``,
+/// ``proforma`` (deprecated), and ``situation``.
+///
+/// - SeeAlso: ``DolibarrInvoice``
 public struct DolibarrInvoiceType: Equatable, Hashable, Sendable {
 
 	// MARK: - Properties

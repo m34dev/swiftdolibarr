@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr third party (company / individual) object.
+///
+/// Maps to the Dolibarr `/thirdparties` REST API endpoint. A third party
+/// can be a customer, a prospect, a supplier, or a combination of these,
+/// controlled by the ``client`` and ``supplier`` properties.
+///
+/// ## Overview
+///
+/// Includes contact information, address details, professional IDs,
+/// legal entity data, and social network links.
+///
+/// - Note: Requires the **Societe** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrContact``
 @Observable public final class DolibarrThirdParty: CommonBusinessObject, DolibarrPeopleObject, Locatable {
 
     // MARK: - Properties

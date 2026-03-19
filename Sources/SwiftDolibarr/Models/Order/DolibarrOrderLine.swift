@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A single line item within a Dolibarr order.
+///
+/// Each line references its parent order via ``orderId`` and inherits
+/// pricing, tax, and product details from ``CommonCommercialTransactionObjectLine``.
+///
+/// - Note: Requires the **commande** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrOrder``
 @Observable public final class DolibarrOrderLine: CommonCommercialTransactionObjectLine {
 
 	// MARK: - Properties

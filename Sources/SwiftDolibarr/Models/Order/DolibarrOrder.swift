@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr order object.
+///
+/// Maps to the Dolibarr `/orders` REST API endpoint. Inherits common commercial
+/// transaction properties such as third-party ID, totals, and status from
+/// ``CommonCommercialTransactionObject``.
+///
+/// ## Overview
+///
+/// Each order has a ``status``, an array of ``DolibarrOrderLine`` items,
+/// and optional delivery, payment, and shipping details.
+///
+/// - Note: Requires the **Commande** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrOrderLine``
 @Observable public final class DolibarrOrder: CommonCommercialTransactionObject {
 
 	// MARK: - Properties

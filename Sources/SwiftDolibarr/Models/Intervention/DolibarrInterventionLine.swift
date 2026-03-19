@@ -22,6 +22,13 @@
 import Foundation
 import OSLog
 
+/// A single line item within a Dolibarr intervention.
+///
+/// Each line represents a time entry with a ``datei`` timestamp,
+/// a ``duration`` in seconds, and an optional description.
+///
+/// - Note: Requires the **Ficheinter** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrIntervention``
 @Observable public final class DolibarrInterventionLine: CommonBusinessObjectLine {
 
     // MARK: - Properties

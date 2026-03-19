@@ -22,6 +22,19 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr product or service object.
+///
+/// Maps to the Dolibarr `/products` REST API endpoint. The ``type`` property
+/// distinguishes between a product and a service via ``ProductType``.
+///
+/// ## Overview
+///
+/// Each product has a ``ref``, ``label``, sell/buy statuses, pricing information,
+/// and optional stock warehouse data.
+///
+/// - Note: Requires the **Product** and/or **Service** module to be activated in Dolibarr.
+/// - SeeAlso: ``ProductType``
+/// - SeeAlso: ``DolibarrProductStockWarehouse``
 @Observable public final class DolibarrProduct: CommonBusinessObject {
 
 	// MARK: - Properties

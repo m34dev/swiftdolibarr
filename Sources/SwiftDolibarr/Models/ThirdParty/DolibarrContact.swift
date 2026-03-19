@@ -22,6 +22,18 @@
 import Foundation
 import OSLog
 
+/// A Dolibarr contact object.
+///
+/// Maps to the Dolibarr `/contacts` REST API endpoint. A contact is
+/// typically associated with a ``DolibarrThirdParty`` via ``socid``.
+///
+/// ## Overview
+///
+/// Includes personal details such as name, phone numbers, email, address,
+/// job position, and social network links.
+///
+/// - Note: Requires the **Societe** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrThirdParty``
 @Observable public final class DolibarrContact: CommonBusinessObject, DolibarrPeopleObject, Locatable {
 
 	// MARK: - Properties

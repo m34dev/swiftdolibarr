@@ -65,7 +65,6 @@ let decoder = JSONDecoder()
 let invoice = try decoder.decode(DolibarrInvoice.self, from: data)
 print(invoice.ref)				// e.g. "FA2026-0001"
 print(invoice.totalInclTax)		// e.g. "1200.00"
-print(invoice.status.label)		// Computed DolibarrObjectStatus label, e.g. "Validated"
 
 // Decode a list of third parties
 let thirdParties = try decoder.decode([DolibarrThirdParty].self, from: data)
@@ -90,13 +89,11 @@ let jsonData = try encoder.encode(newInvoice)
 
 ### Object statuses
 
-Each object type has predefined statuses with codes and labels:
+Each object type has predefined statuses mapped from Dolibarr statuses:
 
 ```swift
 let invoice: DolibarrInvoice = // ...
 let status = invoice.status
-
-Text(status.label)
 ```
 
 ## Architecture
