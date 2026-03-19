@@ -112,7 +112,8 @@ import OSLog
 
 	/// Associated invoice close reason
 	public var close: DolibarrInvoiceClose? {
-		return DolibarrInvoiceClose.allClose.first(where: { $0.code == closeCode })
+		guard let close = DolibarrInvoiceClose.allClose.first(where: { $0.code == closeCode }) else { return .unknown }
+		return close
 	}
 
 	// MARK: - Enums

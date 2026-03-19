@@ -25,24 +25,17 @@ public struct ProductType: Identifiable, Equatable, Hashable, Sendable {
 
 	// MARK: - Properties
 
+	/// Product type unique identifier
 	public var id: UUID = UUID()
+
+	/// Product type code
 	public var code: String
-	public var label: String
 
 	// MARK: - Static properties
 
-	public static let product = ProductType(
-		code: "0",
-		label: String(localized: "Product")
-	)
-	public static let service = ProductType(
-		code: "1",
-		label: String(localized: "Service")
-	)
-	public static let unknown = ProductType(
-		code: "9",
-		label: String(localized: "Unknown")
-	)
+	public static let product = ProductType(code: "0")
+	public static let service = ProductType(code: "1")
+	public static let unknown = ProductType(code: "9")
 
 	public static let allProductTypes: [ProductType] = [product, service]
 
