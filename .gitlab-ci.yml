@@ -10,6 +10,9 @@ include:
     inputs:
       SCCCC_CONTAINER_TAG: 0.1.24
       stage: analyze
+  - component: $CI_SERVER_FQDN/ci-components/codequality-os-scanners-integration/swiftlint@1.2.0
+    inputs:
+      stage: analyze
 
 stages:
 - build

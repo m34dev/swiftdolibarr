@@ -35,20 +35,15 @@ let package = Package(
             targets: ["SwiftDolibarr"]
         ),
     ],
-	dependencies: [
-		.package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", .upToNextMajor(from: "0.63.2")),
-	],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftDolibarr",
-            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
+            name: "SwiftDolibarr"
         ),
         .testTarget(
             name: "SwiftDolibarrTests",
-            dependencies: ["SwiftDolibarr"],
-            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
+            dependencies: ["SwiftDolibarr"]
         ),
     ]
 )
