@@ -19,6 +19,7 @@
 //  Created by William Mead on 21/04/2025.
 //
 
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import OSLog
 
 extension Logger {
@@ -123,3 +124,4 @@ extension Logger {
 	}
 
 }
+#endif

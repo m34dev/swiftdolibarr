@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import OSLog
+#endif
 
 public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
@@ -93,7 +95,9 @@ public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
 	public required init(from decoder: any Decoder) throws {
 		do {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
+			#endif
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.id = try container.decode(String.self, forKey: .id)
 			if let status = try? container.decode(MultiType.self, forKey: .statusCode), !status.stringValue.isEmpty {
@@ -112,12 +116,18 @@ public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 			}
 			self.notePublic = try container.decodeIfPresent(String.self, forKey: .notePublic)
 			self.notePrivate = try container.decodeIfPresent(String.self, forKey: .notePrivate)
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
+			#endif
 		} catch let error as DecodingError {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+			#endif
 			throw error
 		} catch {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+			#endif
 			throw error
 		}
 	}

@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import OSLog
+#endif
 
 /// A single line item within a Dolibarr order.
 ///
@@ -86,16 +88,24 @@ import OSLog
 
 	public required init(from decoder: Decoder) throws {
 		do {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
+			#endif
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			orderId = try container.decode(String.self, forKey: .orderId)
 			try super.init(from: decoder)
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", level: .info, category: .api)
+			#endif
 		} catch let error as DecodingError {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+			#endif
 			throw error
 		} catch {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+			#endif
 			throw error
 		}
 	}

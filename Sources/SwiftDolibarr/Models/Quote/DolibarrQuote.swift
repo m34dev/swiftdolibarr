@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import OSLog
+#endif
 
 /// A Dolibarr quote (commercial proposal) object.
 ///
@@ -215,7 +217,9 @@ import OSLog
 
 	public required init(from decoder: any Decoder) throws {
 		do {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
+			#endif
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.lines = try container.decode([DolibarrQuoteLine].self, forKey: .lines)
 			self.clientRef = try container.decodeIfPresent(String.self, forKey: .clientRef)
@@ -233,12 +237,18 @@ import OSLog
 			self.sourceReasonId = try container.decodeIfPresent(String.self, forKey: .sourceReasonId)
 			self.externalContactIds = try container.decodeIfPresent([String].self, forKey: .externalContactIds)
 			try super.init(from: decoder)
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
+			#endif
 		} catch let error as DecodingError {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+			#endif
 			throw error
 		} catch {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+			#endif
 			throw error
 		}
 	}
