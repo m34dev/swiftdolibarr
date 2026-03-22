@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import OSLog
+#endif
 
 /// A Dolibarr expense report object.
 ///
@@ -231,7 +233,9 @@ import OSLog
 
 	public required init(from decoder: any Decoder) throws {
         do {
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
             Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
+            #endif
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.ref = try container.decode(String.self, forKey: .ref)
             self.dateStart = try container.decode(Int.self, forKey: .dateStart)
@@ -254,12 +258,18 @@ import OSLog
             self.totalInclTax = try container.decode(String.self, forKey: .totalInclTax)
             self.lines = try container.decode([DolibarrExpenseReportLine].self, forKey: .lines)
 			try super.init(from: decoder)
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
             Logger.logWithoutSignal("\(Self.self).init.decoded", level: .info, category: .api)
+            #endif
         } catch let error as DecodingError {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+			#endif
 			throw error
         } catch {
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
             Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+            #endif
             throw error
         }
     }

@@ -20,7 +20,6 @@
 //
 
 import Foundation
-import OSLog
 
 public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable {
 

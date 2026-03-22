@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 import OSLog
+#endif
 
 /// A Dolibarr user object.
 ///
@@ -83,7 +85,9 @@ import OSLog
 
 	public required init(from decoder: any Decoder) throws {
 		do {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
+			#endif
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.admin = try container.decode(String.self, forKey: .admin)
 			self.login = try container.decode(String.self, forKey: .login)
@@ -92,12 +96,18 @@ import OSLog
 			self.supervisorId = try container.decodeIfPresent(String.self, forKey: .supervisorId)
 			self.rights = try container.decodeIfPresent(DolibarrUserPermissions.self, forKey: .rights)
 			try super.init(from: decoder)
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
+			#endif
 		} catch let error as DecodingError {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+			#endif
 			throw error
 		} catch {
+			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+			#endif
 			throw error
 		}
 	}
