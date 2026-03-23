@@ -31,7 +31,10 @@ import OSLog
 ///
 /// - Note: Requires the **User** module included in Dolibarr core.
 /// - SeeAlso: ``DolibarrUserPermissions``
-@Observable public final class DolibarrUser: CommonBusinessObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrUser: CommonBusinessObject {
 
 	// MARK: - Properties
 

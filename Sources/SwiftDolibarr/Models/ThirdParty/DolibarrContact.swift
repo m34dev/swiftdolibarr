@@ -36,7 +36,10 @@ import OSLog
 ///
 /// - Note: Requires the **Societe** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrThirdParty``
-@Observable public final class DolibarrContact: CommonBusinessObject, DolibarrPeopleObject, Locatable {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrContact: CommonBusinessObject, DolibarrPeopleObject, Locatable {
 
 	// MARK: - Properties
 

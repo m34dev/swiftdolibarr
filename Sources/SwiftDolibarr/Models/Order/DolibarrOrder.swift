@@ -37,7 +37,10 @@ import OSLog
 ///
 /// - Note: Requires the **Commande** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrOrderLine``
-@Observable public final class DolibarrOrder: CommonCommercialTransactionObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrOrder: CommonCommercialTransactionObject {
 
 	// MARK: - Properties
 

@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org) using the following scheme: MAJOR.MINOR.PATCH
 
+## [0.12.0] - 2026-03-23
+
+### Changed
+- Refactored Observable class attribut for non Apple platform compatibility
+
 ## [0.11.0] - 2026-03-22
 
 ### Changed

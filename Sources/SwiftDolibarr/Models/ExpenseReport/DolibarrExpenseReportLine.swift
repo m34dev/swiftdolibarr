@@ -31,7 +31,10 @@ import OSLog
 ///
 /// - Note: Requires the **Deplacement** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrExpenseReport``
-@Observable public final class DolibarrExpenseReportLine: Identifiable, Hashable, Codable {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrExpenseReportLine: Identifiable, Hashable, Codable {
 
     // MARK: - Properties
 
