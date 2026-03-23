@@ -37,7 +37,10 @@ import OSLog
 ///
 /// - Note: Requires the **Agenda** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrAgendaEventUserAssigned``
-@Observable public final class DolibarrAgendaEvent: CommonBusinessObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrAgendaEvent: CommonBusinessObject {
 
 	// MARK: - Properties
 

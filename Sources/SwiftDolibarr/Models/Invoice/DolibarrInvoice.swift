@@ -40,7 +40,10 @@ import OSLog
 /// - SeeAlso: ``DolibarrInvoiceLine``
 /// - SeeAlso: ``DolibarrInvoiceType``
 /// - SeeAlso: ``DolibarrInvoiceClose``
-@Observable public final class DolibarrInvoice: CommonCommercialTransactionObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrInvoice: CommonCommercialTransactionObject {
 
 	// MARK: - Properties
 

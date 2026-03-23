@@ -31,7 +31,10 @@ import OSLog
 ///
 /// - Note: Requires the **Facture** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrInvoice``
-@Observable public final class DolibarrInvoiceLine: CommonCommercialTransactionObjectLine {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrInvoiceLine: CommonCommercialTransactionObjectLine {
 
 	// MARK: - Properties
 

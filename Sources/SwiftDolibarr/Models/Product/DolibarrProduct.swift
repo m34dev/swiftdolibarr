@@ -37,7 +37,10 @@ import OSLog
 /// - Note: Requires the **Product** and/or **Service** module to be activated in Dolibarr.
 /// - SeeAlso: ``ProductType``
 /// - SeeAlso: ``DolibarrProductStockWarehouse``
-@Observable public final class DolibarrProduct: CommonBusinessObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrProduct: CommonBusinessObject {
 
 	// MARK: - Properties
 

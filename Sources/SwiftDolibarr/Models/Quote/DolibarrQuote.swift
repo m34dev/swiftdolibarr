@@ -37,7 +37,10 @@ import OSLog
 ///
 /// - Note: Requires the **Propal** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrQuoteLine``
-@Observable public final class DolibarrQuote: CommonCommercialTransactionObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrQuote: CommonCommercialTransactionObject {
 
 	// MARK: - Properties
 

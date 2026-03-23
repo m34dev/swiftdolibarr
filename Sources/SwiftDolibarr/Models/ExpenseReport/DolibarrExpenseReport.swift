@@ -36,7 +36,10 @@ import OSLog
 ///
 /// - Note: Requires the **Expensereport** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrExpenseReportLine``
-@Observable public final class DolibarrExpenseReport: CommonBusinessObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrExpenseReport: CommonBusinessObject {
 
     // MARK: - Properties
 

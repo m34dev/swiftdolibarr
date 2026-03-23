@@ -37,7 +37,10 @@ import OSLog
 /// - Note: Requires the **Stock** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrStockMovement``
 /// - SeeAlso: ``DolibarrProductStockWarehouse``
-@Observable public final class DolibarrWarehouse: CommonBusinessObject, Locatable {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrWarehouse: CommonBusinessObject, Locatable {
 
     // MARK: - Properties
 

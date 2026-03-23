@@ -32,7 +32,10 @@ import OSLog
 ///
 /// - Note: Requires the **Projet** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrProject``
-@Observable public final class DolibarrTask: CommonBusinessObject {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
+public final class DolibarrTask: CommonBusinessObject {
 
 	// MARK: - Properties
 
