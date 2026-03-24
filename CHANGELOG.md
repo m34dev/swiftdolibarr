@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org) using the following scheme: MAJOR.MINOR.PATCH
 
+## [0.14.0] - 2026-03-24
+
+### Added
+- Dolibarr shipping method (setup)
+
+### Fixed
+- Dolibarr expense report type access control
+
 ## [0.13.0] - 2026-03-24
 
 ### Added
