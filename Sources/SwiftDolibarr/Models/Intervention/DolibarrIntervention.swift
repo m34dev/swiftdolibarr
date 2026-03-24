@@ -54,6 +54,9 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	/// Intervention reference
 	public var ref: String
 
+	/// Intervention lines
+	public var lines: [DolibarrInterventionLine]
+
 	// Optional
 
 	/// Associated contract ID
@@ -87,9 +90,6 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	///
 	/// - Mapped Dolibarr property: **last_main_doc**
 	public var lastMainDoc: String?
-
-	/// Intervention lines
-	public var lines: [DolibarrInterventionLine]?
 
 	/// Intervention external contact IDs
 	///
@@ -132,6 +132,7 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	public init(
 		socId: String = "",
 		ref: String = "",
+		lines: [DolibarrInterventionLine] = [],
 		contractId: String? = nil,
 		projectId: String? = nil,
 		dateo: Double? = nil,
@@ -140,7 +141,6 @@ public final class DolibarrIntervention: CommonBusinessObject {
 		description: String? = nil,
 		clientRef: String? = nil,
 		lastMainDoc: String? = nil,
-		lines: [DolibarrInterventionLine]? = nil,
 		externalContactIds: [[String: MultiType]]? = nil,
 		internalContactIds: [[String: MultiType]]? = nil,
 		id: String = "",
@@ -151,6 +151,7 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	) {
 		self.socId = socId
 		self.ref = ref
+		self.lines = lines
 		self.contractId = contractId
 		self.projectId = projectId
 		self.dateo = dateo
@@ -159,7 +160,6 @@ public final class DolibarrIntervention: CommonBusinessObject {
 		self.description = description
 		self.clientRef = clientRef
 		self.lastMainDoc = lastMainDoc
-		self.lines = lines
 		self.externalContactIds = externalContactIds
 		self.internalContactIds = internalContactIds
 		super.init(
@@ -179,6 +179,7 @@ public final class DolibarrIntervention: CommonBusinessObject {
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.socId = try container.decode(String.self, forKey: .socId)
 			self.ref = try container.decode(String.self, forKey: .ref)
+			self.lines = try container.decode([DolibarrInterventionLine].self, forKey: .lines)
 			self.contractId = try container.decodeIfPresent(String.self, forKey: .contractId)
 			self.projectId = try container.decodeIfPresent(String.self, forKey: .projectId)
 			self.dateo = try container.decodeIfPresent(MultiType.self, forKey: .dateo)?.doubleValue
@@ -187,7 +188,6 @@ public final class DolibarrIntervention: CommonBusinessObject {
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			self.clientRef = try container.decodeIfPresent(String.self, forKey: .clientRef)
 			self.lastMainDoc = try container.decodeIfPresent(String.self, forKey: .lastMainDoc)
-			self.lines = try container.decodeIfPresent([DolibarrInterventionLine].self, forKey: .lines)
 			self.externalContactIds = try container.decodeIfPresent([[String: MultiType]].self, forKey: .externalContactIds)
 			self.internalContactIds = try container.decodeIfPresent([[String: MultiType]].self, forKey: .internalContactIds)
 			try super.init(from: decoder)
@@ -212,6 +212,7 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(socId)
 		hasher.combine(ref)
+		hasher.combine(lines)
 		hasher.combine(optional: contractId)
 		hasher.combine(optional: projectId)
 		hasher.combine(optional: dateo)
@@ -220,7 +221,6 @@ public final class DolibarrIntervention: CommonBusinessObject {
 		hasher.combine(optional: description)
 		hasher.combine(optional: clientRef)
 		hasher.combine(optional: lastMainDoc)
-		hasher.combine(optional: lines)
 		hasher.combine(optional: externalContactIds)
 		hasher.combine(optional: internalContactIds)
 		super.hash(into: &hasher)
