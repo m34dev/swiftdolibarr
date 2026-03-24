@@ -13,32 +13,22 @@
 // limitations under the License.
 
 //
-//  DolibarrExpenseReportType.swift
+//  DolibarrShippingMethod.swift
 //  SwiftDolibarr
 //
-//  Created by William Mead on 06/12/2025.
+//  Created by William Mead on 24/03/2026.
 //
 
 import Foundation
 
-public struct DolibarrExpenseReportType: Identifiable, Hashable, Decodable {
+public struct DolibarrShippingMethod: Identifiable, Hashable, Decodable {
 
 	// MARK: - Properties
 
 	public var id: String
 	public var code: String
 	public var label: String
-	public var accountancyCode: String?
-	public var active: String
-
-	// MARK: - Enums
-
-	enum CodingKeys: String, CodingKey {
-		case id
-		case code
-		case label
-		case accountancyCode = "accountancy_code"
-		case active
-	}
+	public var description: String
+	public var tracking: String
 
 }
