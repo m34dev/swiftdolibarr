@@ -24,7 +24,15 @@ import Foundation
 import OSLog
 #endif
 
-public struct DolibarrExpenseReportType: Identifiable, Hashable, Decodable {
+/// A Dolibarr expense report fee type.
+///
+/// Maps to the Dolibarr `/setup/dictionary/expensereport_types` REST API
+/// endpoint. Each type has a ``code``, a ``label``, an optional
+/// ``accountancyCode``, and an ``active`` flag.
+///
+/// - Note: Requires the **ExpenseReport** module to be activated in Dolibarr.
+/// - SeeAlso: ``DolibarrExpenseReport``
+public struct DolibarrExpenseReportType: Identifiable, Hashable, Decodable, Sendable {
 
 	// MARK: - Properties
 

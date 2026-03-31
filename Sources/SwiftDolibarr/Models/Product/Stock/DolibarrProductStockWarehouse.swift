@@ -21,6 +21,10 @@
 
 import Foundation
 
+/// A container mapping warehouse IDs to their stock levels for a product.
+///
+/// - SeeAlso: ``DolibarrProductWarehouseStock``
+/// - SeeAlso: ``DolibarrProduct``
 public struct DolibarrProductStockWarehouse: Codable, Hashable, Equatable {
 
 	// MARK: - Properties
@@ -29,6 +33,10 @@ public struct DolibarrProductStockWarehouse: Codable, Hashable, Equatable {
 
 }
 
+/// The stock level of a product in a specific warehouse.
+///
+/// - SeeAlso: ``DolibarrProductStockWarehouse``
+/// - SeeAlso: ``DolibarrWarehouse``
 public struct DolibarrProductWarehouseStock: Codable, Hashable, Equatable, DolibarrObject {
 
 	// MARK: - Properties

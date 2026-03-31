@@ -24,6 +24,19 @@ import Foundation
 import OSLog
 #endif
 
+/// Base class for Dolibarr commercial transaction objects.
+///
+/// Extends ``CommonBusinessObject`` with transaction-specific properties
+/// such as ``thirdPartyId``, ``ref``, financial totals, and
+/// ``linkedObjectsIds`` for cross-referencing related documents.
+///
+/// ## Overview
+///
+/// Concrete subclasses include ``DolibarrQuote``, ``DolibarrOrder``,
+/// and ``DolibarrInvoice``.
+///
+/// - SeeAlso: ``DolibarrCommercialTransaction``
+/// - SeeAlso: ``CommonCommercialTransactionObjectLine``
 public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCommercialTransaction {
 
 	// MARK: - Properties

@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Expense report module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsExpenseReport: Codable, Hashable {
 
 	// MARK: - Properties

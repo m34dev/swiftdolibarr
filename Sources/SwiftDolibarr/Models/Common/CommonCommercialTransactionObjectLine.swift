@@ -24,6 +24,18 @@ import Foundation
 import OSLog
 #endif
 
+/// Base class for Dolibarr commercial transaction line items.
+///
+/// Extends ``CommonBusinessObjectLine`` with transaction line-specific
+/// properties such as pricing, tax rate, discount, product reference,
+/// and quantity.
+///
+/// ## Overview
+///
+/// Concrete subclasses include ``DolibarrQuoteLine``, ``DolibarrOrderLine``,
+/// and ``DolibarrInvoiceLine``.
+///
+/// - SeeAlso: ``CommonCommercialTransactionObject``
 public class CommonCommercialTransactionObjectLine: CommonBusinessObjectLine {
 
 	// MARK: - Properties

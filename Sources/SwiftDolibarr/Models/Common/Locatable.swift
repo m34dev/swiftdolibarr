@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// A protocol for Dolibarr objects that have a physical address.
+///
+/// Provides common location properties such as ``address``,
+/// ``zipCode``, ``city``, and ``countryId``.
+///
+/// - SeeAlso: ``DolibarrThirdParty``
+/// - SeeAlso: ``DolibarrContact``
 public protocol Locatable: Hashable {
 
     // Properties

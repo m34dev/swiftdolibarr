@@ -21,6 +21,12 @@
 
 import Foundation
 
+/// A user assigned to a Dolibarr agenda event.
+///
+/// Each assigned user has an ``id``, an optional ``mandatory`` flag,
+/// an ``answerStatus``, and a ``transparency`` setting.
+///
+/// - SeeAlso: ``DolibarrAgendaEvent``
 public struct DolibarrAgendaEventUserAssigned: Codable, Equatable, Hashable, DolibarrObject {
 
 	// MARK: - Properties

@@ -24,7 +24,14 @@ import Foundation
 import OSLog
 #endif
 
-public struct DolibarrShippingMethod: Identifiable, Hashable, Decodable {
+/// A Dolibarr shipping method configuration.
+///
+/// Maps to the Dolibarr `/setup/shipping_methods` REST API endpoint.
+/// Each shipping method has a ``code``, a ``label``, a ``description``,
+/// and a ``trackingURL`` template.
+///
+/// - Note: Requires the **Expedition** and/or **Receptions** module(s) to be activated in Dolibarr.
+public struct DolibarrShippingMethod: Identifiable, Hashable, Decodable, Sendable {
 
 	// MARK: - Properties
 

@@ -24,6 +24,19 @@ import Foundation
 import OSLog
 #endif
 
+/// Base class for all Dolibarr business objects.
+///
+/// Provides shared properties and coding logic for ``id``, ``statusCode``,
+/// ``entityId``, ``arrayOptions``, and public/private notes. Subclasses
+/// override the computed ``status`` property to return domain-specific statuses.
+///
+/// ## Overview
+///
+/// This class serves as the foundation for concrete business objects such as
+/// ``DolibarrThirdParty``, ``DolibarrProduct``, and ``DolibarrWarehouse``.
+///
+/// - SeeAlso: ``DolibarrBusinessObject``
+/// - SeeAlso: ``CommonCommercialTransactionObject``
 public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 
 	// MARK: - Properties

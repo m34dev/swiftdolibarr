@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Service module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsService: Codable, Hashable {
 
 	// MARK: - Properties

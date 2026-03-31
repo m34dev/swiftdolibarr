@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// The business domain a ``DolibarrObjectStatus`` belongs to.
+///
+/// Used to disambiguate status codes that share the same numeric value
+/// across different Dolibarr modules (e.g., code `"0"` means *draft*
+/// generically but *inactive* for third parties).
+///
+/// - SeeAlso: ``DolibarrObjectStatus``
 public enum DolibarrObjectDomain: String, Sendable, Codable, Equatable, Hashable {
     case generic
     case thirdParty

@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Permissions for a user's own agenda actions.
+///
+/// - SeeAlso: ``DolibarrUserPermissionsAgenda``
 public struct DolibarrUserPermissionsAgendaMyActions: Codable, Hashable {
 
 	// MARK: - Properties
@@ -46,6 +49,9 @@ public struct DolibarrUserPermissionsAgendaMyActions: Codable, Hashable {
 
 }
 
+/// Permissions for all users agenda actions.
+///
+/// - SeeAlso: ``DolibarrUserPermissionsAgenda``
 public struct DolibarrUserPermissionsAgendaAllActions: Codable, Hashable {
 
 	// MARK: - Properties

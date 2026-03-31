@@ -24,6 +24,13 @@ import Foundation
 import OSLog
 #endif
 
+/// Base class for all Dolibarr business object line items.
+///
+/// Provides shared ``id`` and ``rang`` (sort order) properties with
+/// coding logic. Subclasses add domain-specific line item fields.
+///
+/// - SeeAlso: ``CommonCommercialTransactionObjectLine``
+/// - SeeAlso: ``DolibarrInterventionLine``
 public class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObject {
 
 	// MARK: - Properties

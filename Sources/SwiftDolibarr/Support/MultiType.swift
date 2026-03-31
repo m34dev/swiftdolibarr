@@ -21,6 +21,12 @@
 
 import Foundation
 
+/// A type-erased value that can decode JSON strings, integers, or doubles.
+///
+/// The Dolibarr REST API sometimes returns the same field as different
+/// JSON types. `MultiType` handles this by attempting each type in order
+/// during decoding and providing typed accessors: ``stringValue``,
+/// ``intValue``, and ``doubleValue``.
 public enum MultiType: Codable, Hashable {
 
     // MARK: - Cases
