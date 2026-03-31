@@ -21,6 +21,7 @@
 
 import Foundation
 
+/// Convenience hashing method for optional values.
 extension Hasher {
 
 	mutating func combine<T: Hashable>(optional value: T?) {

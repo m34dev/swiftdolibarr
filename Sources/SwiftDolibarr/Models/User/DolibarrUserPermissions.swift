@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// The complete set of permissions for a Dolibarr user.
+///
+/// Groups module-specific permission structs covering user management,
+/// expense reports, invoices, products, services, interventions,
+/// third parties, agenda, quotes, orders, barcodes, stock, and projects.
+///
+/// - SeeAlso: ``DolibarrUser``
 public struct DolibarrUserPermissions: Codable, Hashable {
 
 	// MARK: - Properties

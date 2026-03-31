@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Order module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsOrder: Codable, Hashable {
 
 	// MARK: - Properties

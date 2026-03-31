@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Invoice module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsInvoice: Codable, Hashable {
 
 	// MARK: - Properties

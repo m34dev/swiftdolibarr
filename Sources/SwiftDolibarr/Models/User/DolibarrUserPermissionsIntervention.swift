@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Intervention module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsIntervention: Codable, Hashable {
 
 	// MARK: - Properties

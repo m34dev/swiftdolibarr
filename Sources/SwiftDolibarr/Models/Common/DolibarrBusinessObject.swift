@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// A protocol for Dolibarr business objects with status and metadata.
+///
+/// Extends ``DolibarrObject`` with common business properties such as
+/// ``statusCode``, ``arrayOptions`` (extra fields), and public/private notes.
+///
+/// - SeeAlso: ``CommonBusinessObject``
+/// - SeeAlso: ``DolibarrObjectStatus``
 public protocol DolibarrBusinessObject: Hashable, DolibarrObject {
 
     // Properties

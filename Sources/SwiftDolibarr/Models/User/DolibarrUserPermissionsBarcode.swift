@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Barcode module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsBarcode: Codable, Hashable {
 
 	// MARK: - Properties

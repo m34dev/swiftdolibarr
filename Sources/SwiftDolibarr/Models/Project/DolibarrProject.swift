@@ -48,6 +48,26 @@ public final class DolibarrProject: CommonBusinessObject {
 	/// Project title
 	public var title: String
 
+    /// Project used to track a commercial opportunity
+    ///
+    /// - Mapped Dolibarr property: **usage_opportunity**
+    public var usageOpportunity: Int
+
+    /// Project used to track tasks
+    ///
+    /// - Mapped Dolibarr property: **usage_task**
+    public var usageTask: Int
+
+    /// Project used to bill time
+    ///
+    /// - Mapped Dolibarr property: **usage_bill_time**
+    public var usageBillTime: Int
+
+    /// Project used for event organization
+    ///
+    /// - Mapped Dolibarr property: **usage_organize_event**
+    public var usageOrganizeEvent: Int
+
 	// Optional
 
 	/// Project start date (Unix timestamp)
@@ -74,6 +94,10 @@ public final class DolibarrProject: CommonBusinessObject {
 	enum CodingKeys: String, CodingKey {
 		case reference = "ref"
 		case title
+        case usageOpportunity = "usage_opportunity"
+        case usageTask = "usage_task"
+        case usageBillTime = "usage_bill_time"
+        case usageOrganizeEvent = "usage_organize_event"
 		case dateStart = "date_start"
 		case dateEnd = "date_end"
 		case description
@@ -84,6 +108,10 @@ public final class DolibarrProject: CommonBusinessObject {
 	public init(
 		reference: String = "",
 		title: String = "",
+        usageOpportunity: Int = 0,
+        usageTask: Int = 0,
+        usageBillTime: Int = 0,
+        usageOrganizeEvent: Int = 0,
 		dateStart: Int? = nil,
 		dateEnd: Int? = nil,
 		description: String? = nil,
@@ -96,6 +124,10 @@ public final class DolibarrProject: CommonBusinessObject {
 	) {
 		self.reference = reference
 		self.title = title
+        self.usageOpportunity = usageOpportunity
+        self.usageTask = usageTask
+        self.usageBillTime = usageBillTime
+        self.usageOrganizeEvent = usageOrganizeEvent
 		self.dateStart = dateStart
 		self.dateEnd = dateEnd
 		self.description = description
@@ -117,6 +149,10 @@ public final class DolibarrProject: CommonBusinessObject {
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.reference = try container.decode(String.self, forKey: .reference)
 			self.title = try container.decode(String.self, forKey: .title)
+            self.usageOpportunity = try container.decode(Int.self, forKey: .usageOpportunity)
+            self.usageTask = try container.decode(Int.self, forKey: .usageTask)
+            self.usageBillTime = try container.decode(Int.self, forKey: .usageBillTime)
+            self.usageOrganizeEvent = try container.decode(Int.self, forKey: .usageOrganizeEvent)
 			self.dateStart = try container.decodeIfPresent(MultiType.self, forKey: .dateStart)?.intValue
 			self.dateEnd = try container.decodeIfPresent(MultiType.self, forKey: .dateEnd)?.intValue
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -142,6 +178,10 @@ public final class DolibarrProject: CommonBusinessObject {
 	override public func hash(into hasher: inout Hasher) {
 		hasher.combine(reference)
 		hasher.combine(title)
+        hasher.combine(usageOpportunity)
+        hasher.combine(usageTask)
+        hasher.combine(usageBillTime)
+        hasher.combine(usageOrganizeEvent)
 		hasher.combine(optional: dateStart)
 		hasher.combine(optional: dateEnd)
 		hasher.combine(optional: description)
@@ -152,6 +192,10 @@ public final class DolibarrProject: CommonBusinessObject {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfNotEmpty(reference, forKey: .reference)
 		try container.encodeIfNotEmpty(title, forKey: .title)
+        try container.encode(usageTask, forKey: .usageTask)
+        try container.encode(usageOpportunity, forKey: .usageOpportunity)
+        try container.encode(usageBillTime, forKey: .usageBillTime)
+        try container.encode(usageOrganizeEvent, forKey: .usageOrganizeEvent)
 		try container.encodeIfPresentAndNotZero(dateStart, forKey: .dateStart)
 		try container.encodeIfPresentAndNotZero(dateEnd, forKey: .dateEnd)
 		try container.encodeIfPresent(description, forKey: .description)

@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Agenda module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsAgenda: Codable, Hashable {
 
 	// MARK: - Properties

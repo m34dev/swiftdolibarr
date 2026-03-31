@@ -21,6 +21,16 @@
 
 import Foundation
 
+/// Represents the status of a Dolibarr business object.
+///
+/// Each status has a ``code`` and a ``domain`` that identifies which
+/// object type the status applies to. Predefined static instances cover
+/// statuses for third parties, products, warehouses, quotes, orders,
+/// invoices, interventions, expense reports, projects, tasks, and
+/// agenda events.
+///
+/// - SeeAlso: ``DolibarrObjectDomain``
+/// - SeeAlso: ``DolibarrBusinessObject``
 public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable {
 
 	// MARK: - Properties

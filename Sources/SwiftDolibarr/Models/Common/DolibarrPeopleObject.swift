@@ -21,6 +21,13 @@
 
 import Foundation
 
+/// A protocol for Dolibarr objects that represent people.
+///
+/// Provides common person-related properties such as ``name``,
+/// ``email``, and ``socialnetworks``.
+///
+/// - SeeAlso: ``DolibarrThirdParty``
+/// - SeeAlso: ``DolibarrContact``
 public protocol DolibarrPeopleObject: Hashable {
 
     /// Person name

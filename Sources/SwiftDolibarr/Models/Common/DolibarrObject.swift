@@ -21,6 +21,12 @@
 
 import Foundation
 
+/// A protocol that all Dolibarr objects conform to.
+///
+/// Provides a common ``id`` property used to uniquely identify
+/// any object returned by the Dolibarr REST API.
+///
+/// - SeeAlso: ``DolibarrBusinessObject``
 public protocol DolibarrObject: Identifiable {
 
 	/// Object ID

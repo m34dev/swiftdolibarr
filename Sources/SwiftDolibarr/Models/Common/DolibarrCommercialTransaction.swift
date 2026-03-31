@@ -21,6 +21,12 @@
 
 import Foundation
 
+/// A protocol for Dolibarr commercial transaction objects.
+///
+/// Provides common transaction properties such as ``thirdPartyId``,
+/// ``ref``, and financial totals (excluding tax, tax, and including tax).
+///
+/// - SeeAlso: ``CommonCommercialTransactionObject``
 public protocol DolibarrCommercialTransaction {
 
 	// Properties

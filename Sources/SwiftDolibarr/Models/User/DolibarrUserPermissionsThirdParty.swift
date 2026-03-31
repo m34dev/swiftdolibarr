@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Third party module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsThirdParty: Codable, Hashable {
 
 	// MARK: - Properties

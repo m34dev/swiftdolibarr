@@ -21,6 +21,7 @@
 
 import Foundation
 
+/// Convenience encoding methods that skip empty or zero values.
 extension KeyedEncodingContainer {
 
 	mutating func encodeIfNotEmpty(_ value: String, forKey key: KeyedEncodingContainer<K>.Key) throws {

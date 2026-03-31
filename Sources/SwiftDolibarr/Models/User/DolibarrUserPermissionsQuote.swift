@@ -21,6 +21,9 @@
 
 import Foundation
 
+/// Quote module permissions for a Dolibarr user.
+///
+/// - SeeAlso: ``DolibarrUserPermissions``
 public struct DolibarrUserPermissionsQuote: Codable, Hashable {
 
 	// MARK: - Properties
