@@ -57,6 +57,42 @@ public final class DolibarrTask: CommonBusinessObject {
 	/// - Mapped Dolibarr property: **fk_task_parent**
 	public var parentId: String
 
+    // Optional
+
+    /// Task is billable to client
+    public var billable: String?
+
+    /// Task start date (Unix timestamp as string)
+    ///
+    /// - Mapped Dolibarr property: **date_start**
+    public var dateStart: String?
+
+    /// Task end date (Unix timestamp as string)
+    ///
+    /// - Mapped Dolibarr property: **date_end**
+    public var dateEnd: String?
+
+    /// Task planned workload in seconds
+    ///
+    /// - Mapped Dolibarr property: **planned_workload**
+    public var plannedWorkload: String?
+
+    /// Task progress in percent
+    public var progress: String?
+
+    /// Task description
+    public var description: String?
+
+    /// Task budget
+    ///
+    /// - Mapped Dolibarr property: **budget_amount**
+    public var budgetAmount: String?
+
+    /// Task total time spent
+    ///
+    /// - Mapped Dolibarr property: **duration_effective**
+    public var totalTimeSpent: String?
+
 	// MARK: - Computed Properties
 
 	/// Associated task status type
@@ -69,6 +105,14 @@ public final class DolibarrTask: CommonBusinessObject {
 		case label
 		case projectId = "fk_project"
 		case parentId = "fk_task_parent"
+		case billable
+		case dateStart = "date_start"
+		case dateEnd = "date_end"
+		case plannedWorkload = "planned_workload"
+		case progress
+		case description
+		case budgetAmount = "budget_amount"
+		case totalTimeSpent = "duration_effective"
 	}
 
 	// MARK: - Inits
@@ -78,6 +122,14 @@ public final class DolibarrTask: CommonBusinessObject {
 		label: String = "",
 		projectId: String = "",
 		parentId: String = "",
+		billable: String? = nil,
+		dateStart: String? = nil,
+		dateEnd: String? = nil,
+		plannedWorkload: String? = nil,
+		progress: String? = nil,
+		description: String? = nil,
+		budgetAmount: String? = nil,
+		totalTimeSpent: String? = nil,
 		id: String = "",
 		statusCode: String = "",
 		entityId: String? = nil,
@@ -89,6 +141,14 @@ public final class DolibarrTask: CommonBusinessObject {
 		self.label = label
 		self.projectId = projectId
 		self.parentId = parentId
+		self.billable = billable
+		self.dateStart = dateStart
+		self.dateEnd = dateEnd
+		self.plannedWorkload = plannedWorkload
+		self.progress = progress
+		self.description = description
+		self.budgetAmount = budgetAmount
+		self.totalTimeSpent = totalTimeSpent
 		super.init(
 			id: id,
 			statusCode: statusCode,
@@ -109,6 +169,14 @@ public final class DolibarrTask: CommonBusinessObject {
 			self.label = try container.decode(String.self, forKey: .label)
 			self.projectId = try container.decode(String.self, forKey: .projectId)
 			self.parentId = try container.decode(String.self, forKey: .parentId)
+			self.billable = try container.decodeIfPresent(String.self, forKey: .billable)
+			self.dateStart = try container.decodeIfPresent(String.self, forKey: .dateStart)
+			self.dateEnd = try container.decodeIfPresent(String.self, forKey: .dateEnd)
+			self.plannedWorkload = try container.decodeIfPresent(String.self, forKey: .plannedWorkload)
+			self.progress = try container.decodeIfPresent(String.self, forKey: .progress)
+			self.description = try container.decodeIfPresent(String.self, forKey: .description)
+			self.budgetAmount = try container.decodeIfPresent(String.self, forKey: .budgetAmount)
+			self.totalTimeSpent = try container.decodeIfPresent(String.self, forKey: .totalTimeSpent)
 			try super.init(from: decoder)
 			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
@@ -134,6 +202,14 @@ public final class DolibarrTask: CommonBusinessObject {
 		hasher.combine(label)
 		hasher.combine(projectId)
 		hasher.combine(parentId)
+		hasher.combine(billable)
+		hasher.combine(dateStart)
+		hasher.combine(dateEnd)
+		hasher.combine(plannedWorkload)
+		hasher.combine(progress)
+		hasher.combine(description)
+		hasher.combine(budgetAmount)
+		hasher.combine(totalTimeSpent)
 	}
 
 	override public func encode(to encoder: any Encoder) throws {
@@ -142,6 +218,13 @@ public final class DolibarrTask: CommonBusinessObject {
 		try container.encodeIfNotEmpty(label, forKey: .label)
 		try container.encodeIfNotEmpty(projectId, forKey: .projectId)
 		try container.encodeIfNotEmpty(parentId, forKey: .parentId)
+		try container.encodeIfPresent(billable, forKey: .billable)
+		try container.encodeIfPresent(dateStart, forKey: .dateStart)
+		try container.encodeIfPresent(dateEnd, forKey: .dateEnd)
+		try container.encodeIfPresent(plannedWorkload, forKey: .plannedWorkload)
+		try container.encodeIfPresent(progress, forKey: .progress)
+		try container.encodeIfPresent(description, forKey: .description)
+		try container.encodeIfPresent(budgetAmount, forKey: .budgetAmount)
 		try super.encode(to: encoder)
 	}
 
