@@ -211,6 +211,11 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 
 	// Task
 
+    public static let taskInProgress: DolibarrObjectStatus = .init(
+        code: "2",
+        domain: .task
+    )
+    
 	public static let taskClosed: DolibarrObjectStatus = .init(
 		code: "3",
 		domain: .task
