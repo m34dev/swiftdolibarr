@@ -108,12 +108,12 @@ public final class DolibarrProject: CommonBusinessObject {
 	/// Project event start date (Unix timestamp as string)
 	///
 	/// - Mapped Dolibarr property: **date_start_event**
-	public var dateStartEvent: String?
+	public var dateStartEvent: Int?
 
 	/// Project event end date (Unix timestamp as string)
 	///
 	/// - Mapped Dolibarr property: **date_end_event**
-	public var dateEndEvent: String?
+	public var dateEndEvent: Int?
 
 	/// Project location
 	public var location: String?
@@ -165,8 +165,8 @@ public final class DolibarrProject: CommonBusinessObject {
 		budgetAmount: String? = nil,
 		dateStart: Int? = nil,
 		dateEnd: Int? = nil,
-		dateStartEvent: String? = nil,
-		dateEndEvent: String? = nil,
+		dateStartEvent: Int? = nil,
+		dateEndEvent: Int? = nil,
 		location: String? = nil,
 		description: String? = nil,
 		id: String = "",
@@ -222,8 +222,8 @@ public final class DolibarrProject: CommonBusinessObject {
 			self.budgetAmount = try container.decodeIfPresent(String.self, forKey: .budgetAmount)
 			self.dateStart = try container.decodeIfPresent(MultiType.self, forKey: .dateStart)?.intValue
 			self.dateEnd = try container.decodeIfPresent(MultiType.self, forKey: .dateEnd)?.intValue
-			self.dateStartEvent = try container.decodeIfPresent(MultiType.self, forKey: .dateStartEvent)?.stringValue
-			self.dateEndEvent = try container.decodeIfPresent(MultiType.self, forKey: .dateEndEvent)?.stringValue
+			self.dateStartEvent = try container.decodeIfPresent(MultiType.self, forKey: .dateStartEvent)?.intValue
+			self.dateEndEvent = try container.decodeIfPresent(MultiType.self, forKey: .dateEndEvent)?.intValue
 			self.location = try container.decodeIfPresent(String.self, forKey: .location)
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			try super.init(from: decoder)
@@ -281,8 +281,8 @@ public final class DolibarrProject: CommonBusinessObject {
 		try container.encodeIfPresent(budgetAmount, forKey: .budgetAmount)
 		try container.encodeIfPresentAndNotZero(dateStart, forKey: .dateStart)
 		try container.encodeIfPresentAndNotZero(dateEnd, forKey: .dateEnd)
-		try container.encodeIfPresent(dateStartEvent, forKey: .dateStartEvent)
-		try container.encodeIfPresent(dateEndEvent, forKey: .dateEndEvent)
+		try container.encodeIfPresentAndNotZero(dateStartEvent, forKey: .dateStartEvent)
+		try container.encodeIfPresentAndNotZero(dateEndEvent, forKey: .dateEndEvent)
 		try container.encodeIfPresent(location, forKey: .location)
 		try container.encodeIfPresent(description, forKey: .description)
 		try super.encode(to: encoder)
