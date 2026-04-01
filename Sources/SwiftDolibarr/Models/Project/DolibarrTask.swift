@@ -65,12 +65,12 @@ public final class DolibarrTask: CommonBusinessObject {
     /// Task start date (Unix timestamp as string)
     ///
     /// - Mapped Dolibarr property: **date_start**
-    public var dateStart: String?
+    public var dateStart: Int?
 
     /// Task end date (Unix timestamp as string)
     ///
     /// - Mapped Dolibarr property: **date_end**
-    public var dateEnd: String?
+    public var dateEnd: Int?
 
     /// Task planned workload in seconds
     ///
@@ -123,8 +123,8 @@ public final class DolibarrTask: CommonBusinessObject {
 		projectId: String = "",
 		parentId: String = "",
 		billable: String? = nil,
-		dateStart: String? = nil,
-		dateEnd: String? = nil,
+		dateStart: Int? = nil,
+		dateEnd: Int? = nil,
 		plannedWorkload: String? = nil,
 		progress: String? = nil,
 		description: String? = nil,
@@ -170,8 +170,8 @@ public final class DolibarrTask: CommonBusinessObject {
 			self.projectId = try container.decode(String.self, forKey: .projectId)
 			self.parentId = try container.decode(String.self, forKey: .parentId)
 			self.billable = try container.decodeIfPresent(String.self, forKey: .billable)
-			self.dateStart = try container.decodeIfPresent(String.self, forKey: .dateStart)
-			self.dateEnd = try container.decodeIfPresent(String.self, forKey: .dateEnd)
+            self.dateStart = try container.decodeIfPresent(MultiType.self, forKey: .dateStart)?.intValue
+            self.dateEnd = try container.decodeIfPresent(MultiType.self, forKey: .dateEnd)?.intValue
 			self.plannedWorkload = try container.decodeIfPresent(String.self, forKey: .plannedWorkload)
 			self.progress = try container.decodeIfPresent(String.self, forKey: .progress)
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -219,8 +219,8 @@ public final class DolibarrTask: CommonBusinessObject {
 		try container.encodeIfNotEmpty(projectId, forKey: .projectId)
 		try container.encodeIfNotEmpty(parentId, forKey: .parentId)
 		try container.encodeIfPresent(billable, forKey: .billable)
-		try container.encodeIfPresent(dateStart, forKey: .dateStart)
-		try container.encodeIfPresent(dateEnd, forKey: .dateEnd)
+		try container.encodeIfPresentAndNotZero(dateStart, forKey: .dateStart)
+		try container.encodeIfPresentAndNotZero(dateEnd, forKey: .dateEnd)
 		try container.encodeIfPresent(plannedWorkload, forKey: .plannedWorkload)
 		try container.encodeIfPresent(progress, forKey: .progress)
 		try container.encodeIfPresent(description, forKey: .description)
