@@ -93,12 +93,13 @@ public final class DolibarrTask: CommonBusinessObject {
     /// - Mapped Dolibarr property: **duration_effective**
     public var totalTimeSpent: String?
 
-	// MARK: - Computed Properties
+    // Computed
 
-	/// Associated task status type
-	override public var status: DolibarrObjectStatus {
-		return .unknown
-	}
+    /// Associated task status type
+    override public var status: DolibarrObjectStatus {
+        guard let status = DolibarrObjectStatus.tasks.first(where: { $0.code == statusCode }) else { return .unknown }
+        return status
+    }
 
 	enum CodingKeys: String, CodingKey {
 		case ref
