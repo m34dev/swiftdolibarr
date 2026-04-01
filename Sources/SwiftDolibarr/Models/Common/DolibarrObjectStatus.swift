@@ -232,7 +232,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 	)
 
 	public static let tasks: [DolibarrObjectStatus] = [
-		draft, validated, taskClosed, taskTransferred, taskCanceled
+        draft, validated, .taskInProgress, taskClosed, taskTransferred, taskCanceled
 	]
 
 	// Agenda event
