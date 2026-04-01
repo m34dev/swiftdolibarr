@@ -70,6 +70,11 @@ public final class DolibarrProject: CommonBusinessObject {
 
 	// Optional
 
+    /// Associated third party ID
+    ///
+    /// - Mapped Dolibarr property: **socid**
+    public var thirdPartyId: String?
+
 	/// Project opportunity amount
 	///
 	/// - Mapped Dolibarr property: **opp_amount**
@@ -131,6 +136,7 @@ public final class DolibarrProject: CommonBusinessObject {
         case usageTask = "usage_task"
         case usageBillTime = "usage_bill_time"
         case usageOrganizeEvent = "usage_organize_event"
+        case thirdPartyId = "socid"
 		case leadAmount = "opp_amount"
 		case leadStatus = "opp_status"
 		case leadProgress = "opp_percent"
@@ -152,6 +158,7 @@ public final class DolibarrProject: CommonBusinessObject {
         usageTask: Int = 0,
         usageBillTime: Int = 0,
         usageOrganizeEvent: Int = 0,
+        thirdPartyId: String? = nil,
         leadAmount: String? = nil,
 		leadStatus: String? = nil,
 		leadProgress: String? = nil,
@@ -175,6 +182,7 @@ public final class DolibarrProject: CommonBusinessObject {
         self.usageTask = usageTask
         self.usageBillTime = usageBillTime
         self.usageOrganizeEvent = usageOrganizeEvent
+        self.thirdPartyId = thirdPartyId
 		self.leadAmount = leadAmount
 		self.leadStatus = leadStatus
 		self.leadProgress = leadProgress
@@ -207,6 +215,7 @@ public final class DolibarrProject: CommonBusinessObject {
             self.usageTask = try container.decode(Int.self, forKey: .usageTask)
             self.usageBillTime = try container.decode(Int.self, forKey: .usageBillTime)
             self.usageOrganizeEvent = try container.decode(Int.self, forKey: .usageOrganizeEvent)
+            self.thirdPartyId = try container.decodeIfPresent(String.self, forKey: .thirdPartyId)
 			self.leadAmount = try container.decodeIfPresent(String.self, forKey: .leadAmount)
 			self.leadStatus = try container.decodeIfPresent(String.self, forKey: .leadStatus)
 			self.leadProgress = try container.decodeIfPresent(String.self, forKey: .leadProgress)
@@ -243,6 +252,7 @@ public final class DolibarrProject: CommonBusinessObject {
         hasher.combine(usageTask)
         hasher.combine(usageBillTime)
         hasher.combine(usageOrganizeEvent)
+        hasher.combine(optional: thirdPartyId)
 		hasher.combine(optional: leadAmount)
 		hasher.combine(optional: leadStatus)
 		hasher.combine(optional: leadProgress)
@@ -264,6 +274,7 @@ public final class DolibarrProject: CommonBusinessObject {
         try container.encode(usageLead, forKey: .usageLead)
         try container.encode(usageBillTime, forKey: .usageBillTime)
         try container.encode(usageOrganizeEvent, forKey: .usageOrganizeEvent)
+        try container.encodeIfPresent(thirdPartyId, forKey: .thirdPartyId)
 		try container.encodeIfPresent(leadAmount, forKey: .leadAmount)
 		try container.encodeIfPresent(leadStatus, forKey: .leadStatus)
 		try container.encodeIfPresent(leadProgress, forKey: .leadProgress)
