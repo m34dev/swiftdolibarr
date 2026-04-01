@@ -226,7 +226,7 @@ public struct DolibarrObjectStatus: Identifiable, Equatable, Hashable, Sendable 
 		domain: .task
 	)
 
-	public static let task: [DolibarrObjectStatus] = [
+	public static let tasks: [DolibarrObjectStatus] = [
 		draft, validated, taskClosed, taskTransferred, taskCanceled
 	]
 
