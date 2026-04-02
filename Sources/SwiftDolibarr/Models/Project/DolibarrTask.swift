@@ -198,7 +198,6 @@ public final class DolibarrTask: CommonBusinessObject {
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {
-		super.hash(into: &hasher)
 		hasher.combine(ref)
 		hasher.combine(label)
 		hasher.combine(projectId)
@@ -211,6 +210,7 @@ public final class DolibarrTask: CommonBusinessObject {
 		hasher.combine(description)
 		hasher.combine(budgetAmount)
 		hasher.combine(totalTimeSpent)
+        super.hash(into: &hasher)
 	}
 
 	override public func encode(to encoder: any Encoder) throws {
