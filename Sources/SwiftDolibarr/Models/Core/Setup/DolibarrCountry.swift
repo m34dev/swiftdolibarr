@@ -24,7 +24,7 @@ import Foundation
 import OSLog
 #endif
 
-public struct DolibarrCountry: Identifiable, Hashable, Decodable, Sendable {
+public struct DolibarrCountry: Hashable, Decodable, Sendable, DolibarrObject {
 
     // MARK: - Properties
     
