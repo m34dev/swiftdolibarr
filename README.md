@@ -38,6 +38,8 @@ Then add it to your target's dependencies:
 
 ## Supported Dolibarr Objects
 
+### Core
+
 | Module | Models |
 |---|---|
 | **Third Parties** | `DolibarrThirdParty`, `DolibarrContact` |
@@ -50,6 +52,12 @@ Then add it to your target's dependencies:
 | **Projects & Tasks** | `DolibarrProject`, `DolibarrTask` |
 | **Agenda Events** | `DolibarrAgendaEvent` |
 | **Users** | `DolibarrUser`, `DolibarrUserPermissions` |
+
+### External
+
+| Publisher | Modules | Models |
+|---|---|---|
+| **CODE42** | LaReponse | `LaReponseArticle`, `LaReponseComment` |
 
 ## Usage
 
