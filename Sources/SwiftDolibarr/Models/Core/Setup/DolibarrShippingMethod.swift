@@ -26,19 +26,30 @@ import OSLog
 
 /// A Dolibarr shipping method configuration.
 ///
-/// Maps to the Dolibarr `/setup/shipping_methods` REST API endpoint.
+/// Maps to the Dolibarr `/setup/dictionary/shipping_methods` REST API endpoint.
 /// Each shipping method has a ``code``, a ``label``, a ``description``,
 /// and a ``trackingURL`` template.
 ///
 /// - Note: Requires the **Expedition** and/or **Receptions** module(s) to be activated in Dolibarr.
-public struct DolibarrShippingMethod: Identifiable, Hashable, Decodable, Sendable {
+public struct DolibarrShippingMethod: Hashable, Decodable, Sendable, DolibarrObject {
 
 	// MARK: - Properties
 
+	/// Shipping method ID.
 	public var id: String
+
+	/// Shipping method code (e.g. `FEDEX`, `UPS`).
 	public var code: String
+    
+	/// Display label for the shipping method.
 	public var label: String
+
+	/// Detailed description of the shipping method.
 	public var description: String
+
+	/// URL template for shipment tracking.
+    ///
+    /// Mapped Dolibarr property: **tracking**
 	public var trackingURL: String
 
 	// MARK: - Enums

@@ -13,7 +13,7 @@ This is the underlying data model layer for [DoliApp](https://doliapp.eu) by [M3
 
 ## Requirements
 
-- Swift 6.0+
+- Swift 6.1+
 - iOS 18+ / macOS 15+ / Mac Catalyst 18+ / tvOS 18+ / visionOS 2+ / watchOS 11+
 - Dolibarr v18+ (may work with older versions of Dolibarr)
 
@@ -52,6 +52,7 @@ Then add it to your target's dependencies:
 | **Projects & Tasks** | `DolibarrProject`, `DolibarrTask` |
 | **Agenda Events** | `DolibarrAgendaEvent` |
 | **Users** | `DolibarrUser`, `DolibarrUserPermissions` |
+| **Setup** | `DolibarrCountry`, `DolibarrExpenseReportType`, `DolibarrShippingMethod`, `DolibarrPaymentTerm` |
 
 ### External
 

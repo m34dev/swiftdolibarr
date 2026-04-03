@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// 	http://www.apache.org/licenses/LICENSE-2.0
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,10 +13,10 @@
 // limitations under the License.
 
 //
-//  DolibarrExpenseReportType.swift
+//  DolibarrPaymentTerm.swift
 //  SwiftDolibarr
 //
-//  Created by William Mead on 06/12/2025.
+//  Created by William Mead on 03/04/2026.
 //
 
 import Foundation
@@ -24,34 +24,42 @@ import Foundation
 import OSLog
 #endif
 
-/// A Dolibarr expense report fee type.
+/// A Dolibarr payment term.
 ///
-/// Maps to the Dolibarr `/setup/dictionary/expensereport_types` REST API
-/// endpoint. Each type has a ``code``, a ``label``, an optional
-/// ``accountancyCode``, and an ``active`` flag.
+/// Maps to the Dolibarr `/setup/dictionary/payment_terms` REST API endpoint.
+/// Each payment term defines how many ``days`` a client has to pay,
+/// along with a ``code``, a ``label``, a ``description``,
+/// and a ``type`` indicator.
 ///
-/// - Note: Requires the **ExpenseReport** module to be activated in Dolibarr.
-/// - SeeAlso: ``DolibarrExpenseReport``
-public struct DolibarrExpenseReportType: Hashable, Decodable, Sendable, DolibarrObject {
+/// - Note: Payment terms can be assigned to invoices, orders, and quotes.
+/// - SeeAlso: ``DolibarrInvoice``, ``DolibarrOrder``, ``DolibarrQuote``
+public struct DolibarrPaymentTerm: Hashable, Decodable, Sendable, DolibarrObject {
 
 	// MARK: - Properties
 
-	/// Expense report type ID.
+	/// Payment term ID.
 	public var id: String
 
-	/// Expense report type code
+	/// Payment term code (e.g. `RECEP`, `30D`, `60D`).
 	public var code: String
 
-	/// Display label for the expense report type.
+	/// Display label for the payment term.
 	public var label: String
 
-	/// Accountancy code associated with this expense type.
+	/// Detailed description of the payment term.
     ///
-    /// Mapped Dolibarr property: **accountancy_code**
-	public var accountancyCode: String?
+    /// Mapped Dolibarr property: **descr**
+	public var description: String
 
-	/// Whether this expense report type is active (`"1"`) or inactive (`"0"`).
-	public var active: String
+	/// Payment type indicator.
+    ///
+    /// Mapped Dolibarr property: **type_cdr**
+	public var type: String
+
+	/// Number of days allowed for payment.
+    ///
+    /// Mapped Dolibarr property: **nbjour**
+	public var days: String
 
 	// MARK: - Enums
 
@@ -59,8 +67,9 @@ public struct DolibarrExpenseReportType: Hashable, Decodable, Sendable, Dolibarr
 		case id
 		case code
 		case label
-		case accountancyCode = "accountancy_code"
-		case active
+		case description = "descr"
+		case type = "type_cdr"
+		case days = "nbjour"
 	}
 
 	// MARK: - Inits
@@ -69,14 +78,16 @@ public struct DolibarrExpenseReportType: Hashable, Decodable, Sendable, Dolibarr
 		id: String = "",
 		code: String = "",
 		label: String = "",
-		accountancyCode: String? = nil,
-		active: String = ""
+		description: String = "",
+		type: String = "",
+		days: String = ""
 	) {
 		self.id = id
 		self.code = code
 		self.label = label
-		self.accountancyCode = accountancyCode
-		self.active = active
+		self.description = description
+		self.type = type
+		self.days = days
 	}
 
 	public init(from decoder: any Decoder) throws {
@@ -88,8 +99,9 @@ public struct DolibarrExpenseReportType: Hashable, Decodable, Sendable, Dolibarr
 			self.id = try container.decode(String.self, forKey: .id)
 			self.code = try container.decode(String.self, forKey: .code)
 			self.label = try container.decode(String.self, forKey: .label)
-			self.accountancyCode = try container.decodeIfPresent(String.self, forKey: .accountancyCode)
-			self.active = try container.decode(String.self, forKey: .active)
+			self.description = try container.decode(String.self, forKey: .description)
+			self.type = try container.decode(String.self, forKey: .type)
+			self.days = try container.decode(String.self, forKey: .days)
 			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
 			#endif
