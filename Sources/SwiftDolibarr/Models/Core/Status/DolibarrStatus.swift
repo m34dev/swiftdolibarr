@@ -67,7 +67,7 @@ public struct DolibarrStatusSuccess: Equatable, Hashable, Decodable, Sendable {
     public var environment: String?
 
     /// The current UTC Unix timestamp on the server, if available.
-    public var timestampNowUTC: String?
+    public var timestampNowUTC: Int?
 
     /// The server's configured PHP timezone name, if available.
     public var timestampPHPTZ: String?
@@ -94,7 +94,7 @@ public struct DolibarrStatusSuccess: Equatable, Hashable, Decodable, Sendable {
         dolibarrVersion: String,
         accessLocked: String,
         environment: String? = nil,
-        timestampNowUTC: String? = nil,
+        timestampNowUTC: Int? = nil,
         timestampPHPTZ: String? = nil,
         dateTZ: String? = nil
     ) {
@@ -117,7 +117,7 @@ public struct DolibarrStatusSuccess: Equatable, Hashable, Decodable, Sendable {
             self.dolibarrVersion = try container.decode(String.self, forKey: .dolibarrVersion)
             self.accessLocked = try container.decode(String.self, forKey: .accessLocked)
             self.environment = try container.decodeIfPresent(String.self, forKey: .environment)
-            self.timestampNowUTC = try container.decodeIfPresent(String.self, forKey: .timestampNowUTC)
+            self.timestampNowUTC = try container.decodeIfPresent(Int.self, forKey: .timestampNowUTC)
             self.timestampPHPTZ = try container.decodeIfPresent(String.self, forKey: .timestampPHPTZ)
             self.dateTZ = try container.decodeIfPresent(String.self, forKey: .dateTZ)
             #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
