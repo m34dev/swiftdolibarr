@@ -106,7 +106,7 @@ public final class DolibarrProduct: CommonBusinessObject {
 		case url
 		case barcode
 		case barcodeType = "barcode_type"
-		case stockWarehouse = "stockWarehouse"
+		case stockWarehouse = "stock_warehouse"
 		case defaultWarehouseId = "fk_default_warehouse"
 	}
 

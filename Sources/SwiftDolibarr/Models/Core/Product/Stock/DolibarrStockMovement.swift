@@ -41,7 +41,7 @@ import OSLog
 #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 @Observable
 #endif
-public final class DolibarrStockMovement: Identifiable, Equatable, Hashable, Codable, DolibarrObject {
+public final class DolibarrStockMovement: Equatable, Hashable, Codable, DolibarrObject {
 
 	// MARK: - Properties
 
