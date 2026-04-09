@@ -86,4 +86,54 @@ public struct DolibarrStatusSuccess: Equatable, Hashable, Decodable, Sendable {
         case timestampPHPTZ = "timestamp_php_tz"
         case dateTZ = "date_tz"
     }
+
+    // MARK: - Inits
+
+    public init(
+        code: Int,
+        dolibarrVersion: String,
+        accessLocked: String,
+        environment: String? = nil,
+        timestampNowUTC: String? = nil,
+        timestampPHPTZ: String? = nil,
+        dateTZ: String? = nil
+    ) {
+        self.code = code
+        self.dolibarrVersion = dolibarrVersion
+        self.accessLocked = accessLocked
+        self.environment = environment
+        self.timestampNowUTC = timestampNowUTC
+        self.timestampPHPTZ = timestampPHPTZ
+        self.dateTZ = dateTZ
+    }
+
+    public init(from decoder: any Decoder) throws {
+        do {
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
+            #endif
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.code = try container.decode(Int.self, forKey: .code)
+            self.dolibarrVersion = try container.decode(String.self, forKey: .dolibarrVersion)
+            self.accessLocked = try container.decode(String.self, forKey: .accessLocked)
+            self.environment = try container.decodeIfPresent(String.self, forKey: .environment)
+            self.timestampNowUTC = try container.decodeIfPresent(String.self, forKey: .timestampNowUTC)
+            self.timestampPHPTZ = try container.decodeIfPresent(String.self, forKey: .timestampPHPTZ)
+            self.dateTZ = try container.decodeIfPresent(String.self, forKey: .dateTZ)
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
+            #endif
+        } catch let error as DecodingError {
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            Logger.logDecodingError(error, decodeContext: "\(Self.self).init")
+            #endif
+            throw error
+        } catch {
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+            Logger.logErrorWithSignal(error, context: "\(Self.self).init", category: .api)
+            #endif
+            throw error
+        }
+    }
+
 }
