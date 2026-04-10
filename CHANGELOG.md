@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org) using the following scheme: MAJOR.MINOR.PATCH
 
+## [0.31.0] - 2026-04-10
+
+### Added
+- Dolibarr document
+- Dolibarr payment method
+
 ## [0.30.0] - 2026-04-09
 
 ### Fixed
