@@ -4,7 +4,7 @@ Thank you for your interest in contributing to Swift Dolibarr! This document pro
 
 ## Reporting Bugs
 
-If you find a bug, please [open an issue](https://lab.frogg.it/dolibarr/swiftdolibarr/-/issues/new) and include:
+If you find a bug, please [open an issue](https://github.com/m34dev/swiftdolibarr/issues/new) and include:
 
 - A clear description of the problem
 - Steps to reproduce the issue
