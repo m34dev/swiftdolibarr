@@ -45,6 +45,7 @@ public struct DolibarrUserPermissions: Codable, Hashable {
 	public var barcode: DolibarrUserPermissionsBarcode?
 	public var stock: DolibarrUserPermissionsStock?
 	public var projet: DolibarrUserPermissionsProject?
+	public var lareponse: DolibarrUserPermissionsLaReponse?
 
 	// MARK: - Inits
 
@@ -61,7 +62,8 @@ public struct DolibarrUserPermissions: Codable, Hashable {
 		commande: DolibarrUserPermissionsOrder? = nil,
 		barcode: DolibarrUserPermissionsBarcode? = nil,
 		stock: DolibarrUserPermissionsStock? = nil,
-		projet: DolibarrUserPermissionsProject? = nil
+		projet: DolibarrUserPermissionsProject? = nil,
+		lareponse: DolibarrUserPermissionsLaReponse? = nil
 	) {
 		self.user = user
 		self.expensereport = expensereport
@@ -76,6 +78,7 @@ public struct DolibarrUserPermissions: Codable, Hashable {
 		self.barcode = barcode
 		self.stock = stock
 		self.projet = projet
+		self.lareponse = lareponse
 	}
 
 	public init(from decoder: any Decoder) throws {
@@ -93,6 +96,7 @@ public struct DolibarrUserPermissions: Codable, Hashable {
 		self.barcode = try container.decodeIfPresent(DolibarrUserPermissionsBarcode.self, forKey: .barcode)
 		self.stock = try container.decodeIfPresent(DolibarrUserPermissionsStock.self, forKey: .stock)
 		self.projet = try container.decodeIfPresent(DolibarrUserPermissionsProject.self, forKey: .projet)
+		self.lareponse = try container.decodeIfPresent(DolibarrUserPermissionsLaReponse.self, forKey: .lareponse)
 	}
 
 }

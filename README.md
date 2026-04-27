@@ -19,11 +19,20 @@ This is the underlying data model layer for [DoliApp](https://doliapp.eu) by [M3
 
 ## Installation
 
+### Xcode project
+
+Add SwiftDolibarr dependency: File -> Add Package Dependencies
+```
+https://github.com/m34dev/swiftdolibarr.git
+```
+
+### Swift package
+
 Add SwiftDolibarr as a dependency in your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://lab.frogg.it/dolibarr/swiftdolibarr.git", from: "1.0.0"),
+    .package(url: "https://github.com/m34dev/swiftdolibarr.git", from: "0.30.0"),
 ]
 ```
 
