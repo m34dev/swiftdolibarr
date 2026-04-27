@@ -35,7 +35,7 @@ import OSLog
 #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 @Observable
 #endif
-public final class LaReponseArticle: Hashable, Encodable, DolibarrObject {
+public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
 
     // MARK: - Properties
 
