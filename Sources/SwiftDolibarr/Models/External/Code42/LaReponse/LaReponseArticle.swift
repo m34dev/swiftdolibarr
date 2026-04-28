@@ -76,7 +76,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     /// Article publish token for sharing
     ///
     /// - Mapped Dolibarr property: **publish_token**
-    public var publishToken: String
+    public var publishToken: String?
 
     /// Article type
     public var type: Int
@@ -107,7 +107,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         title: String = "",
         content: String? = nil,
         visibility: Int = 0,
-        publishToken: String = "",
+        publishToken: String? = nil,
         type: Int = 0
     ) {
         self.id = id
@@ -136,7 +136,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
             self.title = try container.decode(String.self, forKey: .title)
             self.content = try container.decodeIfPresent(String.self, forKey: .content)
             self.visibility = try container.decode(Int.self, forKey: .visibility)
-            self.publishToken = try container.decode(String.self, forKey: .publishToken)
+            self.publishToken = try container.decodeIfPresent(String.self, forKey: .publishToken)
             self.type = try container.decode(Int.self, forKey: .type)
             #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
             Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
@@ -167,7 +167,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
             hasher.combine(content)
         }
         hasher.combine(visibility)
-        hasher.combine(publishToken)
+        if let publishToken {
+            hasher.combine(publishToken)
+        }
         hasher.combine(type)
     }
 
@@ -181,7 +183,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         try container.encodeIfNotEmpty(title, forKey: .title)
         try container.encodeIfPresent(content, forKey: .content)
         try container.encodeIfNotZero(visibility, forKey: .visibility)
-        try container.encodeIfNotEmpty(publishToken, forKey: .publishToken)
+        try container.encodeIfPresent(publishToken, forKey: .publishToken)
         try container.encodeIfNotZero(type, forKey: .type)
     }
 
