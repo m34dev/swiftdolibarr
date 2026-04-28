@@ -66,7 +66,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     public var title: String
 
     /// Article content
-    public var content: String
+    public var content: String?
 
     /// Article visibility setting
     ///
@@ -105,7 +105,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         userCreateId: Int = 0,
         userMoifyId: Int? = nil,
         title: String = "",
-        content: String = "",
+        content: String? = nil,
         visibility: Int = 0,
         publishToken: String = "",
         type: Int = 0
@@ -134,7 +134,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
             self.userCreateId = try container.decode(Int.self, forKey: .userCreateId)
             self.userMoifyId = try container.decodeIfPresent(Int.self, forKey: .userMoifyId)
             self.title = try container.decode(String.self, forKey: .title)
-            self.content = try container.decode(String.self, forKey: .content)
+            self.content = try container.decodeIfPresent(String.self, forKey: .content)
             self.visibility = try container.decode(Int.self, forKey: .visibility)
             self.publishToken = try container.decode(String.self, forKey: .publishToken)
             self.type = try container.decode(Int.self, forKey: .type)
@@ -163,7 +163,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         hasher.combine(userCreateId)
         hasher.combine(optional: userMoifyId)
         hasher.combine(title)
-        hasher.combine(content)
+        if let content {
+            hasher.combine(content)
+        }
         hasher.combine(visibility)
         hasher.combine(publishToken)
         hasher.combine(type)
@@ -177,7 +179,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         try container.encodeIfNotZero(userCreateId, forKey: .userCreateId)
         try container.encodeIfPresentAndNotZero(userMoifyId, forKey: .userMoifyId)
         try container.encodeIfNotEmpty(title, forKey: .title)
-        try container.encodeIfNotEmpty(content, forKey: .content)
+        try container.encodeIfPresent(content, forKey: .content)
         try container.encodeIfNotZero(visibility, forKey: .visibility)
         try container.encodeIfNotEmpty(publishToken, forKey: .publishToken)
         try container.encodeIfNotZero(type, forKey: .type)
