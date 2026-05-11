@@ -73,7 +73,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     /// Article visibility setting
     ///
     /// - Mapped Dolibarr property: **private**
-    public var visibility: Int
+    public var visibilityCode: Int
 
     /// Article publish token for sharing
     ///
@@ -81,7 +81,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     public var publishToken: String?
 
     /// Article type
-    public var type: Int
+    public var typeCode: Int
 
     // MARK: - Computed properties
 
@@ -94,6 +94,38 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     public var dateModified: Date {
         Date(timeIntervalSince1970: TimeInterval(dateModify))
     }
+    
+    /// Article has been published
+    public var isPublished: Bool {
+        guard let publishToken else {
+            return false
+        }
+        return publishToken.isEmpty ? false : true
+    }
+    
+    public var type: ArticleType? {
+        switch typeCode {
+        case 0:
+            return .article
+        case 1:
+            return .url
+        default:
+            return nil
+        }
+    }
+    
+    public var visibility: ArticleVisibility? {
+        switch visibilityCode {
+        case 0:
+            return .internal
+        case 1:
+            return .private
+        case 2:
+            return .closed
+        default:
+            return nil
+        }
+    }
 
     // MARK: - Enums
 
@@ -105,9 +137,20 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         case userModifyId = "fk_user_modif"
         case title
         case content
-        case visibility = "private"
+        case visibilityCode = "private"
         case publishToken = "publish_token"
-        case type
+        case typeCode = "type"
+    }
+    
+    public enum ArticleType {
+        case article
+        case url
+    }
+    
+    public enum ArticleVisibility {
+        case `internal`
+        case `private`
+        case closed
     }
 
     // MARK: - Inits
@@ -120,9 +163,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         userModifyId: Int? = nil,
         title: String = "",
         content: String? = nil,
-        visibility: Int = 0,
+        visibilityCode: Int = 0,
         publishToken: String? = nil,
-        type: Int = 0
+        typeCode: Int = 0
     ) {
         self.id = id
         self.dateCreate = dateCreate
@@ -131,9 +174,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         self.userModifyId = userModifyId
         self.title = title
         self.content = content
-        self.visibility = visibility
+        self.visibilityCode = visibilityCode
         self.publishToken = publishToken
-        self.type = type
+        self.typeCode = typeCode
     }
 
     public required init(from decoder: any Decoder) throws {
@@ -149,9 +192,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
             self.userModifyId = try container.decodeIfPresent(Int.self, forKey: .userModifyId)
             self.title = try container.decode(String.self, forKey: .title)
             self.content = try container.decodeIfPresent(String.self, forKey: .content)
-            self.visibility = try container.decode(Int.self, forKey: .visibility)
+            self.visibilityCode = try container.decode(Int.self, forKey: .visibilityCode)
             self.publishToken = try container.decodeIfPresent(String.self, forKey: .publishToken)
-            self.type = try container.decode(Int.self, forKey: .type)
+            self.typeCode = try container.decode(Int.self, forKey: .typeCode)
             #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
             Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
             #endif
@@ -176,9 +219,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         self.userModifyId = source.userModifyId
         self.title = source.title
         self.content = source.content
-        self.visibility = source.visibility
+        self.visibilityCode = source.visibilityCode
         self.publishToken = source.publishToken
-        self.type = source.type
+        self.typeCode = source.typeCode
     }
 
     // MARK: - Methods
@@ -191,9 +234,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         self.userModifyId = source.userModifyId
         self.title = source.title
         self.content = source.content
-        self.visibility = source.visibility
+        self.visibilityCode = source.visibilityCode
         self.publishToken = source.publishToken
-        self.type = source.type
+        self.typeCode = source.typeCode
     }
 
     // MARK: - Protocol methods
@@ -206,8 +249,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         hasher.combine(optional: userModifyId)
         hasher.combine(title)
         hasher.combine(optional: content)
+        hasher.combine(visibilityCode)
         hasher.combine(optional: publishToken)
-        hasher.combine(type)
+        hasher.combine(typeCode)
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -219,9 +263,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         try container.encodeIfPresentAndNotZero(userModifyId, forKey: .userModifyId)
         try container.encodeIfNotEmpty(title, forKey: .title)
         try container.encodeIfPresent(content, forKey: .content)
-        try container.encodeIfNotZero(visibility, forKey: .visibility)
+        try container.encode(visibilityCode, forKey: .visibilityCode)
         try container.encodeIfPresent(publishToken, forKey: .publishToken)
-        try container.encodeIfNotZero(type, forKey: .type)
+        try container.encode(typeCode, forKey: .typeCode)
     }
 
     public static func == (lhs: LaReponseArticle, rhs: LaReponseArticle) -> Bool {
@@ -232,9 +276,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         && lhs.userModifyId == rhs.userModifyId
         && lhs.title == rhs.title
         && lhs.content == rhs.content
-        && lhs.visibility == rhs.visibility
+        && lhs.visibilityCode == rhs.visibilityCode
         && lhs.publishToken == rhs.publishToken
-        && lhs.type == rhs.type
+        && lhs.typeCode == rhs.typeCode
     }
 
 }

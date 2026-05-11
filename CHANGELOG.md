@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org) using the following scheme: MAJOR.MINOR.PATCH
 
+## [0.37.0] - 2026-05-11
+
+### Changed
+- Updated LaReponse article visibility and type properties
+- Updated LaReponse article with isPublished property
+
 ## [0.36.0] - 2026-05-11
 
 ### Changed
