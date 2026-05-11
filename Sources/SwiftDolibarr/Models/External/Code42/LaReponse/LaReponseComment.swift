@@ -50,7 +50,9 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
     public var dateCreate: Int
 
     /// Comment last modification (Unix timestamp)
-    public var tms: Int
+    ///
+    /// - Mapped Dolibarr property: **tms**
+    public var dateModify: Int
 
     /// Comment creator user ID
     ///
@@ -60,7 +62,7 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
     /// Comment last modifier user ID
     ///
     /// - Mapped Dolibarr property: **fk_user_modif**
-    public var userMoifyId: Int?
+    public var userModifyId: Int?
 
     /// Parent article ID
     ///
@@ -70,14 +72,26 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
     /// Comment content
     public var content: String
 
+    // MARK: - Computed properties
+
+    /// Comment creation date
+    public var dateCreated: Date {
+        Date(timeIntervalSince1970: TimeInterval(dateCreate))
+    }
+
+    /// Comment last modification date
+    public var dateModified: Date {
+        Date(timeIntervalSince1970: TimeInterval(dateModify))
+    }
+
     // MARK: - Enums
 
     enum CodingKeys: String, CodingKey {
         case id = "rowid"
         case dateCreate = "date_creation"
-        case tms
+        case dateModify = "tms"
         case userCreateId = "fk_user_creat"
-        case userMoifyId = "fk_user_modif"
+        case userModifyId = "fk_user_modif"
         case articleId = "fk_article"
         case content
     }
@@ -87,17 +101,17 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
     public init(
         id: String = "",
         dateCreate: Int = 0,
-        tms: Int = 0,
+        dateModify: Int = 0,
         userCreateId: Int = 0,
-        userMoifyId: Int? = nil,
+        userModifyId: Int? = nil,
         articleId: Int = 0,
         content: String = "",
     ) {
         self.id = id
         self.dateCreate = dateCreate
-        self.tms = tms
+        self.dateModify = dateModify
         self.userCreateId = userCreateId
-        self.userMoifyId = userMoifyId
+        self.userModifyId = userModifyId
         self.articleId = articleId
         self.content = content
     }
@@ -110,9 +124,9 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.id = try container.decode(MultiType.self, forKey: .id).stringValue
             self.dateCreate = try container.decode(Int.self, forKey: .dateCreate)
-            self.tms = try container.decode(Int.self, forKey: .tms)
+            self.dateModify = try container.decode(Int.self, forKey: .dateModify)
             self.userCreateId = try container.decode(Int.self, forKey: .userCreateId)
-            self.userMoifyId = try container.decodeIfPresent(Int.self, forKey: .userMoifyId)
+            self.userModifyId = try container.decodeIfPresent(Int.self, forKey: .userModifyId)
             self.articleId = try container.decode(Int.self, forKey: .articleId)
             self.content = try container.decode(String.self, forKey: .content)
             #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
@@ -131,14 +145,36 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
         }
     }
 
+    public init(copying source: LaReponseComment) {
+        self.id = source.id
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.userCreateId = source.userCreateId
+        self.userModifyId = source.userModifyId
+        self.articleId = source.articleId
+        self.content = source.content
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: LaReponseComment) {
+        self.id = source.id
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.userCreateId = source.userCreateId
+        self.userModifyId = source.userModifyId
+        self.articleId = source.articleId
+        self.content = source.content
+    }
+
     // MARK: - Protocol methods
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(dateCreate)
-        hasher.combine(tms)
+        hasher.combine(dateModify)
         hasher.combine(userCreateId)
-        hasher.combine(optional: userMoifyId)
+        hasher.combine(optional: userModifyId)
         hasher.combine(articleId)
         hasher.combine(content)
     }
@@ -147,15 +183,21 @@ public final class LaReponseComment: Hashable, Codable, DolibarrObject {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfNotEmpty(id, forKey: .id)
         try container.encodeIfNotZero(dateCreate, forKey: .dateCreate)
-        try container.encodeIfNotZero(tms, forKey: .tms)
+        try container.encodeIfNotZero(dateModify, forKey: .dateModify)
         try container.encodeIfNotZero(userCreateId, forKey: .userCreateId)
-        try container.encodeIfPresentAndNotZero(userMoifyId, forKey: .userMoifyId)
+        try container.encodeIfPresentAndNotZero(userModifyId, forKey: .userModifyId)
         try container.encodeIfNotZero(articleId, forKey: .articleId)
         try container.encodeIfNotEmpty(content, forKey: .content)
     }
 
     public static func == (lhs: LaReponseComment, rhs: LaReponseComment) -> Bool {
         lhs.id == rhs.id
+        && lhs.dateCreate == rhs.dateCreate
+        && lhs.dateModify == rhs.dateModify
+        && lhs.userCreateId == rhs.userCreateId
+        && lhs.userModifyId == rhs.userModifyId
+        && lhs.articleId == rhs.articleId
+        && lhs.content == rhs.content
     }
 
 }
