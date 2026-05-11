@@ -50,7 +50,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     public var dateCreate: Int
 
     /// Article last modification (Unix timestamp)
-    public var tms: Int
+    ///
+    /// - Mapped Dolibarr property: **tms**
+    public var dateModify: Int
 
     /// Article creator user ID
     ///
@@ -60,7 +62,7 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     /// Article last modifier user ID
     ///
     /// - Mapped Dolibarr property: **fk_user_modif**
-    public var userMoifyId: Int?
+    public var userModifyId: Int?
 
     /// Article title
     public var title: String
@@ -81,14 +83,26 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     /// Article type
     public var type: Int
 
+    // MARK: - Computed properties
+
+    /// Article creation date
+    public var dateCreated: Date {
+        Date(timeIntervalSince1970: TimeInterval(dateCreate))
+    }
+
+    /// Article last modification date
+    public var dateModified: Date {
+        Date(timeIntervalSince1970: TimeInterval(dateModify))
+    }
+
     // MARK: - Enums
 
     enum CodingKeys: String, CodingKey {
         case id = "rowid"
         case dateCreate = "date_creation"
-        case tms
+        case dateModify = "tms"
         case userCreateId = "fk_user_creat"
-        case userMoifyId = "fk_user_modif"
+        case userModifyId = "fk_user_modif"
         case title
         case content
         case visibility = "private"
@@ -101,9 +115,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     public init(
         id: String = "",
         dateCreate: Int = 0,
-        tms: Int = 0,
+        dateModify: Int = 0,
         userCreateId: Int = 0,
-        userMoifyId: Int? = nil,
+        userModifyId: Int? = nil,
         title: String = "",
         content: String? = nil,
         visibility: Int = 0,
@@ -112,9 +126,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
     ) {
         self.id = id
         self.dateCreate = dateCreate
-        self.tms = tms
+        self.dateModify = dateModify
         self.userCreateId = userCreateId
-        self.userMoifyId = userMoifyId
+        self.userModifyId = userModifyId
         self.title = title
         self.content = content
         self.visibility = visibility
@@ -130,9 +144,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.id = try container.decode(MultiType.self, forKey: .id).stringValue
             self.dateCreate = try container.decode(Int.self, forKey: .dateCreate)
-            self.tms = try container.decode(Int.self, forKey: .tms)
+            self.dateModify = try container.decode(Int.self, forKey: .dateModify)
             self.userCreateId = try container.decode(Int.self, forKey: .userCreateId)
-            self.userMoifyId = try container.decodeIfPresent(Int.self, forKey: .userMoifyId)
+            self.userModifyId = try container.decodeIfPresent(Int.self, forKey: .userModifyId)
             self.title = try container.decode(String.self, forKey: .title)
             self.content = try container.decodeIfPresent(String.self, forKey: .content)
             self.visibility = try container.decode(Int.self, forKey: .visibility)
@@ -154,22 +168,45 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         }
     }
 
+    public init(copying source: LaReponseArticle) {
+        self.id = source.id
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.userCreateId = source.userCreateId
+        self.userModifyId = source.userModifyId
+        self.title = source.title
+        self.content = source.content
+        self.visibility = source.visibility
+        self.publishToken = source.publishToken
+        self.type = source.type
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: LaReponseArticle) {
+        self.id = source.id
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.userCreateId = source.userCreateId
+        self.userModifyId = source.userModifyId
+        self.title = source.title
+        self.content = source.content
+        self.visibility = source.visibility
+        self.publishToken = source.publishToken
+        self.type = source.type
+    }
+
     // MARK: - Protocol methods
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(dateCreate)
-        hasher.combine(tms)
+        hasher.combine(dateModify)
         hasher.combine(userCreateId)
-        hasher.combine(optional: userMoifyId)
+        hasher.combine(optional: userModifyId)
         hasher.combine(title)
-        if let content {
-            hasher.combine(content)
-        }
-        hasher.combine(visibility)
-        if let publishToken {
-            hasher.combine(publishToken)
-        }
+        hasher.combine(optional: content)
+        hasher.combine(optional: publishToken)
         hasher.combine(type)
     }
 
@@ -177,9 +214,9 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfNotEmpty(id, forKey: .id)
         try container.encodeIfNotZero(dateCreate, forKey: .dateCreate)
-        try container.encodeIfNotZero(tms, forKey: .tms)
+        try container.encodeIfNotZero(dateModify, forKey: .dateModify)
         try container.encodeIfNotZero(userCreateId, forKey: .userCreateId)
-        try container.encodeIfPresentAndNotZero(userMoifyId, forKey: .userMoifyId)
+        try container.encodeIfPresentAndNotZero(userModifyId, forKey: .userModifyId)
         try container.encodeIfNotEmpty(title, forKey: .title)
         try container.encodeIfPresent(content, forKey: .content)
         try container.encodeIfNotZero(visibility, forKey: .visibility)
@@ -189,6 +226,15 @@ public final class LaReponseArticle: Hashable, Codable, DolibarrObject {
 
     public static func == (lhs: LaReponseArticle, rhs: LaReponseArticle) -> Bool {
         lhs.id == rhs.id
+        && lhs.dateCreate == rhs.dateCreate
+        && lhs.dateModify == rhs.dateModify
+        && lhs.userCreateId == rhs.userCreateId
+        && lhs.userModifyId == rhs.userModifyId
+        && lhs.title == rhs.title
+        && lhs.content == rhs.content
+        && lhs.visibility == rhs.visibility
+        && lhs.publishToken == rhs.publishToken
+        && lhs.type == rhs.type
     }
 
 }
