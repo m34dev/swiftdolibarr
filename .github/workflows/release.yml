@@ -1,7 +1,7 @@
 # This workflow creates a GitHub release on tag push.
 # Tags containing a '-' are treated as prereleases.
 
-name: Release
+name: Release Swift Doliar package
 
 on:
   push:
@@ -10,12 +10,13 @@ on:
 
 jobs:
   release:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
       - uses: actions/checkout@v4
 
-      - name: Determine prerelease
+      - name: Check prerelease
         id: prerelease
         run: |
           if [[ "${{ github.ref_name }}" == *-* ]]; then
@@ -28,6 +29,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}
+          name: v${{ github.ref_name }}
           body: Release created from CI/CD
           prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
