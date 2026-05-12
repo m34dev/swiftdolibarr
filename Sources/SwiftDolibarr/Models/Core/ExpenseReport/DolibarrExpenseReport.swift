@@ -66,32 +66,47 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
 	/// Expense report creation date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **date_create**
-	public var dateCreated: Int
+	public var dateCreate: Int?
 
-	/// Expense report validation date
+	/// Expense report modification date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **date_modif**
+	public var dateModify: Int?
+
+	/// Expense report validation date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **date_valid**
-	public var dateValidated: String
+	public var dateValidate: Int?
 
-	/// Expense report approval date
+	/// Expense report approval date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **date_approve**
-	public var dateApproved: String
+	public var dateApprove: Int?
 
-	/// Expense report refusal date
+	/// Expense report refusal date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **date_refuse**
-	public var dateRefused: String
+	public var dateRefuse: Int?
 
-	/// Expense report cancellation date
+	/// Expense report cancellation date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **date_cancel**
-	public var dateCanceled: String
+	public var dateCancel: Int?
 
-	/// Expense report author user ID
+	/// Expense report creator user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_creat**
+	public var userCreateId: String?
+
+	/// Expense report last modifier user ID
+	///
+	/// - Mapped Dolibarr property: **fk_user_modif**
+	public var userModifyId: String?
+
+	/// Expense report beneficiary user ID (the person who incurred the expenses)
 	///
 	/// - Mapped Dolibarr property: **fk_user_author**
-	public var userAuthorId: String
+	public var userBeneficiaryId: String
 
 	/// Expense report validator user ID
 	///
@@ -143,6 +158,52 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
 
 	// Computed
 
+	/// Expense report start date
+	public var dateStarted: Date {
+		Date(timeIntervalSince1970: TimeInterval(dateStart))
+	}
+
+	/// Expense report end date
+	public var dateEnded: Date {
+		Date(timeIntervalSince1970: TimeInterval(dateEnd))
+	}
+
+	/// Expense report creation date
+	public var dateCreated: Date? {
+		guard let dateCreate else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateCreate))
+	}
+
+	/// Expense report modification date
+	public var dateModified: Date? {
+		guard let dateModify else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateModify))
+	}
+
+	/// Expense report validation date
+	public var dateValidated: Date? {
+		guard let dateValidate else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateValidate))
+	}
+
+	/// Expense report approval date
+	public var dateApproved: Date? {
+		guard let dateApprove else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateApprove))
+	}
+
+	/// Expense report refusal date
+	public var dateRefused: Date? {
+		guard let dateRefuse else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateRefuse))
+	}
+
+	/// Expense report cancellation date
+	public var dateCanceled: Date? {
+		guard let dateCancel else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateCancel))
+	}
+
 	/// Associated expense report status type
 	override public var status: DolibarrObjectStatus {
 		guard let status = DolibarrObjectStatus.expenseReports.first(where: { $0.code == statusCode }) else {
@@ -157,12 +218,15 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
         case ref
         case dateStart = "date_debut"
         case dateEnd = "date_fin"
-        case dateCreated = "date_create"
-        case dateValidated = "date_valid"
-        case dateApproved = "date_approve"
-        case dateRefused = "date_refuse"
-        case dateCanceled = "date_cancel"
-        case userAuthorId = "fk_user_author"
+        case dateCreate = "date_create"
+        case dateModify = "date_modif"
+        case dateValidate = "date_valid"
+        case dateApprove = "date_approve"
+        case dateRefuse = "date_refuse"
+        case dateCancel = "date_cancel"
+        case userCreateId = "fk_user_creat"
+        case userModifyId = "fk_user_modif"
+        case userBeneficiaryId = "fk_user_author"
         case userValidatorId = "fk_user_validator"
         case userApprovedById = "fk_user_approve"
         case userCanceledById = "fk_user_cancel"
@@ -182,12 +246,15 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
         ref: String = "",
         dateStart: Int = 0,
         dateEnd: Int = 0,
-        dateCreated: Int = 0,
-        dateValidated: String = "",
-        dateApproved: String = "",
-        dateRefused: String = "",
-        dateCanceled: String = "",
-        userAuthorId: String = "",
+        dateCreate: Int? = nil,
+        dateModify: Int? = nil,
+        dateValidate: Int? = nil,
+        dateApprove: Int? = nil,
+        dateRefuse: Int? = nil,
+        dateCancel: Int? = nil,
+        userCreateId: String? = nil,
+        userModifyId: String? = nil,
+        userBeneficiaryId: String = "",
         userValidatorId: String? = nil,
         userApprovedById: String? = nil,
         userCanceledById: String? = nil,
@@ -208,12 +275,15 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
         self.ref = ref
         self.dateStart = dateStart
         self.dateEnd = dateEnd
-        self.dateCreated = dateCreated
-        self.dateValidated = dateValidated
-        self.dateApproved = dateApproved
-        self.dateRefused = dateRefused
-        self.dateCanceled = dateCanceled
-        self.userAuthorId = userAuthorId
+        self.dateCreate = dateCreate
+        self.dateModify = dateModify
+        self.dateValidate = dateValidate
+        self.dateApprove = dateApprove
+        self.dateRefuse = dateRefuse
+        self.dateCancel = dateCancel
+        self.userCreateId = userCreateId
+        self.userModifyId = userModifyId
+        self.userBeneficiaryId = userBeneficiaryId
         self.userValidatorId = userValidatorId
         self.userApprovedById = userApprovedById
         self.userCanceledById = userCanceledById
@@ -243,12 +313,15 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
             self.ref = try container.decode(String.self, forKey: .ref)
             self.dateStart = try container.decode(Int.self, forKey: .dateStart)
             self.dateEnd = try container.decode(Int.self, forKey: .dateEnd)
-            self.dateCreated = try container.decode(Int.self, forKey: .dateCreated)
-            self.dateValidated = try container.decode(MultiType.self, forKey: .dateValidated).stringValue
-            self.dateApproved = try container.decode(MultiType.self, forKey: .dateApproved).stringValue
-            self.dateRefused = try container.decode(MultiType.self, forKey: .dateRefused).stringValue
-            self.dateCanceled = try container.decode(MultiType.self, forKey: .dateCanceled).stringValue
-            self.userAuthorId = try container.decode(String.self, forKey: .userAuthorId)
+            self.dateCreate = try container.decode(MultiType.self, forKey: .dateCreate).intValue
+            self.dateModify = try container.decode(MultiType.self, forKey: .dateModify).intValue
+            self.dateValidate = try container.decode(MultiType.self, forKey: .dateValidate).intValue
+            self.dateApprove = try container.decode(MultiType.self, forKey: .dateApprove).intValue
+            self.dateRefuse = try container.decode(MultiType.self, forKey: .dateRefuse).intValue
+            self.dateCancel = try container.decode(MultiType.self, forKey: .dateCancel).intValue
+            self.userCreateId = try container.decodeIfPresent(String.self, forKey: .userCreateId)
+            self.userModifyId = try container.decodeIfPresent(String.self, forKey: .userModifyId)
+            self.userBeneficiaryId = try container.decode(String.self, forKey: .userBeneficiaryId)
             self.userValidatorId = try container.decodeIfPresent(String.self, forKey: .userValidatorId)
             self.userApprovedById = try container.decodeIfPresent(String.self, forKey: .userApprovedById)
             self.userCanceledById = try container.decodeIfPresent(String.self, forKey: .userCanceledById)
@@ -283,12 +356,15 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
         hasher.combine(ref)
 		hasher.combine(dateStart)
 		hasher.combine(dateEnd)
-		hasher.combine(dateCreated)
-		hasher.combine(dateValidated)
-		hasher.combine(dateApproved)
-		hasher.combine(dateRefused)
-		hasher.combine(dateCanceled)
-		hasher.combine(userAuthorId)
+		hasher.combine(optional: dateCreate)
+		hasher.combine(optional: dateModify)
+		hasher.combine(optional: dateValidate)
+		hasher.combine(optional: dateApprove)
+		hasher.combine(optional: dateRefuse)
+		hasher.combine(optional: dateCancel)
+		hasher.combine(optional: userCreateId)
+		hasher.combine(optional: userModifyId)
+		hasher.combine(userBeneficiaryId)
 		hasher.combine(optional: userValidatorId)
 		hasher.combine(optional: userApprovedById)
 		hasher.combine(optional: userCanceledById)
@@ -308,12 +384,15 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
         try container.encodeIfNotEmpty(ref, forKey: .ref)
 		try container.encodeIfNotZero(dateStart, forKey: .dateStart)
 		try container.encodeIfNotZero(dateEnd, forKey: .dateEnd)
-		try container.encodeIfNotZero(dateCreated, forKey: .dateCreated)
-		try container.encodeIfNotEmpty(dateValidated, forKey: .dateValidated)
-		try container.encodeIfNotEmpty(dateApproved, forKey: .dateApproved)
-		try container.encodeIfNotEmpty(dateRefused, forKey: .dateRefused)
-		try container.encodeIfNotEmpty(dateCanceled, forKey: .dateCanceled)
-		try container.encodeIfNotEmpty(userAuthorId, forKey: .userAuthorId)
+		try container.encodeIfPresentAndNotZero(dateCreate, forKey: .dateCreate)
+		try container.encodeIfPresentAndNotZero(dateModify, forKey: .dateModify)
+		try container.encodeIfPresentAndNotZero(dateValidate, forKey: .dateValidate)
+		try container.encodeIfPresentAndNotZero(dateApprove, forKey: .dateApprove)
+		try container.encodeIfPresentAndNotZero(dateRefuse, forKey: .dateRefuse)
+		try container.encodeIfPresentAndNotZero(dateCancel, forKey: .dateCancel)
+		try container.encodeIfPresentAndNotEmpty(userCreateId, forKey: .userCreateId)
+		try container.encodeIfPresentAndNotEmpty(userModifyId, forKey: .userModifyId)
+		try container.encodeIfNotEmpty(userBeneficiaryId, forKey: .userBeneficiaryId)
 		try container.encodeIfPresentAndNotEmpty(userValidatorId, forKey: .userValidatorId)
 		try container.encodeIfPresentAndNotEmpty(userApprovedById, forKey: .userApprovedById)
 		try container.encodeIfPresentAndNotEmpty(userCanceledById, forKey: .userCanceledById)
