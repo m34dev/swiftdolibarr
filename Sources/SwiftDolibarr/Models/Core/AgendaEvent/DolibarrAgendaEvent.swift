@@ -106,7 +106,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 	/// Agenda event author ID
 	///
 	/// - Mapped Dolibarr property: **authorid**
-	public var authorId: String?
+	public var userAuthorId: String?
 
 	/// Agenda event last modifier user ID
 	///
@@ -206,7 +206,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		case dateModify = "datem"
 		case dateStart = "datep"
 		case dateEnd = "datef"
-		case authorId = "authorid"
+		case userAuthorId = "authorid"
 		case userModifiedId = "usermodid"
 		case location
 		case thirdPartyId = "socid"
@@ -233,7 +233,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		dateModify: Int? = nil,
 		dateStart: Int? = nil,
 		dateEnd: Int? = nil,
-		authorId: String? = nil,
+		userAuthorId: String? = nil,
 		userModifiedId: String? = nil,
 		location: String? = nil,
 		thirdPartyId: String? = nil,
@@ -261,7 +261,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		self.dateModify = dateModify
 		self.dateStart = dateStart
 		self.dateEnd = dateEnd
-		self.authorId = authorId
+		self.userAuthorId = userAuthorId
 		self.userModifiedId = userModifiedId
 		self.location = location
 		self.thirdPartyId = thirdPartyId
@@ -297,7 +297,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 			self.dateModify = try container.decodeIfPresent(Int.self, forKey: .dateModify)
 			self.dateStart = try container.decode(MultiType.self, forKey: .dateStart).intValue
 			self.dateEnd = try container.decode(MultiType.self, forKey: .dateEnd).intValue
-			self.authorId = try container.decodeIfPresent(String.self, forKey: .authorId)
+			self.userAuthorId = try container.decodeIfPresent(String.self, forKey: .userAuthorId)
 			self.userModifiedId = try container.decodeIfPresent(String.self, forKey: .userModifiedId)
 			self.location = try container.decodeIfPresent(String.self, forKey: .location)
 			self.thirdPartyId = try container.decodeIfPresent(String.self, forKey: .thirdPartyId)
@@ -341,7 +341,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		self.dateModify = source.dateModify
 		self.dateStart = source.dateStart
 		self.dateEnd = source.dateEnd
-		self.authorId = source.authorId
+		self.userAuthorId = source.userAuthorId
 		self.userModifiedId = source.userModifiedId
 		self.location = source.location
 		self.thirdPartyId = source.thirdPartyId
@@ -376,7 +376,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		self.dateModify = source.dateModify
 		self.dateStart = source.dateStart
 		self.dateEnd = source.dateEnd
-		self.authorId = source.authorId
+		self.userAuthorId = source.userAuthorId
 		self.userModifiedId = source.userModifiedId
 		self.location = source.location
 		self.thirdPartyId = source.thirdPartyId
@@ -409,7 +409,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		hasher.combine(optional: dateModify)
 		hasher.combine(optional: dateStart)
 		hasher.combine(optional: dateEnd)
-		hasher.combine(optional: authorId)
+		hasher.combine(optional: userAuthorId)
 		hasher.combine(optional: userModifiedId)
 		hasher.combine(optional: location)
 		hasher.combine(optional: thirdPartyId)
@@ -436,7 +436,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		try container.encodeIfPresentAndNotZero(dateModify, forKey: .dateModify)
 		try container.encodeIfPresentAndNotZero(dateStart, forKey: .dateStart)
 		try container.encodeIfPresentAndNotZero(dateEnd, forKey: .dateEnd)
-		try container.encodeIfPresentAndNotEmpty(authorId, forKey: .authorId)
+		try container.encodeIfPresentAndNotEmpty(userAuthorId, forKey: .userAuthorId)
 		try container.encodeIfPresentAndNotEmpty(userModifiedId, forKey: .userModifiedId)
 		try container.encodeIfPresent(location, forKey: .location)
 		try container.encodeIfPresent(thirdPartyId, forKey: .thirdPartyId)
