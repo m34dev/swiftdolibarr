@@ -86,12 +86,12 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 	/// Agenda event creation date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **datec**
-	public var dateCreated: Int?
+	public var dateCreate: Int?
 
 	/// Agenda event modification date (Unix timestamp)
 	///
 	/// - Mapped Dolibarr property: **datem**
-	public var dateModified: Int?
+	public var dateModify: Int?
 
 	/// Agenda event start date (Unix timestamp)
 	///
@@ -146,6 +146,30 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 
 	// Computed
 
+	/// Agenda event creation date
+	public var dateCreated: Date? {
+		guard let dateCreate else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateCreate))
+	}
+
+	/// Agenda event modification date
+	public var dateModified: Date? {
+		guard let dateModify else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateModify))
+	}
+
+	/// Agenda event start date
+	public var dateStarted: Date? {
+		guard let dateStart else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateStart))
+	}
+
+	/// Agenda event end date
+	public var dateEnded: Date? {
+		guard let dateEnd else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateEnd))
+	}
+
 	/// Associated agenda event status type
 	override public var status: DolibarrObjectStatus {
 		if let progressValue = Int(progress) {
@@ -178,8 +202,8 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		case type
 		case typeCode = "type_code"
 		case code
-		case dateCreated = "datec"
-		case dateModified = "datem"
+		case dateCreate = "datec"
+		case dateModify = "datem"
 		case dateStart = "datep"
 		case dateEnd = "datef"
 		case authorId = "authorid"
@@ -205,8 +229,8 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		type: String? = nil,
 		typeCode: String? = nil,
 		code: String? = nil,
-		dateCreated: Int? = nil,
-		dateModified: Int? = nil,
+		dateCreate: Int? = nil,
+		dateModify: Int? = nil,
 		dateStart: Int? = nil,
 		dateEnd: Int? = nil,
 		authorId: String? = nil,
@@ -233,8 +257,8 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		self.type = type
 		self.typeCode = typeCode
 		self.code = code
-		self.dateCreated = dateCreated
-		self.dateModified = dateModified
+		self.dateCreate = dateCreate
+		self.dateModify = dateModify
 		self.dateStart = dateStart
 		self.dateEnd = dateEnd
 		self.authorId = authorId
@@ -269,8 +293,8 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 			self.type = try container.decodeIfPresent(String.self, forKey: .type)
 			self.typeCode = try container.decodeIfPresent(String.self, forKey: .typeCode)
 			self.code = try container.decodeIfPresent(String.self, forKey: .code)
-			self.dateCreated = try container.decodeIfPresent(Int.self, forKey: .dateCreated)
-			self.dateModified = try container.decodeIfPresent(Int.self, forKey: .dateModified)
+			self.dateCreate = try container.decodeIfPresent(Int.self, forKey: .dateCreate)
+			self.dateModify = try container.decodeIfPresent(Int.self, forKey: .dateModify)
 			self.dateStart = try container.decode(MultiType.self, forKey: .dateStart).intValue
 			self.dateEnd = try container.decode(MultiType.self, forKey: .dateEnd).intValue
 			self.authorId = try container.decodeIfPresent(String.self, forKey: .authorId)
@@ -303,6 +327,72 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		}
 	}
 
+	public init(copying source: DolibarrAgendaEvent) {
+		self.ref = source.ref
+		self.label = source.label
+		self.progress = source.progress
+		self.fullDayEvent = source.fullDayEvent
+		self.visibility = source.visibility
+		self.typeId = source.typeId
+		self.type = source.type
+		self.typeCode = source.typeCode
+		self.code = source.code
+		self.dateCreate = source.dateCreate
+		self.dateModify = source.dateModify
+		self.dateStart = source.dateStart
+		self.dateEnd = source.dateEnd
+		self.authorId = source.authorId
+		self.userModifiedId = source.userModifiedId
+		self.location = source.location
+		self.thirdPartyId = source.thirdPartyId
+		self.priority = source.priority
+		self.usersAssigned = source.usersAssigned
+		self.userOwnerId = source.userOwnerId
+		self.elementId = source.elementId
+		self.elementType = source.elementType
+		super.init(
+			id: source.id,
+			statusCode: source.statusCode,
+			entityId: source.entityId,
+			arrayOptions: source.arrayOptions,
+			notePublic: source.notePublic,
+			notePrivate: source.notePrivate
+		)
+	}
+
+	// MARK: - Methods
+
+	public func copy(_ source: DolibarrAgendaEvent) {
+		self.ref = source.ref
+		self.label = source.label
+		self.progress = source.progress
+		self.fullDayEvent = source.fullDayEvent
+		self.visibility = source.visibility
+		self.typeId = source.typeId
+		self.type = source.type
+		self.typeCode = source.typeCode
+		self.code = source.code
+		self.dateCreate = source.dateCreate
+		self.dateModify = source.dateModify
+		self.dateStart = source.dateStart
+		self.dateEnd = source.dateEnd
+		self.authorId = source.authorId
+		self.userModifiedId = source.userModifiedId
+		self.location = source.location
+		self.thirdPartyId = source.thirdPartyId
+		self.priority = source.priority
+		self.usersAssigned = source.usersAssigned
+		self.userOwnerId = source.userOwnerId
+		self.elementId = source.elementId
+		self.elementType = source.elementType
+		self.id = source.id
+		self.statusCode = source.statusCode
+		self.entityId = source.entityId
+		self.arrayOptions = source.arrayOptions
+		self.notePublic = source.notePublic
+		self.notePrivate = source.notePrivate
+	}
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {
@@ -315,8 +405,8 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		hasher.combine(optional: type)
 		hasher.combine(optional: typeCode)
 		hasher.combine(optional: code)
-		hasher.combine(optional: dateCreated)
-		hasher.combine(optional: dateModified)
+		hasher.combine(optional: dateCreate)
+		hasher.combine(optional: dateModify)
 		hasher.combine(optional: dateStart)
 		hasher.combine(optional: dateEnd)
 		hasher.combine(optional: authorId)
@@ -342,8 +432,8 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		try container.encodeIfPresentAndNotEmpty(type, forKey: .type)
 		try container.encodeIfPresentAndNotEmpty(typeCode, forKey: .typeCode)
 		try container.encodeIfPresentAndNotEmpty(code, forKey: .code)
-		try container.encodeIfPresentAndNotZero(dateCreated, forKey: .dateCreated)
-		try container.encodeIfPresentAndNotZero(dateModified, forKey: .dateModified)
+		try container.encodeIfPresentAndNotZero(dateCreate, forKey: .dateCreate)
+		try container.encodeIfPresentAndNotZero(dateModify, forKey: .dateModify)
 		try container.encodeIfPresentAndNotZero(dateStart, forKey: .dateStart)
 		try container.encodeIfPresentAndNotZero(dateEnd, forKey: .dateEnd)
 		try container.encodeIfPresentAndNotEmpty(authorId, forKey: .authorId)
