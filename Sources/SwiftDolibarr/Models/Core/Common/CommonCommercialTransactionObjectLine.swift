@@ -198,6 +198,42 @@ public class CommonCommercialTransactionObjectLine: CommonBusinessObjectLine {
 		}
 	}
 
+    public init(copying source: CommonCommercialTransactionObjectLine) {
+        self.specialCode = source.specialCode
+        self.taxRate = source.taxRate
+        self.unitPriceExclTax = source.unitPriceExclTax
+        self.discountRate = source.discountRate
+        self.totalExclTax = source.totalExclTax
+        self.totalInclTax = source.totalInclTax
+        self.totalTax = source.totalTax
+        self.productId = source.productId
+        self.productRef = source.productRef
+        self.productLabel = source.productLabel
+        self.quantity = source.quantity
+        self.description = source.description
+        self.unitPriceInclTax = source.unitPriceInclTax
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: CommonCommercialTransactionObjectLine) {
+        self.specialCode = source.specialCode
+        self.taxRate = source.taxRate
+        self.unitPriceExclTax = source.unitPriceExclTax
+        self.discountRate = source.discountRate
+        self.totalExclTax = source.totalExclTax
+        self.totalInclTax = source.totalInclTax
+        self.totalTax = source.totalTax
+        self.productId = source.productId
+        self.productRef = source.productRef
+        self.productLabel = source.productLabel
+        self.quantity = source.quantity
+        self.description = source.description
+        self.unitPriceInclTax = source.unitPriceInclTax
+        super.copy(source)
+    }
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {

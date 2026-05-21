@@ -100,6 +100,22 @@ public final class DolibarrInterventionLine: CommonBusinessObjectLine {
         }
     }
 
+    public init(copying source: DolibarrInterventionLine) {
+        self.datei = source.datei
+        self.duration = source.duration
+        self.desc = source.desc
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: DolibarrInterventionLine) {
+        self.datei = source.datei
+        self.duration = source.duration
+        self.desc = source.desc
+        super.copy(source)
+    }
+
     // MARK: - Protocol methods
 
     override public func hash(into hasher: inout Hasher) {

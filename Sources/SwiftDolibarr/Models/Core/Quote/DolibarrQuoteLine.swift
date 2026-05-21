@@ -113,6 +113,18 @@ public final class DolibarrQuoteLine: CommonCommercialTransactionObjectLine {
 		}
 	}
 
+    public init(copying source: DolibarrQuoteLine) {
+        self.quoteId = source.quoteId
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: DolibarrQuoteLine) {
+        self.quoteId = source.quoteId
+        super.copy(source)
+    }
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {

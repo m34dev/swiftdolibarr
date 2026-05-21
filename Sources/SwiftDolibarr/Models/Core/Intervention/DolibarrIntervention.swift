@@ -206,6 +206,42 @@ public final class DolibarrIntervention: CommonBusinessObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrIntervention) {
+        self.socId = source.socId
+        self.ref = source.ref
+        self.lines = source.lines
+        self.contractId = source.contractId
+        self.projectId = source.projectId
+        self.dateo = source.dateo
+        self.datee = source.datee
+        self.duration = source.duration
+        self.description = source.description
+        self.clientRef = source.clientRef
+        self.lastMainDoc = source.lastMainDoc
+        self.externalContactIds = source.externalContactIds
+        self.internalContactIds = source.internalContactIds
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methids
+    
+    public func copy(_ source: DolibarrIntervention) {
+        self.socId = source.socId
+        self.ref = source.ref
+        self.lines = source.lines
+        self.contractId = source.contractId
+        self.projectId = source.projectId
+        self.dateo = source.dateo
+        self.datee = source.datee
+        self.duration = source.duration
+        self.description = source.description
+        self.clientRef = source.clientRef
+        self.lastMainDoc = source.lastMainDoc
+        self.externalContactIds = source.externalContactIds
+        self.internalContactIds = source.internalContactIds
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

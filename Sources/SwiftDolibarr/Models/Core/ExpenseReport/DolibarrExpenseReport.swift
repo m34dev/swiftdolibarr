@@ -349,6 +349,58 @@ public final class DolibarrExpenseReport: CommonBusinessObject {
             throw error
         }
     }
+    
+    public init(copying source: DolibarrExpenseReport) {
+        self.ref = source.ref
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.dateValidate = source.dateValidate
+        self.dateApprove = source.dateApprove
+        self.dateRefuse = source.dateRefuse
+        self.dateCancel = source.dateCancel
+        self.userCreateId = source.userCreateId
+        self.userModifyId = source.userModifyId
+        self.userBeneficiaryId = source.userBeneficiaryId
+        self.userValidatorId = source.userValidatorId
+        self.userCanceledById = source.userCanceledById
+        self.detailCanceled = source.detailCanceled
+        self.detailRefused = source.detailRefused
+        self.paid = source.paid
+        self.totalExclTax = source.totalExclTax
+        self.totalTax = source.totalTax
+        self.totalInclTax = source.totalInclTax
+        self.lines = source.lines
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrExpenseReport) {
+        self.ref = source.ref
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.dateValidate = source.dateValidate
+        self.dateApprove = source.dateApprove
+        self.dateRefuse = source.dateRefuse
+        self.dateCancel = source.dateCancel
+        self.userCreateId = source.userCreateId
+        self.userModifyId = source.userModifyId
+        self.userBeneficiaryId = source.userBeneficiaryId
+        self.userValidatorId = source.userValidatorId
+        self.userCanceledById = source.userCanceledById
+        self.detailCanceled = source.detailCanceled
+        self.detailRefused = source.detailRefused
+        self.paid = source.paid
+        self.totalExclTax = source.totalExclTax
+        self.totalTax = source.totalTax
+        self.totalInclTax = source.totalInclTax
+        self.lines = source.lines
+        super.copy(source)
+    }
 
     // MARK: - Protocol methods
 

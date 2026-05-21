@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org) using the following scheme: MAJOR.MINOR.PATCH
 
+## [0.40.0] - 2026-05-21
+
+### Changed
+- Updated business objects with init and copy from source methods
+- Refactored and cleaned code
+
 ## [0.39.0] - 2026-05-12
 
 ### Changed

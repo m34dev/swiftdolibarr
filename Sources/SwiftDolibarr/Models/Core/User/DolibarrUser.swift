@@ -114,6 +114,28 @@ public final class DolibarrUser: CommonBusinessObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrUser) {
+        self.admin = source.admin
+        self.login = source.login
+        self.lastname = source.lastname
+        self.firstname = source.firstname
+        self.supervisorId = source.supervisorId
+        self.rights = source.rights
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrUser) {
+        self.admin = source.admin
+        self.login = source.login
+        self.lastname = source.lastname
+        self.firstname = source.firstname
+        self.supervisorId = source.supervisorId
+        self.rights = source.rights
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

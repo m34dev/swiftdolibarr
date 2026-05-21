@@ -194,6 +194,40 @@ public final class DolibarrTask: CommonBusinessObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrTask) {
+        self.ref = source.ref
+        self.label = source.label
+        self.projectId = source.projectId
+        self.parentId = source.parentId
+        self.billable = source.billable
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.plannedWorkload = source.plannedWorkload
+        self.progress = source.progress
+        self.description = source.description
+        self.budgetAmount = source.budgetAmount
+        self.totalTimeSpent = source.totalTimeSpent
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrTask) {
+        self.ref = source.ref
+        self.label = source.label
+        self.projectId = source.projectId
+        self.parentId = source.parentId
+        self.billable = source.billable
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.plannedWorkload = source.plannedWorkload
+        self.progress = source.progress
+        self.description = source.description
+        self.budgetAmount = source.budgetAmount
+        self.totalTimeSpent = source.totalTimeSpent
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

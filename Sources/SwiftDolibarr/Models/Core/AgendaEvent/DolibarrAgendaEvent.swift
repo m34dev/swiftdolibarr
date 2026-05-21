@@ -350,14 +350,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		self.userOwnerId = source.userOwnerId
 		self.elementId = source.elementId
 		self.elementType = source.elementType
-		super.init(
-			id: source.id,
-			statusCode: source.statusCode,
-			entityId: source.entityId,
-			arrayOptions: source.arrayOptions,
-			notePublic: source.notePublic,
-			notePrivate: source.notePrivate
-		)
+        super.init(copying: source)
 	}
 
 	// MARK: - Methods
@@ -385,12 +378,7 @@ public final class DolibarrAgendaEvent: CommonBusinessObject {
 		self.userOwnerId = source.userOwnerId
 		self.elementId = source.elementId
 		self.elementType = source.elementType
-		self.id = source.id
-		self.statusCode = source.statusCode
-		self.entityId = source.entityId
-		self.arrayOptions = source.arrayOptions
-		self.notePublic = source.notePublic
-		self.notePrivate = source.notePrivate
+        super.copy(source)
 	}
 
 	// MARK: - Protocol methods
