@@ -27,7 +27,7 @@ import OSLog
 /// A Dolibarr intervention (field service) object.
 ///
 /// Maps to the Dolibarr `/interventions` REST API endpoint. An intervention
-/// is linked to a third party via ``socId`` and can optionally be associated
+/// is linked to a third party via ``thirdPartyId`` and can optionally be associated
 /// with a project or contract.
 ///
 /// ## Overview
@@ -49,7 +49,7 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	/// Associated third party ID
 	///
 	/// - Mapped Dolibarr property: **socid**
-	public var socId: String
+	public var thirdPartyId: String
 
 	/// Intervention reference
 	public var ref: String
@@ -70,13 +70,19 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	public var projectId: String?
 
 	/// Intervention start date (Unix timestamp)
-	public var dateo: Double?
+	///
+	/// - Mapped Dolibarr property: **dateo**
+	public var dateStart: Double?
 
 	/// Intervention end date (Unix timestamp)
-	public var datee: Double?
+	///
+	/// - Mapped Dolibarr property: **datee**
+	public var dateEnd: Double?
 
 	/// Intervention duration in seconds
-	public var duration: String?
+	///
+	/// - Mapped Dolibarr property: **duration**
+	public var durationSeconds: String?
 
 	/// Intervention description
 	public var description: String?
@@ -101,6 +107,21 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	/// - Mapped Dolibarr property: **contacts_ids_internal**
 	public var internalContactIds: [[String: MultiType]]?
 
+	/// Intervention creation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datec**
+	public var dateCreate: Int?
+
+	/// Intervention modification date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datem**
+	public var dateModify: Int?
+
+	/// Intervention validation date (Unix timestamp)
+	///
+	/// - Mapped Dolibarr property: **datev**
+	public var dateValidate: Int?
+
 	// Computed
 
 	/// Associated intervention status type
@@ -109,59 +130,104 @@ public final class DolibarrIntervention: CommonBusinessObject {
 		return status
 	}
 
+	/// Intervention creation date
+	public var dateCreated: Date? {
+		guard let dateCreate else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateCreate))
+	}
+
+	/// Intervention modification date
+	public var dateModified: Date? {
+		guard let dateModify else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateModify))
+	}
+
+	/// Intervention validation date
+	public var dateValidated: Date? {
+		guard let dateValidate else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateValidate))
+	}
+
+	/// Intervention start date
+	public var dateStarted: Date? {
+		guard let dateStart else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateStart))
+	}
+
+	/// Intervention end date
+	public var dateEnded: Date? {
+		guard let dateEnd else { return nil }
+		return Date(timeIntervalSince1970: TimeInterval(dateEnd))
+	}
+
+	/// Intervention duration as a `Duration`
+	public var duration: Duration? {
+		guard let durationSeconds, let seconds = Double(durationSeconds) else { return nil }
+		return .seconds(seconds)
+	}
+
 	// MARK: - Enums
 
 	enum CodingKeys: String, CodingKey {
-		case socId = "socid"
+		case thirdPartyId = "socid"
 		case ref
 		case contractId = "fk_contrat"
 		case projectId = "fk_project"
-		case dateo
-		case datee
-		case duration
+		case dateStart = "dateo"
+		case dateEnd = "datee"
+		case durationSeconds = "duration"
 		case description
 		case clientRef = "ref_client"
 		case lastMainDoc = "last_main_doc"
 		case lines
 		case externalContactIds = "contacts_ids"
 		case internalContactIds = "contacts_ids_internal"
+		case dateCreate = "datec"
+		case dateModify = "datem"
+		case dateValidate = "datev"
 	}
 
 	// MARK: - Inits
 
 	public init(
-		socId: String = "",
+		thirdPartyId: String = "",
 		ref: String = "",
 		lines: [DolibarrInterventionLine] = [],
 		contractId: String? = nil,
 		projectId: String? = nil,
-		dateo: Double? = nil,
-		datee: Double? = nil,
-		duration: String? = nil,
+		dateStart: Double? = nil,
+		dateEnd: Double? = nil,
+		durationSeconds: String? = nil,
 		description: String? = nil,
 		clientRef: String? = nil,
 		lastMainDoc: String? = nil,
 		externalContactIds: [[String: MultiType]]? = nil,
 		internalContactIds: [[String: MultiType]]? = nil,
+		dateCreate: Int? = nil,
+		dateModify: Int? = nil,
+		dateValidate: Int? = nil,
 		id: String = "",
 		statusCode: String = "",
 		arrayOptions: [String: MultiType]? = nil,
 		notePublic: String? = nil,
 		notePrivate: String? = nil
 	) {
-		self.socId = socId
+		self.thirdPartyId = thirdPartyId
 		self.ref = ref
 		self.lines = lines
 		self.contractId = contractId
 		self.projectId = projectId
-		self.dateo = dateo
-		self.datee = datee
-		self.duration = duration
+		self.dateStart = dateStart
+		self.dateEnd = dateEnd
+		self.durationSeconds = durationSeconds
 		self.description = description
 		self.clientRef = clientRef
 		self.lastMainDoc = lastMainDoc
 		self.externalContactIds = externalContactIds
 		self.internalContactIds = internalContactIds
+		self.dateCreate = dateCreate
+		self.dateModify = dateModify
+		self.dateValidate = dateValidate
 		super.init(
 			id: id,
 			statusCode: statusCode,
@@ -177,19 +243,22 @@ public final class DolibarrIntervention: CommonBusinessObject {
 			Logger.logWithoutSignal("\(Self.self).init.decode", category: .api)
 			#endif
 			let container = try decoder.container(keyedBy: CodingKeys.self)
-			self.socId = try container.decode(String.self, forKey: .socId)
+			self.thirdPartyId = try container.decode(String.self, forKey: .thirdPartyId)
 			self.ref = try container.decode(String.self, forKey: .ref)
 			self.lines = try container.decode([DolibarrInterventionLine].self, forKey: .lines)
 			self.contractId = try container.decodeIfPresent(String.self, forKey: .contractId)
 			self.projectId = try container.decodeIfPresent(String.self, forKey: .projectId)
-			self.dateo = try container.decodeIfPresent(MultiType.self, forKey: .dateo)?.doubleValue
-			self.datee = try container.decodeIfPresent(MultiType.self, forKey: .datee)?.doubleValue
-			self.duration = try container.decodeIfPresent(String.self, forKey: .duration)
+			self.dateStart = try container.decodeIfPresent(MultiType.self, forKey: .dateStart)?.doubleValue
+			self.dateEnd = try container.decodeIfPresent(MultiType.self, forKey: .dateEnd)?.doubleValue
+			self.durationSeconds = try container.decodeIfPresent(String.self, forKey: .durationSeconds)
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			self.clientRef = try container.decodeIfPresent(String.self, forKey: .clientRef)
 			self.lastMainDoc = try container.decodeIfPresent(String.self, forKey: .lastMainDoc)
 			self.externalContactIds = try container.decodeIfPresent([[String: MultiType]].self, forKey: .externalContactIds)
 			self.internalContactIds = try container.decodeIfPresent([[String: MultiType]].self, forKey: .internalContactIds)
+			self.dateCreate = try container.decodeIfPresent(Int.self, forKey: .dateCreate)
+			self.dateModify = try container.decodeIfPresent(Int.self, forKey: .dateModify)
+			self.dateValidate = try container.decodeIfPresent(Int.self, forKey: .dateValidate)
 			try super.init(from: decoder)
 			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
@@ -208,72 +277,84 @@ public final class DolibarrIntervention: CommonBusinessObject {
 	}
     
     public init(copying source: DolibarrIntervention) {
-        self.socId = source.socId
+        self.thirdPartyId = source.thirdPartyId
         self.ref = source.ref
         self.lines = source.lines
         self.contractId = source.contractId
         self.projectId = source.projectId
-        self.dateo = source.dateo
-        self.datee = source.datee
-        self.duration = source.duration
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.durationSeconds = source.durationSeconds
         self.description = source.description
         self.clientRef = source.clientRef
         self.lastMainDoc = source.lastMainDoc
         self.externalContactIds = source.externalContactIds
         self.internalContactIds = source.internalContactIds
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.dateValidate = source.dateValidate
         super.init(copying: source)
     }
     
     // MARK: - Methids
     
     public func copy(_ source: DolibarrIntervention) {
-        self.socId = source.socId
+        self.thirdPartyId = source.thirdPartyId
         self.ref = source.ref
         self.lines = source.lines
         self.contractId = source.contractId
         self.projectId = source.projectId
-        self.dateo = source.dateo
-        self.datee = source.datee
-        self.duration = source.duration
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.durationSeconds = source.durationSeconds
         self.description = source.description
         self.clientRef = source.clientRef
         self.lastMainDoc = source.lastMainDoc
         self.externalContactIds = source.externalContactIds
         self.internalContactIds = source.internalContactIds
+        self.dateCreate = source.dateCreate
+        self.dateModify = source.dateModify
+        self.dateValidate = source.dateValidate
         super.copy(source)
     }
 
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {
-		hasher.combine(socId)
+		hasher.combine(thirdPartyId)
 		hasher.combine(ref)
 		hasher.combine(lines)
 		hasher.combine(optional: contractId)
 		hasher.combine(optional: projectId)
-		hasher.combine(optional: dateo)
-		hasher.combine(optional: datee)
-		hasher.combine(optional: duration)
+		hasher.combine(optional: dateStart)
+		hasher.combine(optional: dateEnd)
+		hasher.combine(optional: durationSeconds)
 		hasher.combine(optional: description)
 		hasher.combine(optional: clientRef)
 		hasher.combine(optional: lastMainDoc)
 		hasher.combine(optional: externalContactIds)
 		hasher.combine(optional: internalContactIds)
+		hasher.combine(optional: dateCreate)
+		hasher.combine(optional: dateModify)
+		hasher.combine(optional: dateValidate)
 		super.hash(into: &hasher)
 	}
 
 	override public func encode(to encoder: any Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encodeIfNotEmpty(socId, forKey: .socId)
+		try container.encodeIfNotEmpty(thirdPartyId, forKey: .thirdPartyId)
 		try container.encodeIfNotEmpty(ref, forKey: .ref)
 		try container.encodeIfPresent(contractId, forKey: .contractId)
 		try container.encodeIfPresent(projectId, forKey: .projectId)
-		try container.encodeIfPresent(dateo, forKey: .dateo)
-		try container.encodeIfPresent(datee, forKey: .datee)
-		try container.encodeIfPresent(duration, forKey: .duration)
+		try container.encodeIfPresent(dateStart, forKey: .dateStart)
+		try container.encodeIfPresent(dateEnd, forKey: .dateEnd)
+		try container.encodeIfPresent(durationSeconds, forKey: .durationSeconds)
 		try container.encodeIfPresent(description, forKey: .description)
 		try container.encodeIfPresent(clientRef, forKey: .clientRef)
 		try container.encodeIfPresent(lastMainDoc, forKey: .lastMainDoc)
+		try container.encodeIfPresent(dateCreate, forKey: .dateCreate)
+		try container.encodeIfPresent(dateModify, forKey: .dateModify)
+		try container.encodeIfPresent(dateValidate, forKey: .dateValidate)
 		try super.encode(to: encoder)
 	}
 

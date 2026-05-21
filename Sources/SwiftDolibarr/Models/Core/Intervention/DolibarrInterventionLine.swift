@@ -26,8 +26,10 @@ import OSLog
 
 /// A single line item within a Dolibarr intervention.
 ///
-/// Each line represents a time entry with a ``datei`` timestamp,
-/// a ``duration`` in seconds, and an optional description.
+/// Each line represents a time entry with a ``dateIntervene`` timestamp,
+/// surfaced as ``dateIntervened`` for `Date`-typed access,
+/// a ``durationSeconds`` (surfaced as ``duration`` for `Duration`-typed access),
+/// and an optional description.
 ///
 /// - Note: Requires the **Ficheinter** module to be activated in Dolibarr.
 /// - SeeAlso: ``DolibarrIntervention``
@@ -41,36 +43,55 @@ public final class DolibarrInterventionLine: CommonBusinessObjectLine {
 	// Required
 
 	/// Intervention line date (Unix timestamp)
-	public var datei: Double
+	///
+	/// - Mapped Dolibarr property: **datei**
+	public var dateIntervene: Double
 
 	/// Intervention line duration in seconds
-	public var duration: String
+	///
+	/// - Mapped Dolibarr property: **duration**
+	public var durationSeconds: String
 
 	// Optional
 
 	/// Intervention line description
-	public  var desc: String?
+	///
+	/// - Mapped Dolibarr property: **desc**
+	public var description: String?
+
+    // Computed
+
+    /// Intervention line date
+    public var dateIntervened: Date {
+        Date(timeIntervalSince1970: TimeInterval(dateIntervene))
+    }
+
+    /// Intervention line duration as a `Duration`
+    public var duration: Duration? {
+        guard let seconds = Double(durationSeconds) else { return nil }
+        return .seconds(seconds)
+    }
 
     // MARK: - Enums
 
-    enum CodingKeys: CodingKey {
-		case datei
-		case duration
-        case desc
+    enum CodingKeys: String, CodingKey {
+		case dateIntervene = "datei"
+		case durationSeconds = "duration"
+        case description = "desc"
     }
 
     // MARK: - Inits
 
 	public init(
-		datei: Double = Date.now.timeIntervalSince1970,
-		duration: String = "3600",
-		desc: String? = nil,
+		dateIntervene: Double = Date.now.timeIntervalSince1970,
+		durationSeconds: String = "3600",
+		description: String? = nil,
 		id: String = "",
 		rang: String = ""
 	) {
-		self.datei = datei
-		self.duration = duration
-        self.desc = desc
+		self.dateIntervene = dateIntervene
+		self.durationSeconds = durationSeconds
+        self.description = description
 		super.init(id: id, rang: rang)
     }
 
@@ -80,9 +101,9 @@ public final class DolibarrInterventionLine: CommonBusinessObjectLine {
             Logger.logWithoutSignal("\(Self.self).init.decode", level: .info, category: .api)
             #endif
             let container = try decoder.container(keyedBy: CodingKeys.self)
-			self.datei = try container.decode(Double.self, forKey: .datei)
-			self.duration = try container.decode(String.self, forKey: .duration)
-            self.desc = try container.decodeIfPresent(String.self, forKey: .desc)
+			self.dateIntervene = try container.decode(Double.self, forKey: .dateIntervene)
+			self.durationSeconds = try container.decode(String.self, forKey: .durationSeconds)
+            self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			try super.init(from: decoder)
             #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
             Logger.logWithoutSignal("\(Self.self).init.decoded", level: .info, category: .api)
@@ -101,35 +122,35 @@ public final class DolibarrInterventionLine: CommonBusinessObjectLine {
     }
 
     public init(copying source: DolibarrInterventionLine) {
-        self.datei = source.datei
-        self.duration = source.duration
-        self.desc = source.desc
+        self.dateIntervene = source.dateIntervene
+        self.durationSeconds = source.durationSeconds
+        self.description = source.description
         super.init(copying: source)
     }
 
     // MARK: - Methods
 
     public func copy(_ source: DolibarrInterventionLine) {
-        self.datei = source.datei
-        self.duration = source.duration
-        self.desc = source.desc
+        self.dateIntervene = source.dateIntervene
+        self.durationSeconds = source.durationSeconds
+        self.description = source.description
         super.copy(source)
     }
 
     // MARK: - Protocol methods
 
     override public func hash(into hasher: inout Hasher) {
-        hasher.combine(datei)
-		hasher.combine(duration)
-		hasher.combine(optional: desc)
+        hasher.combine(dateIntervene)
+		hasher.combine(durationSeconds)
+		hasher.combine(optional: description)
 		super.hash(into: &hasher)
     }
 
     override public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(datei, forKey: .datei)
-        try container.encode(duration, forKey: .duration)
-		try container.encode(desc, forKey: .desc)
+        try container.encode(dateIntervene, forKey: .dateIntervene)
+        try container.encode(durationSeconds, forKey: .durationSeconds)
+		try container.encodeIfPresent(description, forKey: .description)
 		try super.encode(to: encoder)
     }
 

@@ -24,13 +24,28 @@ import Foundation
 import OSLog
 #endif
 
+/// A Dolibarr payment method.
+///
+/// Maps to the Dolibarr `/setup/dictionary/payment_types` REST API endpoint.
+/// Each payment method has a ``code`` (e.g. `CB`, `VIR`, `LIQ`), a ``type``
+/// indicating its category, and a ``label`` for display.
+///
+/// - Note: Payment methods can be assigned to invoices, orders, and quotes.
+/// - SeeAlso: ``DolibarrInvoice``, ``DolibarrOrder``, ``DolibarrQuote``
 public struct DolibarrPaymentMethod: Hashable, Decodable, Sendable, DolibarrObject {
 
     // MARK: - Properties
 
+    /// Payment method ID.
     public var id: String
+
+    /// Payment method code (e.g. `CB`, `VIR`, `LIQ`).
     public var code: String
+
+    /// Payment method type indicator.
     public var type: String
+
+    /// Display label for the payment method.
     public var label: String
 
     // MARK: - Enums

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org) using the 
 
 ### Changed
 - Updated business objects with init and copy from source methods
+- Updated intervention and task properties
 - Refactored and cleaned code
 
 ## [0.39.0] - 2026-05-12
