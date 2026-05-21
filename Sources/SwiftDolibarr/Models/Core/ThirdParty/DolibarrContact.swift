@@ -251,6 +251,50 @@ public final class DolibarrContact: CommonBusinessObject, DolibarrPeopleObject, 
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrContact) {
+        self.countryId = source.countryId
+        self.countryCode = source.countryCode
+        self.email = source.email
+        self.lastname = source.lastname
+        self.firstname = source.firstname
+        self.titleCode = source.titleCode
+        self.address = source.address
+        self.zipCode = source.zipCode
+        self.city = source.city
+        self.poste = source.poste
+        self.socid = source.socid
+        self.socialnetworks = source.socialnetworks
+        self.phonePro = source.phonePro
+        self.phonePerso = source.phonePerso
+        self.phoneMobile = source.phoneMobile
+        self.fax = source.fax
+        self.birthday = source.birthday
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrContact) {
+        self.countryId = source.countryId
+        self.countryCode = source.countryCode
+        self.email = source.email
+        self.lastname = source.lastname
+        self.firstname = source.firstname
+        self.titleCode = source.titleCode
+        self.address = source.address
+        self.zipCode = source.zipCode
+        self.city = source.city
+        self.poste = source.poste
+        self.socid = source.socid
+        self.socialnetworks = source.socialnetworks
+        self.phonePro = source.phonePro
+        self.phonePerso = source.phonePerso
+        self.phoneMobile = source.phoneMobile
+        self.fax = source.fax
+        self.birthday = source.birthday
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

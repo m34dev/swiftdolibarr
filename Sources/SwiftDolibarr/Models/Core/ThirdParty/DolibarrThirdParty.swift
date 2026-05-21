@@ -331,6 +331,70 @@ public final class DolibarrThirdParty: CommonBusinessObject, DolibarrPeopleObjec
             throw error
         }
     }
+    
+    public init(copying source: DolibarrThirdParty) {
+        self.name = source.name
+        self.countryId = source.countryId
+        self.countryCode = source.countryCode
+        self.multicurrencyCode = source.multicurrencyCode
+        self.nameAlias = source.nameAlias
+        self.phone = source.phone
+        self.fax = source.fax
+        self.email = source.email
+        self.url = source.url
+        self.idprof1 = source.idprof1
+        self.idprof2 = source.idprof2
+        self.idprof3 = source.idprof3
+        self.idprof4 = source.idprof4
+        self.idprof5 = source.idprof5
+        self.tvaIntra = source.tvaIntra
+        self.capital = source.capital
+        self.workforce = source.workforce
+        self.legalEntityType = source.legalEntityType
+        self.client = source.client
+        self.supplier = source.supplier
+        self.clientCode = source.clientCode
+        self.supplierCode = source.supplierCode
+        self.parentId = source.parentId
+        self.socialnetworks = source.socialnetworks
+        self.address = source.address
+        self.zipCode = source.zipCode
+        self.city = source.city
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrThirdParty) {
+        self.name = source.name
+        self.countryId = source.countryId
+        self.countryCode = source.countryCode
+        self.multicurrencyCode = source.multicurrencyCode
+        self.nameAlias = source.nameAlias
+        self.phone = source.phone
+        self.fax = source.fax
+        self.email = source.email
+        self.url = source.url
+        self.idprof1 = source.idprof1
+        self.idprof2 = source.idprof2
+        self.idprof3 = source.idprof3
+        self.idprof4 = source.idprof4
+        self.idprof5 = source.idprof5
+        self.tvaIntra = source.tvaIntra
+        self.capital = source.capital
+        self.workforce = source.workforce
+        self.legalEntityType = source.legalEntityType
+        self.client = source.client
+        self.supplier = source.supplier
+        self.clientCode = source.clientCode
+        self.supplierCode = source.supplierCode
+        self.parentId = source.parentId
+        self.socialnetworks = source.socialnetworks
+        self.address = source.address
+        self.zipCode = source.zipCode
+        self.city = source.city
+        super.copy(source)
+    }
 
     // MARK: - Protocol methods
 

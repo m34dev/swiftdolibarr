@@ -88,10 +88,10 @@ public final class DolibarrTask: CommonBusinessObject {
     /// - Mapped Dolibarr property: **budget_amount**
     public var budgetAmount: String?
 
-    /// Task total time spent
+    /// Task total time spent in seconds
     ///
     /// - Mapped Dolibarr property: **duration_effective**
-    public var totalTimeSpent: String?
+    public var totalTimeSpentSeconds: String?
 
     // Computed
 
@@ -100,6 +100,32 @@ public final class DolibarrTask: CommonBusinessObject {
         guard let status = DolibarrObjectStatus.tasks.first(where: { $0.code == statusCode }) else { return .unknown }
         return status
     }
+
+    /// Task start date
+    public var dateStarted: Date? {
+        guard let dateStart else { return nil }
+        return Date(timeIntervalSince1970: TimeInterval(dateStart))
+    }
+
+    /// Task end date
+    public var dateEnded: Date? {
+        guard let dateEnd else { return nil }
+        return Date(timeIntervalSince1970: TimeInterval(dateEnd))
+    }
+
+    /// Task total time spent as a `Duration`
+    public var totalTimeSpent: Duration? {
+        guard let totalTimeSpentSeconds, let seconds = Double(totalTimeSpentSeconds) else { return nil }
+        return .seconds(seconds)
+    }
+
+    /// Task budget as a `Double`
+    public var budget: Double? {
+        guard let budgetAmount else { return nil }
+        return Double(budgetAmount)
+    }
+
+    // MARK: - Enums
 
 	enum CodingKeys: String, CodingKey {
 		case ref
@@ -113,7 +139,7 @@ public final class DolibarrTask: CommonBusinessObject {
 		case progress
 		case description
 		case budgetAmount = "budget_amount"
-		case totalTimeSpent = "duration_effective"
+		case totalTimeSpentSeconds = "duration_effective"
 	}
 
 	// MARK: - Inits
@@ -130,7 +156,7 @@ public final class DolibarrTask: CommonBusinessObject {
 		progress: String? = nil,
 		description: String? = nil,
 		budgetAmount: String? = nil,
-		totalTimeSpent: String? = nil,
+		totalTimeSpentSeconds: String? = nil,
 		id: String = "",
 		statusCode: String = "",
 		entityId: String? = nil,
@@ -149,7 +175,7 @@ public final class DolibarrTask: CommonBusinessObject {
 		self.progress = progress
 		self.description = description
 		self.budgetAmount = budgetAmount
-		self.totalTimeSpent = totalTimeSpent
+		self.totalTimeSpentSeconds = totalTimeSpentSeconds
 		super.init(
 			id: id,
 			statusCode: statusCode,
@@ -177,7 +203,7 @@ public final class DolibarrTask: CommonBusinessObject {
 			self.progress = try container.decodeIfPresent(String.self, forKey: .progress)
 			self.description = try container.decodeIfPresent(String.self, forKey: .description)
 			self.budgetAmount = try container.decodeIfPresent(String.self, forKey: .budgetAmount)
-			self.totalTimeSpent = try container.decodeIfPresent(String.self, forKey: .totalTimeSpent)
+			self.totalTimeSpentSeconds = try container.decodeIfPresent(String.self, forKey: .totalTimeSpentSeconds)
 			try super.init(from: decoder)
 			#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
 			Logger.logWithoutSignal("\(Self.self).init.decoded", category: .api)
@@ -194,6 +220,40 @@ public final class DolibarrTask: CommonBusinessObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrTask) {
+        self.ref = source.ref
+        self.label = source.label
+        self.projectId = source.projectId
+        self.parentId = source.parentId
+        self.billable = source.billable
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.plannedWorkload = source.plannedWorkload
+        self.progress = source.progress
+        self.description = source.description
+        self.budgetAmount = source.budgetAmount
+        self.totalTimeSpentSeconds = source.totalTimeSpentSeconds
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrTask) {
+        self.ref = source.ref
+        self.label = source.label
+        self.projectId = source.projectId
+        self.parentId = source.parentId
+        self.billable = source.billable
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.plannedWorkload = source.plannedWorkload
+        self.progress = source.progress
+        self.description = source.description
+        self.budgetAmount = source.budgetAmount
+        self.totalTimeSpentSeconds = source.totalTimeSpentSeconds
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 
@@ -209,7 +269,7 @@ public final class DolibarrTask: CommonBusinessObject {
 		hasher.combine(progress)
 		hasher.combine(description)
 		hasher.combine(budgetAmount)
-		hasher.combine(totalTimeSpent)
+		hasher.combine(totalTimeSpentSeconds)
         super.hash(into: &hasher)
 	}
 

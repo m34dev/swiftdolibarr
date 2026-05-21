@@ -86,6 +86,18 @@ public class CommonBusinessObjectLine: Equatable, Hashable, Codable, DolibarrObj
 		}
 	}
 
+    public init(copying source: CommonBusinessObjectLine) {
+        self.id = source.id
+        self.rang = source.rang
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: CommonBusinessObjectLine) {
+        self.id = source.id
+        self.rang = source.rang
+    }
+
 	// MARK: - Protocol methods
 
 	public func hash(into hasher: inout Hasher) {

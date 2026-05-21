@@ -242,6 +242,50 @@ public final class DolibarrProject: CommonBusinessObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrProject) {
+        self.reference = source.reference
+        self.title = source.title
+        self.usageLead = source.usageLead
+        self.usageTask = source.usageTask
+        self.usageBillTime = source.usageBillTime
+        self.usageOrganizeEvent = source.usageOrganizeEvent
+        self.thirdPartyId = source.thirdPartyId
+        self.leadAmount = source.leadAmount
+        self.leadStatus = source.leadStatus
+        self.leadProgress = source.leadProgress
+        self.budgetAmount = source.budgetAmount
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.dateStartEvent = source.dateStartEvent
+        self.dateEndEvent = source.dateEndEvent
+        self.location = source.location
+        self.description = source.description
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrProject) {
+        self.reference = source.reference
+        self.title = source.title
+        self.usageLead = source.usageLead
+        self.usageTask = source.usageTask
+        self.usageBillTime = source.usageBillTime
+        self.usageOrganizeEvent = source.usageOrganizeEvent
+        self.thirdPartyId = source.thirdPartyId
+        self.leadAmount = source.leadAmount
+        self.leadStatus = source.leadStatus
+        self.leadProgress = source.leadProgress
+        self.budgetAmount = source.budgetAmount
+        self.dateStart = source.dateStart
+        self.dateEnd = source.dateEnd
+        self.dateStartEvent = source.dateStartEvent
+        self.dateEndEvent = source.dateEndEvent
+        self.location = source.location
+        self.description = source.description
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

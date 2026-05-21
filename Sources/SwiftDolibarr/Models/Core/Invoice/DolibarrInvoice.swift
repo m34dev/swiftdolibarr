@@ -253,6 +253,44 @@ public final class DolibarrInvoice: CommonCommercialTransactionObject {
 		}
 	}
 
+    public init(copying source: DolibarrInvoice) {
+        self.date = source.date
+        self.typeCode = source.typeCode
+        self.paidCode = source.paidCode
+        self.lines = source.lines
+        self.clientRef = source.clientRef
+        self.dateValidation = source.dateValidation
+        self.userAuthorId = source.userAuthorId
+        self.lastMainDoc = source.lastMainDoc
+        self.paymentMethodId = source.paymentMethodId
+        self.paymentTermsId = source.paymentTermsId
+        self.sourceReasonId = source.sourceReasonId
+        self.externalContactIds = source.externalContactIds
+        self.closeCode = source.closeCode
+        self.closeNote = source.closeNote
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: DolibarrInvoice) {
+        self.date = source.date
+        self.typeCode = source.typeCode
+        self.paidCode = source.paidCode
+        self.lines = source.lines
+        self.clientRef = source.clientRef
+        self.dateValidation = source.dateValidation
+        self.userAuthorId = source.userAuthorId
+        self.lastMainDoc = source.lastMainDoc
+        self.paymentMethodId = source.paymentMethodId
+        self.paymentTermsId = source.paymentTermsId
+        self.sourceReasonId = source.sourceReasonId
+        self.externalContactIds = source.externalContactIds
+        self.closeCode = source.closeCode
+        self.closeNote = source.closeNote
+        super.copy(source)
+    }
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {

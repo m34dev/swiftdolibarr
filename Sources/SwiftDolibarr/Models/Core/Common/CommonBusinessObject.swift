@@ -38,7 +38,7 @@ import OSLog
 /// - SeeAlso: ``DolibarrBusinessObject``
 /// - SeeAlso: ``CommonCommercialTransactionObject``
 public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
-
+    
 	// MARK: - Properties
 
 	/// Business object ID
@@ -144,6 +144,26 @@ public class CommonBusinessObject: Equatable, Codable, DolibarrBusinessObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: CommonBusinessObject) {
+        self.id = source.id
+        self.statusCode = source.statusCode
+        self.entityId = source.entityId
+        self.arrayOptions = source.arrayOptions
+        self.notePublic = source.notePublic
+        self.notePrivate = source.notePrivate
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: CommonBusinessObject) {
+        self.id = source.id
+        self.statusCode = source.statusCode
+        self.entityId = source.entityId
+        self.arrayOptions = source.arrayOptions
+        self.notePublic = source.notePublic
+        self.notePrivate = source.notePrivate
+    }
 
 	// MARK: - Protocol methods
 

@@ -255,6 +255,46 @@ public final class DolibarrQuote: CommonCommercialTransactionObject {
 			throw error
 		}
 	}
+    
+    public init(copying source: DolibarrQuote) {
+        self.lines = source.lines
+        self.clientRef = source.clientRef
+        self.dateP = source.dateP
+        self.dateV = source.dateV
+        self.validityEndDate = source.validityEndDate
+        self.deliveryDate = source.deliveryDate
+        self.pdfModel = source.pdfModel
+        self.lastMainDoc = source.lastMainDoc
+        self.userAuthorId = source.userAuthorId
+        self.paymentMethodId = source.paymentMethodId
+        self.paymentTermsId = source.paymentTermsId
+        self.availabilityId = source.availabilityId
+        self.shippingMethodId = source.shippingMethodId
+        self.sourceReasonId = source.sourceReasonId
+        self.externalContactIds = source.externalContactIds
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: DolibarrQuote) {
+        self.lines = source.lines
+        self.clientRef = source.clientRef
+        self.dateP = source.dateP
+        self.dateV = source.dateV
+        self.validityEndDate = source.validityEndDate
+        self.deliveryDate = source.deliveryDate
+        self.pdfModel = source.pdfModel
+        self.lastMainDoc = source.lastMainDoc
+        self.userAuthorId = source.userAuthorId
+        self.paymentMethodId = source.paymentMethodId
+        self.paymentTermsId = source.paymentTermsId
+        self.availabilityId = source.availabilityId
+        self.shippingMethodId = source.shippingMethodId
+        self.sourceReasonId = source.sourceReasonId
+        self.externalContactIds = source.externalContactIds
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

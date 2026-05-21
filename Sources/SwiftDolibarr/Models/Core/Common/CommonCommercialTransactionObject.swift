@@ -175,6 +175,30 @@ public class CommonCommercialTransactionObject: CommonBusinessObject, DolibarrCo
 			throw error
 		}
 	}
+    
+    public init(copying source: CommonCommercialTransactionObject) {
+        self.thirdPartyId = source.thirdPartyId
+        self.ref = source.ref
+        self.totalExclTax = source.totalExclTax
+        self.totalTax = source.totalTax
+        self.totalInclTax = source.totalInclTax
+        self.multicurrencyCode = source.multicurrencyCode
+        self.linkedObjectsIds = source.linkedObjectsIds
+        super.init(copying: source)
+    }
+    
+    // MARK: - Methods
+    
+    public func copy(_ source: CommonCommercialTransactionObject) {
+        self.thirdPartyId = source.thirdPartyId
+        self.ref = source.ref
+        self.totalExclTax = source.totalExclTax
+        self.totalTax = source.totalTax
+        self.totalInclTax = source.totalInclTax
+        self.multicurrencyCode = source.multicurrencyCode
+        self.linkedObjectsIds = source.linkedObjectsIds
+        super.copy(source)
+    }
 
 	// MARK: - Protocol methods
 

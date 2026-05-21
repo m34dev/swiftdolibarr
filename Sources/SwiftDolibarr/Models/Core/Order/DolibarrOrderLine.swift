@@ -113,6 +113,18 @@ public final class DolibarrOrderLine: CommonCommercialTransactionObjectLine {
 		}
 	}
 
+    public init(copying source: DolibarrOrderLine) {
+        self.orderId = source.orderId
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: DolibarrOrderLine) {
+        self.orderId = source.orderId
+        super.copy(source)
+    }
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {

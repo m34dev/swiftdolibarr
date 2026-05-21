@@ -208,6 +208,56 @@ public final class DolibarrProduct: CommonBusinessObject {
 		}
 	}
 
+    public init(copying source: DolibarrProduct) {
+        self.ref = source.ref
+        self.sellStatus = source.sellStatus
+        self.buyStatus = source.buyStatus
+        self.typeCode = source.typeCode
+        self.label = source.label
+        self.description = source.description
+        self.duration = source.duration
+        self.finished = source.finished
+        self.priceExclTax = source.priceExclTax
+        self.priceInclTax = source.priceInclTax
+        self.priceMinExclTax = source.priceMinExclTax
+        self.priceMinInclTax = source.priceMinInclTax
+        self.priceBaseType = source.priceBaseType
+        self.priceLabel = source.priceLabel
+        self.taxRate = source.taxRate
+        self.url = source.url
+        self.barcode = source.barcode
+        self.barcodeType = source.barcodeType
+        self.stockWarehouse = source.stockWarehouse
+        self.defaultWarehouseId = source.defaultWarehouseId
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: DolibarrProduct) {
+        self.ref = source.ref
+        self.sellStatus = source.sellStatus
+        self.buyStatus = source.buyStatus
+        self.typeCode = source.typeCode
+        self.label = source.label
+        self.description = source.description
+        self.duration = source.duration
+        self.finished = source.finished
+        self.priceExclTax = source.priceExclTax
+        self.priceInclTax = source.priceInclTax
+        self.priceMinExclTax = source.priceMinExclTax
+        self.priceMinInclTax = source.priceMinInclTax
+        self.priceBaseType = source.priceBaseType
+        self.priceLabel = source.priceLabel
+        self.taxRate = source.taxRate
+        self.url = source.url
+        self.barcode = source.barcode
+        self.barcodeType = source.barcodeType
+        self.stockWarehouse = source.stockWarehouse
+        self.defaultWarehouseId = source.defaultWarehouseId
+        super.copy(source)
+    }
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {

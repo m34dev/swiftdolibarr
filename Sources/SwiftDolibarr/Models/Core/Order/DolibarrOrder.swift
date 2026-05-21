@@ -246,6 +246,46 @@ public final class DolibarrOrder: CommonCommercialTransactionObject {
 		}
 	}
 
+    public init(copying source: DolibarrOrder) {
+        self.lines = source.lines
+        self.clientRef = source.clientRef
+        self.dateCreation = source.dateCreation
+        self.dateOrder = source.dateOrder
+        self.dateValidation = source.dateValidation
+        self.deliveryDate = source.deliveryDate
+        self.pdfModel = source.pdfModel
+        self.lastMainDoc = source.lastMainDoc
+        self.userAuthorId = source.userAuthorId
+        self.paymentMethodId = source.paymentMethodId
+        self.paymentTermsId = source.paymentTermsId
+        self.availabilityId = source.availabilityId
+        self.shippingMethodId = source.shippingMethodId
+        self.sourceReasonId = source.sourceReasonId
+        self.externalContactIds = source.externalContactIds
+        super.init(copying: source)
+    }
+
+    // MARK: - Methods
+
+    public func copy(_ source: DolibarrOrder) {
+        self.lines = source.lines
+        self.clientRef = source.clientRef
+        self.dateCreation = source.dateCreation
+        self.dateOrder = source.dateOrder
+        self.dateValidation = source.dateValidation
+        self.deliveryDate = source.deliveryDate
+        self.pdfModel = source.pdfModel
+        self.lastMainDoc = source.lastMainDoc
+        self.userAuthorId = source.userAuthorId
+        self.paymentMethodId = source.paymentMethodId
+        self.paymentTermsId = source.paymentTermsId
+        self.availabilityId = source.availabilityId
+        self.shippingMethodId = source.shippingMethodId
+        self.sourceReasonId = source.sourceReasonId
+        self.externalContactIds = source.externalContactIds
+        super.copy(source)
+    }
+
 	// MARK: - Protocol methods
 
 	override public func hash(into hasher: inout Hasher) {
